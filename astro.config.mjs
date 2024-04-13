@@ -39,6 +39,7 @@ export default defineConfig({
         'flat-color-icons': [
           'template',
           'gallery',
+          'device-imac',
           'approval',
           'document',
           'advertising',

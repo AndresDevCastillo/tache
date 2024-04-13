@@ -5,44 +5,44 @@ import ContactUs from '~/components/widgets/Contact.astro';
 import Features2 from '~/components/widgets/Features2.astro';
 
 const metadata = {
-  title: 'Contact',
+  title: 'Contacto Tache Technology',
 };
 ---
 
 <Layout metadata={metadata}>
   <!-- HeroText Widget ******************* -->
 
-  <HeroText tagline="Contact" title="Let's Connect!" />
+  <HeroText tagline="Contacto" title="Empezemos ya!" />
 
   <ContactUs
-    title="Drop us a message today!"
-    subtitle="For quicker answers, explore our FAQs section. You may find the solution you're looking  for right there! If not, our support team is delighted to help you."
+    title="¡Envíanos un mensaje hoy!"
+    subtitle="Para respuestas más rápidas, explora nuestra sección de Preguntas Frecuentes (FAQs). ¡Puede que ahí encuentres justo la solución que buscas! Si no es así, nuestro equipo de soporte estará encantado de ayudarte."
     inputs={[
       {
         type: 'text',
         name: 'name',
-        label: 'Name',
+        label: 'Nombre',
       },
       {
         type: 'email',
         name: 'email',
-        label: 'Email',
+        label: 'Correo',
       },
     ]}
     textarea={{
-      label: 'Message',
+      label: 'Mensaje',
     }}
     disclaimer={{
       label:
-        'By submitting this contact form, you acknowledge and agree to the collection of your personal information.',
+        'Al enviar este formulario de contacto, usted reconoce y acepta la recopilación de su información personal.',
     }}
-    description="Our support team typically responds within 24 business hours."
+    description="Nuestro equipo de soporte suele responder dentro de las 24 horas hábiles."
   />
 
   <!-- Features2 Widget ************** -->
 
   <Features2
-    title="We are here to help!"
+    title="Nosotros estamos aqui para ayudarte!"
     items={[
       {
         title: 'General support',

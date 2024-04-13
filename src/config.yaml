@@ -11,7 +11,7 @@ metadata:
   title:
     default: Tachetechnology
     template: '%s — Tachetechnology'
-  description: "\U0001F680 Suitable for Startups, Small Business, Sass Websites, Professional Portfolios, Marketing Websites, Landing Pages & Blogs."
+  description: 'Bienvenidos a Tache technology Expertos en Desarrollo de software en Montería'
   robots:
     index: true
     follow: true

@@ -1,0 +1,92 @@
+---
+import CallToAction from '~/components/widgets/CallToAction.astro';
+import Features2 from '~/components/widgets/Features2.astro';
+import Layout from '~/layouts/PageLayout.astro';
+
+const metadata = {
+  title: 'Servicios Tache Technology',
+};
+---
+
+<Layout metadata={metadata}>
+  <!-- Features2 Widget ************** -->
+
+  <Features2
+    title="Servicios Más Populares"
+    subtitle="Aquí tienes un listado simplificado de los servicios que ofrecemos."
+    tagline="Herramientas Digitales"
+    items={[
+      {
+        title: 'Desarrollo de Páginas Web',
+        description:
+          'Crea tu presencia online con páginas web diseñadas para capturar y retener la atención de tu audiencia.',
+        icon: 'tabler:device-imac',
+      },
+      {
+        title: 'Aplicaciones Web Personalizadas',
+        description: 'Soluciones interactivas y funcionales que se integran perfectamente con tu modelo de negocio.',
+        icon: 'tabler:pointer',
+      },
+      {
+        title: 'Gestión de Bases de Datos',
+        description:
+          'Bases de datos robustas y confiables, diseñadas para el almacenamiento, recuperación y manejo óptimo de tus datos.',
+        icon: 'tabler:database',
+      },
+      {
+        title: 'Creación de APIs',
+        description:
+          'Desarrollamos interfaces de programación de aplicaciones que permiten la integración y comunicación fluida entre diferentes sistemas y aplicaciones.',
+        icon: 'tabler:plug',
+      },
+      {
+        title: 'Gestión de Servidores Linux',
+        description:
+          'Proporcionamos servicios expertos en la administración de servidores Linux, garantizando seguridad, estabilidad y rendimiento óptimo.',
+        icon: 'tabler:server-cog',
+      },
+      {
+        title: 'Cloud Computing',
+        description:
+          'Ayudamos a las empresas a migrar a la nube, beneficiándose de la escalabilidad, la accesibilidad remota y la reducción de costos que ofrece.',
+        icon: 'tabler:cloud',
+      },
+      {
+        title: 'Actualización de Aplicaciones Web',
+        description:
+          'Nos encargamos de que tu aplicación web esté actualizada con las últimas versiones y tecnologías, manteniendo un rendimiento óptimo.',
+        icon: 'tabler:tool',
+      },
+      {
+        title: 'Consultoría en TI',
+        description:
+          'Asesoramiento experto en tecnologías de la información para optimizar procesos, reducir costos y implementar nuevas tecnologías.',
+        icon: 'tabler:briefcase',
+      },
+      {
+        title: 'Diseño e Implementación de Redes',
+        description:
+          'Creación de una infraestructura de red a medida que soporte todas las operaciones del negocio con alta disponibilidad y rendimiento.',
+        icon: 'tabler:sitemap',
+      },
+    ]}
+  >
+    <Fragment slot="bg">
+      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
+    </Fragment>
+  </Features2>
+  <!-- CallToAction Widget *********** -->
+
+  <CallToAction
+    actions={[
+      {
+        variant: 'primary',
+        text: 'Whatsapp',
+        href: 'https://wa.link/a00rw4',
+        icon: 'tabler:brand-whatsapp',
+      },
+    ]}
+    title="Empieza a Transformar Tu Negocio Hoy"
+    subtitle="Explora las Posibilidades Ilimitadas de la Tecnología Moderna y Lleva Tu Negocio al Próximo Nivel."
+  />
+</Layout>
