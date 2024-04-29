@@ -74,4 +74,4 @@ Estas políticas pueden ser modificadas en cualquier momento para mejorar la seg
 
 ## Contacto
 
-Si tiene preguntas o preocupaciones acerca de estas políticas de seguridad, por favor contacte al equipo de seguridad en `contacto@techtechnology.com` .
+Si tiene preguntas o preocupaciones acerca de estas políticas de seguridad, por favor contacte al equipo de seguridad en `contacto@techtech.com` .

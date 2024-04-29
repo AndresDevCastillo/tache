@@ -59,37 +59,19 @@ export const headerData = {
       href: getPermalink('/terminos'),
     },
     {
+      text: 'Privacidad',
+      href: getPermalink('/privacidad'),
+    },
+    {
       text: 'FAQS',
       href: getPermalink('/#faqs'),
     },
   ],
-  actions: [{ text: 'Whatsapp', href: 'https://wa.link/a00rw4', icon: 'tabler:brand-whatsapp', target: '_blank', }],
+  actions: [{ text: 'Whatsapp', href: 'https://wa.link/3bqb4e', icon: 'tabler:brand-whatsapp', target: '_blank', }],
 };
 
 export const footerData = {
   links: [
-    {
-      title: 'Compañia',
-      links: [
-        { text: 'Inicio', href: '/' },
-        {
-          text: 'Servicios',
-          href: getPermalink('/servicios'),
-        },
-        {
-          text: 'Contacto',
-          href: getPermalink('/contacto'),
-        },
-        {
-          text: 'Términos',
-          href: getPermalink('/terminos'),
-        },
-        {
-          text: 'FAQS',
-          href: getPermalink('/#faqs'),
-        },
-      ],
-    },
   ],
   secondaryLinks: [
     { text: 'Términos y Condiciones', href: getPermalink('/terminos') },

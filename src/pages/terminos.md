@@ -43,4 +43,4 @@ Estos términos y condiciones se rigen e interpretan de acuerdo con las leyes de
 
 ## 9. Contacto
 
-Si tiene alguna pregunta sobre estos Términos y Condiciones, contáctenos a `contacto@tachetechnology.com`.
+Si tiene alguna pregunta sobre estos Términos y Condiciones, contáctenos a `contacto@tachetech.com`.
