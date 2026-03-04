@@ -1,5 +1,7 @@
 import { getPermalink, getBlogPermalink, getAsset } from './utils/permalinks';
 
+const PRIVACY_POLICY_URL = 'https://tachetech.com/privacidad/';
+
 export const headerData = {
   links: [
     { text: 'Inicio', href: '/' },
@@ -60,7 +62,7 @@ export const headerData = {
     },
     {
       text: 'Privacidad',
-      href: getPermalink('/privacidad'),
+      href: PRIVACY_POLICY_URL,
     },
     {
       text: 'FAQS',
@@ -75,7 +77,7 @@ export const footerData = {
   ],
   secondaryLinks: [
     { text: 'Términos y Condiciones', href: getPermalink('/terminos') },
-    { text: 'Politicas de privacidad', href: getPermalink('/privacidad') },
+    { text: 'Política de privacidad', href: PRIVACY_POLICY_URL },
   ],
   socialLinks: [
     { ariaLabel: 'X', icon: 'tabler:brand-x', href: '#' },

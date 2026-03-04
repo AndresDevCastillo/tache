@@ -1,6 +1,6 @@
 site:
   name: Tache technology
-  site: 'https://Tachetechnology.vercel.app'
+  site: 'https://tachetech.com'
   base: '/'
   trailingSlash: false
 
