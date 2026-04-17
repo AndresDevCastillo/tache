@@ -11,20 +11,20 @@ metadata:
   title:
     default: Tachetechnology
     template: '%s — Tachetechnology'
-  description: 'Bienvenidos a Tache technology Expertos en Desarrollo de software en Montería'
+  description: 'Tache Technology — Desarrollo de software a medida, automatización con IA, integraciones y cloud para impulsar tu negocio.'
   robots:
     index: true
     follow: true
   openGraph:
-    site_name: Tachetechnology
+    site_name: Tache Technology
     images:
       - url: '~/assets/images/default.png'
         width: 1200
         height: 628
     type: website
   twitter:
-    handle: '@onwidget'
-    site: '@onwidget'
+    handle: '@tachetech'
+    site: '@tachetech'
     cardType: summary_large_image
 
 i18n:
@@ -69,7 +69,7 @@ analytics:
       id: null # or "G-XXXXXXXXXX"
 
 ui:
-  theme: 'system' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"
+  theme: 'dark' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"
 
   tokens:
     default:
@@ -78,20 +78,20 @@ ui:
         serif: InterVariable
         heading: InterVariable
       colors:
-        default: rgb(16 16 16)
-        heading: rgb(0 0 0)
-        muted: rgb(16 16 16 / 66%)
-        bgPage: rgb(255 255 255)
-        primary: rgb(1 97 239)
-        secondary: rgb(1 84 207)
-        accent: rgb(109 40 217)
+        default: rgb(15 23 42)
+        heading: rgb(7 11 20)
+        muted: rgb(71 85 105 / 85%)
+        bgPage: rgb(248 250 252)
+        primary: rgb(29 12 223) # #1D0CDF — color base de marca
+        secondary: rgb(124 58 237) # violeta el\u00e9ctrico
+        accent: rgb(34 211 238) # cian brillante
     dark:
       fonts: {}
       colors:
-        default: rgb(229 236 246)
-        heading: rgb(247, 248, 248)
-        muted: rgb(229 236 246 / 66%)
-        bgPage: rgb(3 6 32)
-        primary: rgb(1 97 239)
-        secondary: rgb(1 84 207)
-        accent: rgb(109 40 217)
+        default: rgb(226 232 240) # gris claro suave
+        heading: rgb(248 250 252) # blanco suave
+        muted: rgb(148 163 184 / 90%) # gris medio para subt\u00edtulos
+        bgPage: rgb(7 11 20) # #070B14 — fondo principal dark
+        primary: rgb(99 102 241) # indigo brillante (mejor contraste sobre dark)
+        secondary: rgb(167 139 250) # p\u00farpura el\u00e9ctrico
+        accent: rgb(34 211 238) # cian brillante
