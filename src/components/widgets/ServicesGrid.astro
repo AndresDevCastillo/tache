@@ -1,0 +1,90 @@
+---
+import { Icon } from 'astro-icon/components';
+
+export interface Service {
+  icon: string;
+  title: string;
+  description: string;
+  benefit: string;
+  gradient: string; // tailwind gradient classes for the icon halo
+}
+
+export interface Props {
+  id?: string;
+  tagline?: string;
+  title?: string;
+  subtitle?: string;
+  items: Service[];
+}
+
+const {
+  id = 'servicios',
+  tagline = 'Servicios',
+  title = 'Soluciones para crecer con tecnología',
+  subtitle = 'Cada servicio está diseñado para entregar resultados concretos: más ventas, menos operación manual y un producto digital que escala con tu negocio.',
+  items,
+} = Astro.props;
+---
+
+<section id={id} class="relative py-20 md:py-28 scroll-mt-[72px]">
+  <div class="pointer-events-none absolute inset-0 -z-10 bg-radial-spotlight opacity-40"></div>
+
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <div class="mx-auto max-w-3xl text-center mb-14 md:mb-20">
+      <span class="pill" data-reveal>
+        <span class="dot"></span>
+        {tagline}
+      </span>
+      <h2
+        class="mt-5 text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white"
+        data-reveal
+        data-reveal-delay="100"
+      >
+        {title}
+      </h2>
+      <p class="mt-5 text-lg text-slate-300" data-reveal data-reveal-delay="200">
+        {subtitle}
+      </p>
+    </div>
+
+    <div class="grid gap-6 md:gap-7 md:grid-cols-2 lg:grid-cols-3">
+      {
+        items.map((service, idx) => (
+          <article
+            class="card-glass group flex flex-col"
+            data-reveal
+            data-reveal-delay={Math.min(((idx % 3) + 1) * 100, 300).toString()}
+          >
+            <div
+              class:list={[
+                'inline-flex h-12 w-12 items-center justify-center rounded-xl text-white shadow-lg transition-transform duration-300 group-hover:scale-110',
+                service.gradient,
+              ]}
+            >
+              <Icon name={service.icon} class="h-6 w-6" />
+            </div>
+
+            <h3 class="mt-5 text-xl font-semibold text-white">{service.title}</h3>
+            <p class="mt-3 text-[15px] leading-relaxed text-slate-300">{service.description}</p>
+
+            <div class="mt-5 flex items-start gap-2 rounded-lg border border-cyan-400/15 bg-cyan-400/5 p-3">
+              <Icon name="tabler:bolt" class="mt-0.5 h-4 w-4 flex-shrink-0 text-cyan-300" />
+              <p class="text-sm font-medium text-cyan-100/90">{service.benefit}</p>
+            </div>
+
+            <a
+              href="#contacto"
+              class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-300 transition-colors hover:text-white"
+            >
+              Conversemos sobre tu proyecto
+              <Icon
+                name="tabler:arrow-right"
+                class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
+              />
+            </a>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,112 @@
+---
+import { Icon } from 'astro-icon/components';
+
+export interface Step {
+  icon: string;
+  title: string;
+  description: string;
+  duration?: string;
+}
+
+export interface Props {
+  id?: string;
+  tagline?: string;
+  title?: string;
+  subtitle?: string;
+  items: Step[];
+}
+
+const {
+  id = 'proceso',
+  tagline = 'Cómo trabajamos',
+  title = 'Un proceso claro, sin sorpresas',
+  subtitle = 'Cinco fases probadas que aseguran que tu proyecto se entregue a tiempo, dentro del alcance y con la calidad que esperas.',
+  items,
+} = Astro.props;
+---
+
+<section id={id} class="relative py-20 md:py-28 scroll-mt-[72px]">
+  <div class="pointer-events-none absolute inset-0 -z-10">
+    <div
+      class="absolute left-1/2 top-0 h-[420px] w-[820px] -translate-x-1/2 rounded-full opacity-30 blur-3xl"
+      style="background: radial-gradient(circle, rgb(124 58 237 / 0.5), transparent 70%);"
+    >
+    </div>
+  </div>
+
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <div class="mx-auto max-w-3xl text-center mb-16 md:mb-20">
+      <span class="pill" data-reveal>
+        <span class="dot"></span>
+        {tagline}
+      </span>
+      <h2
+        class="mt-5 text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white"
+        data-reveal
+        data-reveal-delay="100"
+      >
+        {title}
+      </h2>
+      <p class="mt-5 text-lg text-slate-300" data-reveal data-reveal-delay="200">
+        {subtitle}
+      </p>
+    </div>
+
+    <div class="relative">
+      <!-- Línea vertical central (desktop) -->
+      <div
+        class="pointer-events-none absolute left-7 top-0 bottom-0 w-px bg-gradient-to-b from-indigo-500/0 via-indigo-500/40 to-cyan-400/0 md:left-1/2 md:-translate-x-1/2"
+        aria-hidden="true"
+      >
+      </div>
+
+      <ol class="space-y-10 md:space-y-16">
+        {
+          items.map((step, idx) => {
+            const isLeft = idx % 2 === 0;
+            return (
+              <li class="relative md:grid md:grid-cols-2 md:gap-12" data-reveal data-reveal-delay="100">
+                {/* Card */}
+                <div
+                  class:list={[
+                    'pl-20 md:pl-0',
+                    isLeft ? 'md:col-start-1 md:pr-8 md:text-right' : 'md:col-start-2 md:pl-8',
+                  ]}
+                >
+                  <div class="card-glass">
+                    <div
+                      class:list={[
+                        'flex items-center gap-3 mb-3',
+                        isLeft ? 'md:justify-end md:flex-row-reverse' : '',
+                      ]}
+                    >
+                      <span class="text-xs font-bold uppercase tracking-[0.2em] text-cyan-300">
+                        Paso {idx + 1}
+                      </span>
+                      {step.duration && (
+                        <span class="text-xs text-slate-400">· {step.duration}</span>
+                      )}
+                    </div>
+                    <h3 class="text-xl font-semibold text-white">{step.title}</h3>
+                    <p class="mt-2 text-[15px] leading-relaxed text-slate-300">{step.description}</p>
+                  </div>
+                </div>
+
+                {/* Nodo central con icono */}
+                <div
+                  class="absolute left-0 top-2 flex h-14 w-14 items-center justify-center md:left-1/2 md:-translate-x-1/2"
+                  aria-hidden="true"
+                >
+                  <span class="absolute inset-0 rounded-full bg-gradient-brand opacity-30 blur-md" />
+                  <span class="relative flex h-14 w-14 items-center justify-center rounded-full border border-white/15 bg-[#0F172A] text-white shadow-lg ring-glow">
+                    <Icon name={step.icon} class="h-6 w-6" />
+                  </span>
+                </div>
+              </li>
+            );
+          })
+        }
+      </ol>
+    </div>
+  </div>
+</section>
