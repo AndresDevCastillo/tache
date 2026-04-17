@@ -6,11 +6,11 @@ const WHATSAPP_URL = 'https://wa.link/3bqb4e';
 export const headerData = {
   links: [
     { text: 'Inicio', href: '/' },
-    { text: 'Nosotros', href: getPermalink('/#nosotros') },
+    { text: 'Nosotros', href: getPermalink('/nosotros') },
     { text: 'Servicios', href: getPermalink('/servicios') },
-    { text: 'Proceso', href: getPermalink('/#proceso') },
+    { text: 'Proyectos', href: getPermalink('/proyectos') },
+    { text: 'Proceso', href: getPermalink('/proceso') },
     { text: 'Contacto', href: getPermalink('/contacto') },
-    { text: 'FAQs', href: getPermalink('/#faqs') },
   ],
   actions: [
     {
@@ -28,27 +28,26 @@ export const footerData = {
     {
       title: 'Empresa',
       links: [
-        { text: 'Sobre nosotros', href: getPermalink('/#nosotros') },
-        { text: 'Servicios', href: getPermalink('/servicios') },
-        { text: 'Proceso', href: getPermalink('/#proceso') },
+        { text: 'Nosotros', href: getPermalink('/nosotros') },
+        { text: 'Proceso', href: getPermalink('/proceso') },
+        { text: 'Proyectos', href: getPermalink('/proyectos') },
         { text: 'Contacto', href: getPermalink('/contacto') },
       ],
     },
     {
       title: 'Servicios',
       links: [
-        { text: 'Desarrollo web', href: getPermalink('/servicios#catalogo') },
+        { text: 'Páginas web', href: getPermalink('/servicios#catalogo') },
+        { text: 'Tiendas online', href: getPermalink('/servicios#catalogo') },
         { text: 'Aplicaciones a medida', href: getPermalink('/servicios#catalogo') },
-        { text: 'Automatización con IA', href: getPermalink('/servicios#catalogo') },
-        { text: 'Cloud y DevOps', href: getPermalink('/servicios#catalogo') },
+        { text: 'Automatización', href: getPermalink('/servicios#catalogo') },
       ],
     },
     {
       title: 'Recursos',
       links: [
-        { text: 'Blog', href: getPermalink('/') },
-        { text: 'FAQs', href: getPermalink('/#faqs') },
-        { text: 'Cotizar proyecto', href: getPermalink('/#contacto') },
+        { text: 'Preguntas frecuentes', href: getPermalink('/proceso#faqs') },
+        { text: 'Cotizar proyecto', href: getPermalink('/contacto') },
       ],
     },
   ],
@@ -61,7 +60,6 @@ export const footerData = {
     { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: '#' },
     { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: '#' },
     { ariaLabel: 'LinkedIn', icon: 'tabler:brand-linkedin', href: '#' },
-    { ariaLabel: 'RSS', icon: 'tabler:rss', href: getAsset('/rss.xml') },
   ],
   footNote: `
     © ${new Date().getFullYear()} <span class="font-semibold text-slate-200">Tache Technology</span>. Todos los derechos reservados.
