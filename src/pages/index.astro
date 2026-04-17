@@ -1,251 +1,163 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import Hero from '~/components/widgets/Hero.astro';
-import Note from '~/components/widgets/Note.astro';
-import Features from '~/components/widgets/Features.astro';
-import Steps from '~/components/widgets/Steps.astro';
-import Content from '~/components/widgets/Content.astro';
+import HeroPremium from '~/components/widgets/HeroPremium.astro';
+import MissionVision from '~/components/widgets/MissionVision.astro';
+import ServicesGrid from '~/components/widgets/ServicesGrid.astro';
+import WhyChoose from '~/components/widgets/WhyChoose.astro';
+import ProcessTimeline from '~/components/widgets/ProcessTimeline.astro';
+import ContactFormPro from '~/components/widgets/ContactFormPro.astro';
+import CtaBanner from '~/components/widgets/CtaBanner.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 
 const metadata = {
-  title: 'TacheTechnology — Desarrollo de Software Montería',
+  title: 'TacheTechnology — Software a medida, IA y automatización',
   ignoreTitleTemplate: true,
+  description:
+    'Desarrollamos software a medida, automatizamos procesos con IA y llevamos tu empresa al siguiente nivel digital. Startup tecnológica en Montería, Colombia.',
 };
+
+const services = [
+  {
+    icon: 'tabler:device-desktop-code',
+    title: 'Desarrollo de páginas web',
+    description:
+      'Sitios corporativos y landings de alto rendimiento, optimizados para SEO y velocidad. Diseño moderno y conversión-first.',
+    benefit: 'Más visibilidad y leads desde el primer mes.',
+    gradient: 'bg-gradient-to-br from-indigo-500 to-violet-600',
+  },
+  {
+    icon: 'tabler:apps',
+    title: 'Aplicaciones web personalizadas',
+    description:
+      'Plataformas SaaS, dashboards, CRMs y portales internos construidos sobre stacks modernos (Next.js, NestJS, PostgreSQL).',
+    benefit: 'Procesos digitalizados que escalan con tu equipo.',
+    gradient: 'bg-gradient-to-br from-violet-500 to-fuchsia-600',
+  },
+  {
+    icon: 'tabler:robot',
+    title: 'Automatización con IA',
+    description:
+      'Chatbots, análisis de datos, generación de contenido y agentes que ejecutan tareas repetitivas usando modelos LLM.',
+    benefit: 'Hasta 70% menos tiempo en tareas operativas.',
+    gradient: 'bg-gradient-to-br from-cyan-500 to-blue-600',
+  },
+  {
+    icon: 'tabler:plug-connected',
+    title: 'Integraciones y APIs',
+    description:
+      'Conectamos tus herramientas: ERPs, CRMs, pasarelas de pago, WhatsApp Business, facturación electrónica y más.',
+    benefit: 'Tu stack hablando entre sí, sin trabajo manual.',
+    gradient: 'bg-gradient-to-br from-blue-500 to-indigo-600',
+  },
+  {
+    icon: 'tabler:cloud-cog',
+    title: 'Cloud y DevOps',
+    description:
+      'Despliegues automatizados en AWS, GCP o VPS propios. Infraestructura segura, monitoreada y lista para escalar.',
+    benefit: 'Uptime profesional y costos cloud bajo control.',
+    gradient: 'bg-gradient-to-br from-emerald-500 to-cyan-600',
+  },
+  {
+    icon: 'tabler:tools',
+    title: 'Soporte y evolución continua',
+    description:
+      'Mantenimiento, nuevas funcionalidades y mejoras de performance. Tu producto digital nunca se queda atrás.',
+    benefit: 'Un equipo técnico disponible cuando lo necesites.',
+    gradient: 'bg-gradient-to-br from-fuchsia-500 to-pink-600',
+  },
+];
+
+const processSteps = [
+  {
+    icon: 'tabler:search',
+    title: 'Análisis',
+    duration: 'Semana 1',
+    description:
+      'Entendemos a fondo tu negocio, tus usuarios y los objetivos del proyecto. Definimos alcance, prioridades y métricas de éxito.',
+  },
+  {
+    icon: 'tabler:layout-board',
+    title: 'Diseño',
+    duration: 'Semanas 2–3',
+    description:
+      'Wireframes, prototipos navegables y diseño visual con la identidad de tu marca. Iteramos contigo hasta que esté perfecto.',
+  },
+  {
+    icon: 'tabler:code',
+    title: 'Desarrollo',
+    duration: 'Semanas 4–8',
+    description:
+      'Código limpio, modular y testeado. Sprints semanales con demos en vivo para que veas el avance real.',
+  },
+  {
+    icon: 'tabler:rocket',
+    title: 'Implementación',
+    duration: 'Semana 9',
+    description:
+      'Despliegue a producción con dominio propio, certificados SSL y monitoreo. Capacitación a tu equipo.',
+  },
+  {
+    icon: 'tabler:lifebuoy',
+    title: 'Soporte',
+    duration: 'Continuo',
+    description:
+      'Mantenimiento, mejoras, nuevas funcionalidades y respuesta rápida ante cualquier incidencia. Estamos aquí cuando nos necesites.',
+  },
+];
 ---
 
 <Layout metadata={metadata}>
-  <!-- Hero Widget ******************* -->
+  <HeroPremium />
 
-  <Hero
-    actions={[
-      {
-        text: 'Agendar',
-        href: '#',
-        icon: 'tabler:calendar-plus',
-      },
-      {
-        text: 'Whatsapp',
-        href: 'https://wa.link/3bqb4e',
-        icon: 'tabler:brand-whatsapp',
-        variant: 'primary',
-        target: '_blank',
-      },
-    ]}
-    image={{ src: '~/assets/images/hero-image.png', alt: 'Tache Technology principal' }}
-  >
-    <Fragment slot="title">
-      <span class="hidden xl:inline">Bienvenidos a Tache technology</span>
-      <span class="text-accent dark:text-white highlight">Expertos en Desarrollo de software</span> a la Medida
-    </Fragment>
+  <MissionVision />
 
-    <Fragment slot="subtitle">
-      <span class="hidden sm:inline">
-        <span class="font-semibold">Tache</span> desde el desarrollo de páginas web sencillas hasta la creación de aplicaciones
-        robustas y complejas</span
-      >
-      <span class="block mb-1 sm:hidden font-bold text-blue-600">Digitaliza tu negocio!</span>
-      nuestro equipo ofrece soluciones de software que no solo cumplen con los objetivos de negocio, sino que también amplifican
-      la eficiencia y la productividad.
-    </Fragment>
-  </Hero>
+  <ServicesGrid items={services} />
 
-  <section aria-label="Política de privacidad" class="mx-auto max-w-7xl px-4 sm:px-6 py-4">
-    <p class="text-sm text-muted">
-      Para conocer cómo tratamos tus datos, consulta nuestra
-      <a class="font-semibold text-blue-700 hover:text-blue-800 underline" href="https://tachetech.com/privacidad/">
-        Política de privacidad
-      </a>.
-    </p>
-  </section>
+  <WhyChoose />
 
-  <!-- Note Widget ******************* -->
+  <ProcessTimeline items={processSteps} />
 
-  <Note />
-
-  <!-- Features Widget *************** -->
-
-  <Features
-    id="features"
-    tagline="Features"
-    title="¿Por Qué Elegir Tache Technology?"
-    subtitle="creemos en el poder de la transformación digital y estamos aquí para guiar a cada cliente a través de este viaje innovador."
-    items={[
-      {
-        title: 'Accesibilidad',
-        description:
-          'Facilitamos que cualquier empresa, no importa su tamaño o formalidad, pueda acceder a soluciones tecnológicas avanzadas que tradicionalmente estaban fuera de su alcance.',
-        icon: 'tabler:brand-tailwind',
-      },
-      {
-        title: 'Compromiso Local',
-        description:
-          'Como residentes de Montería, entendemos las dinámicas locales y diseñamos nuestras soluciones para enfrentar los retos específicos de nuestras empresas.',
-        icon: 'tabler:components',
-      },
-      {
-        title: 'Flexibilidad y Personalización',
-        description:
-          'Adaptamos nuestras soluciones para satisfacer las necesidades únicas de cada cliente, garantizando que la tecnología que implementas es la más adecuada para tus objetivos de negocio.',
-        icon: 'tabler:list-check',
-      },
-      {
-        title: 'Soporte Dedicado',
-        description:
-          'Estamos contigo en cada paso del camino, desde la selección del software hasta la implementación y el mantenimiento, asegurando que obtengas el máximo beneficio de nuestras soluciones.',
-        icon: 'tabler:rocket',
-      },
-    ]}
-  />
-
-  <!-- Content Widget **************** -->
-
-  <Content
-    isReversed
-    tagline="Innovación"
-    title="Nuestros Servicios Principales"
-    items={[
-      {
-        title: 'Desarrollo de Páginas Web',
-        description:
-          'Crea tu presencia online con páginas web diseñadas para capturar y retener la atención de tu audiencia.',
-      },
-      {
-        title: 'Aplicaciones Web Personalizadas',
-        description: 'Soluciones interactivas y funcionales que se integran perfectamente con tu modelo de negocio.',
-      },
-      {
-        title: 'Gestión de Bases de Datos',
-        description:
-          'Bases de datos robustas y confiables, diseñadas para el almacenamiento, recuperación y manejo óptimo de tus datos. Soluciones que respaldan la toma de decisiones y la inteligencia de negocio.',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-      alt: 'Colorful Image',
-    }}
-  >
-    <Fragment slot="content">
-      <h2 class="text-2xl font-bold tracking-tight dark:text-white sm:text-3xl mb-2">Software Montería</h2>
-      Para consultas, estrategias detalladas, o si simplemente prefieres un apretón de manos y una conversación en persona,
-      podemos agendar una reunión.
-    </Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
-
-  <!-- Content Widget **************** -->
-
-  <Content
-    isAfterContent
-    items={[
-      {
-        title: 'Creación de APIs',
-        description: `Desarrollamos interfaces de programación de aplicaciones (APIs) que permiten la integración y comunicación fluida entre diferentes sistemas y aplicaciones.`,
-      },
-      {
-        title: 'Gestión de Servidores Linux',
-        description:
-          'Proporcionamos servicios expertos en la administración de servidores Linux, garantizando seguridad, estabilidad y rendimiento óptimo.',
-      },
-      {
-        title: 'Computación en la Nube (Cloud Computing)',
-        description:
-          'Ayudamos a las empresas a migrar a la nube, beneficiándose de la escalabilidad, la accesibilidad remota y la reducción de costos que ofrece la computación en la nube.',
-      },
-      {
-        title: 'Mantenimiento y Actualización de Aplicaciones Web',
-        description:
-          'Tu aplicación web nunca se quedará atrás. Nos encargamos de que esté actualizada con las últimas versiones y tecnologías como NestJS, Vue.js, Astro, Nuxt.js y Node.js, manteniendo un rendimiento óptimo.',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1600132806370-bf17e65e942f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2194&q=80',
-      alt: 'Blueprint Image',
-    }}
-  >
-    <Fragment slot="content">Servicios Especializados en Tecnología Avanzada</Fragment>
-
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Content>
-
-  <!-- Steps Widget ****************** -->
-
-  <Steps
-    title="Tu Camino hacia la Transformación Digital con Tache Technology"
-    items={[
-      {
-        title: 'Paso 1: <span class="font-medium">Análisis</span>',
-        description:
-          'Todo gran proyecto comienza con una buena planificación. En esta fase, nos sumergimos en tu mundo para entender a fondo las necesidades y objetivos de tu negocio.',
-        icon: 'tabler:package',
-      },
-      {
-        title: 'Paso 2: <span class="font-medium">Planificación</em>',
-        description:
-          'Con un análisis completo en la mano, pasamos a la planificación detallada de tu proyecto. En este paso, decidimos las tecnologías a utilizar, estructuramos el cronograma de trabajo y definimos los hitos críticos.',
-        icon: 'tabler:letter-case',
-      },
-      {
-        title: 'Paso 3: <span class="font-medium">Diseño</span>',
-        description:
-          'Ahora le damos forma a tu visión. El diseño no es solo cómo se ve tu aplicación, sino cómo funciona. Nuestros diseñadores y desarrolladores trabajan juntos para crear la arquitectura y los wireframes, garantizando que la interfaz sea intuitiva y la experiencia de usuario sea insuperable. ',
-        icon: 'tabler:paint',
-      },
-      {
-        title: ' Paso 4: <span class="font-medium">Desarrollo</span>',
-        description:
-          'En la etapa de desarrollo, nuestros programadores escriben el código y construyen las funcionalidades de tu aplicación web.',
-        icon: 'tabler:check',
-      },
-    ]}
-    image={{
-      src: 'https://images.unsplash.com/photo-1616198814651-e71f960c3180?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80',
-      alt: 'Steps image',
-    }}
-  />
-
-  <!-- FAQs Widget ******************* -->
+  <ContactFormPro whatsappNumber="573013745541" />
 
   <FAQs
+    id="faqs"
     title="Preguntas frecuentes"
-    subtitle="Respuestas Claras para Tus Dudas Comunes."
+    subtitle="Las dudas más comunes antes de empezar un proyecto con nosotros."
     tagline="FAQs"
-    classes={{ container: 'max-w-6xl' }}
+    classes={{ container: 'max-w-4xl' }}
     items={[
       {
-        title: '¿Cuánto tiempo tomará desarrollar mi página web/aplicación?',
+        title: '¿Cuánto tiempo toma desarrollar mi proyecto?',
         description:
-          'La duración del proyecto puede variar según la complejidad y las funcionalidades requeridas. Generalmente, una página web básica puede tardar entre 4 a 6 semanas, mientras que una aplicación más compleja puede requerir varios meses de desarrollo.',
+          'Una landing o página web simple toma 4 a 6 semanas. Una aplicación web completa entre 2 y 4 meses. Te damos un cronograma detallado tras la fase de análisis.',
       },
       {
-        title: '¿Cuánto costará mi proyecto?',
+        title: '¿Cuánto cuesta?',
         description:
-          'El costo es un factor que depende de varios elementos, como el diseño, las características personalizadas, la integración de sistemas y la funcionalidad. Ofrecemos una cotización detallada tras entender completamente tus necesidades en la fase de análisis.',
+          'Depende del alcance, integraciones y complejidad. Tras una primera reunión de 30 minutos sin compromiso te enviamos una cotización clara, con opciones por fases si tu presupuesto lo requiere.',
       },
       {
-        title: '¿Qué necesito proporcionar para comenzar?',
+        title: '¿Qué necesito tener listo para empezar?',
         description:
-          'Para iniciar, necesitamos que nos proporciones tus objetivos de negocio, preferencias de diseño, contenido como texto e imágenes, y cualquier funcionalidad específica que deseas incluir en tu sitio web o aplicación.',
+          'Idealmente: objetivos del negocio, usuarios objetivo, contenidos (textos, imágenes, logos) y referencias visuales. Si no los tienes, te ayudamos a estructurarlos en la fase de análisis.',
       },
       {
-        title: '¿Mi página web/aplicación será visible en dispositivos móviles?',
+        title: '¿La página/aplicación se ve bien en móvil?',
         description:
-          'Absolutamente. Nos aseguramos de que tu página web o aplicación sea responsiva, lo que significa que se adaptará y funcionará perfectamente en una variedad de dispositivos, incluyendo teléfonos móviles y tabletas.',
+          'Siempre. Diseñamos mobile-first y probamos en múltiples dispositivos antes de entregar. Más del 60% del tráfico hoy es móvil — no es opcional.',
       },
       {
-        title: '¿Cómo se maneja el mantenimiento y las actualizaciones de la página web/aplicación?',
+        title: '¿Cómo manejan el mantenimiento?',
         description:
-          'Ofrecemos diversos planes de mantenimiento para mantener tu página web o aplicación actualizada, segura y funcionando sin problemas. Estos planes pueden incluir actualizaciones de contenido, seguridad y software, así como soporte técnico.',
+          'Ofrecemos planes mensuales con horas de soporte incluidas, monitoreo, actualizaciones de seguridad y mejoras pequeñas. También trabajamos por bolsas de horas o por proyectos puntuales.',
       },
       {
-        title: '¿Podré hacer cambios en mi página web/aplicación después de que esté terminada?',
+        title: '¿Puedo editar el contenido yo mismo después?',
         description:
-          'Sí, tendrás la capacidad de hacer cambios. Ofrecemos capacitación en la gestión de contenido para sitios web, y para aplicaciones, podemos discutir opciones de gestión basadas en tus necesidades.',
+          'Sí. Cuando aplica, integramos paneles de administración o CMS headless (Sanity, Strapi, etc.) para que actualices textos, imágenes y posts del blog sin necesidad de programación.',
       },
     ]}
   />
+
+  <CtaBanner />
 </Layout>
