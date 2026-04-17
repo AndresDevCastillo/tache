@@ -2,19 +2,13 @@
 import { Icon } from 'astro-icon/components';
 
 export interface Project {
-  /** Categoría/sector del proyecto: "E-commerce", "Salud", "Logística"… */
   category: string;
-  /** Nombre o título del proyecto */
   title: string;
-  /** Descripción breve: qué se hizo y qué resolvió */
   description: string;
-  /** Resultado medible (opcional pero recomendado): "+40% conversión", etc. */
   result?: string;
-  /** URL del sitio del cliente (opcional) */
   href?: string;
-  /** Acento de color para la card: 'indigo' | 'violet' | 'cyan' | 'emerald' | 'amber' | 'rose' */
-  accent?: 'indigo' | 'violet' | 'cyan' | 'emerald' | 'amber' | 'rose';
-  /** Icono representativo (de tabler) */
+  /** Acento de color: 'indigo' | 'blue' | 'cyan' | 'emerald' | 'amber' | 'rose' */
+  accent?: 'indigo' | 'blue' | 'cyan' | 'emerald' | 'amber' | 'rose';
   icon?: string;
 }
 
@@ -24,45 +18,38 @@ export interface Props {
   title?: string;
   subtitle?: string;
   items: Project[];
-  /** Si true, muestra un CTA inferior para hablar de un nuevo proyecto */
   showCta?: boolean;
 }
 
 const {
   id = 'proyectos',
-  tagline = 'Proyectos',
   title = 'Algunos trabajos que hemos entregado',
   subtitle = 'Cada proyecto es un negocio que crece. Conoce algunos casos donde la tecnología hizo una diferencia real.',
   items,
   showCta = true,
 } = Astro.props;
 
-// Mapa de acentos a clases (necesario para que Tailwind las incluya en el bundle)
+// Acentos solo en azules y cian (sin morados/violetas).
 const accentMap: Record<string, { halo: string; chip: string }> = {
-  indigo: { halo: 'from-indigo-500/40 via-indigo-500/0', chip: 'bg-indigo-500/15 text-indigo-200 ring-indigo-400/20' },
-  violet: { halo: 'from-violet-500/40 via-violet-500/0', chip: 'bg-violet-500/15 text-violet-200 ring-violet-400/20' },
-  cyan: { halo: 'from-cyan-500/40 via-cyan-500/0', chip: 'bg-cyan-500/15 text-cyan-200 ring-cyan-400/20' },
-  emerald: { halo: 'from-emerald-500/40 via-emerald-500/0', chip: 'bg-emerald-500/15 text-emerald-200 ring-emerald-400/20' },
-  amber: { halo: 'from-amber-500/40 via-amber-500/0', chip: 'bg-amber-500/15 text-amber-200 ring-amber-400/20' },
-  rose: { halo: 'from-rose-500/40 via-rose-500/0', chip: 'bg-rose-500/15 text-rose-200 ring-rose-400/20' },
+  indigo: { halo: 'from-indigo-500/40 via-indigo-500/0', chip: 'bg-indigo-500/10 text-indigo-700 ring-indigo-300/40 dark:bg-indigo-500/15 dark:text-indigo-200 dark:ring-indigo-400/20' },
+  blue: { halo: 'from-blue-500/40 via-blue-500/0', chip: 'bg-blue-500/10 text-blue-700 ring-blue-300/40 dark:bg-blue-500/15 dark:text-blue-200 dark:ring-blue-400/20' },
+  cyan: { halo: 'from-cyan-500/40 via-cyan-500/0', chip: 'bg-cyan-500/10 text-cyan-700 ring-cyan-300/40 dark:bg-cyan-500/15 dark:text-cyan-200 dark:ring-cyan-400/20' },
+  emerald: { halo: 'from-emerald-500/40 via-emerald-500/0', chip: 'bg-emerald-500/10 text-emerald-700 ring-emerald-300/40 dark:bg-emerald-500/15 dark:text-emerald-200 dark:ring-emerald-400/20' },
+  amber: { halo: 'from-amber-500/40 via-amber-500/0', chip: 'bg-amber-500/10 text-amber-700 ring-amber-300/40 dark:bg-amber-500/15 dark:text-amber-200 dark:ring-amber-400/20' },
+  rose: { halo: 'from-rose-500/40 via-rose-500/0', chip: 'bg-rose-500/10 text-rose-700 ring-rose-300/40 dark:bg-rose-500/15 dark:text-rose-200 dark:ring-rose-400/20' },
 };
 ---
 
 <section id={id} class="relative py-20 md:py-28 scroll-mt-[72px]">
   <div class="mx-auto max-w-7xl px-4 sm:px-6">
     <div class="mx-auto max-w-3xl text-center mb-14 md:mb-20">
-      <span class="pill" data-reveal>
-        <span class="dot"></span>
-        {tagline}
-      </span>
       <h2
-        class="mt-5 text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white"
+        class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white"
         data-reveal
-        data-reveal-delay="100"
       >
         {title}
       </h2>
-      <p class="mt-5 text-lg text-slate-300" data-reveal data-reveal-delay="200">
+      <p class="mt-5 text-lg text-slate-600 dark:text-slate-300" data-reveal data-reveal-delay="100">
         {subtitle}
       </p>
     </div>
@@ -70,7 +57,7 @@ const accentMap: Record<string, { halo: string; chip: string }> = {
     <div class="grid gap-6 md:gap-7 md:grid-cols-2 lg:grid-cols-3">
       {
         items.map((project, idx) => {
-          const accent = accentMap[project.accent || 'indigo'];
+          const accent = accentMap[project.accent || 'blue'];
           const Tag = project.href ? 'a' : 'div';
           return (
             <Tag
@@ -79,8 +66,8 @@ const accentMap: Record<string, { halo: string; chip: string }> = {
               data-reveal
               data-reveal-delay={Math.min(((idx % 3) + 1) * 100, 300).toString()}
             >
-              {/* Encabezado con halo de color sutil */}
-              <div class="relative -mx-6 -mt-6 md:-mx-7 md:-mt-7 mb-5 h-32 overflow-hidden rounded-t-2xl border-b border-white/5">
+              {/* Encabezado con halo de color */}
+              <div class="relative -mx-6 -mt-6 md:-mx-7 md:-mt-7 mb-5 h-32 overflow-hidden rounded-t-2xl border-b border-slate-200/60 dark:border-white/5">
                 <div
                   class:list={[
                     'absolute inset-0 bg-gradient-to-br to-transparent opacity-80',
@@ -98,22 +85,22 @@ const accentMap: Record<string, { halo: string; chip: string }> = {
                     {project.category}
                   </span>
                   {project.icon && (
-                    <Icon name={project.icon} class="h-10 w-10 text-white/70 transition-transform duration-300 group-hover:scale-110" />
+                    <Icon name={project.icon} class="h-10 w-10 text-slate-700/70 dark:text-white/70 transition-transform duration-300 group-hover:scale-110" />
                   )}
                 </div>
               </div>
 
-              <h3 class="text-xl font-semibold text-white">{project.title}</h3>
-              <p class="mt-3 text-[15px] leading-relaxed text-slate-300 flex-grow">{project.description}</p>
+              <h3 class="text-xl font-semibold text-slate-900 dark:text-white">{project.title}</h3>
+              <p class="mt-3 text-[15px] leading-relaxed text-slate-600 dark:text-slate-300 flex-grow">{project.description}</p>
 
               {project.result && (
-                <p class="mt-4 text-sm font-semibold text-cyan-200">
+                <p class="mt-4 text-sm font-semibold text-blue-700 dark:text-cyan-200">
                   → {project.result}
                 </p>
               )}
 
               {project.href && (
-                <span class="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-indigo-300">
+                <span class="mt-5 inline-flex items-center gap-1.5 text-sm font-medium text-blue-600 dark:text-indigo-300">
                   Visitar sitio
                   <Icon name="tabler:external-link" class="h-4 w-4" />
                 </span>
@@ -127,7 +114,7 @@ const accentMap: Record<string, { halo: string; chip: string }> = {
     {
       showCta && (
         <div class="mt-14 md:mt-20 text-center" data-reveal>
-          <p class="text-lg text-slate-300">¿Tienes en mente un proyecto similar?</p>
+          <p class="text-lg text-slate-600 dark:text-slate-300">¿Tienes en mente un proyecto similar?</p>
           <a href="/contacto" class="btn-primary mt-5 inline-flex">
             Cuéntanos tu idea
             <Icon name="tabler:arrow-right" class="h-5 w-5" />

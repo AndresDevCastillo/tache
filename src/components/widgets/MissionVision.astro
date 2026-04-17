@@ -6,21 +6,16 @@ import { Icon } from 'astro-icon/components';
   <div class="mx-auto max-w-7xl px-4 sm:px-6">
     <!-- ¿Quiénes somos? -->
     <div class="mx-auto max-w-4xl text-center mb-16 md:mb-24">
-      <span class="pill" data-reveal>
-        <span class="dot"></span>
-        Quiénes somos
-      </span>
       <h2
-        class="mt-5 text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white"
+        class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white"
         data-reveal
-        data-reveal-delay="100"
       >
         Una <span class="text-gradient">startup tecnológica</span> enfocada en hacer crecer tu negocio
       </h2>
-      <p class="mt-6 text-lg leading-relaxed text-slate-300" data-reveal data-reveal-delay="200">
-        Combinamos ingeniería de software, diseño moderno y automatización con IA para entregar productos digitales
-        que mueven la aguja. No vendemos horas: vendemos resultados medibles, ya sea más ventas, menos costos
-        operativos o procesos que antes tomaban días y ahora minutos.
+      <p class="mt-6 text-lg leading-relaxed text-slate-600 dark:text-slate-300" data-reveal data-reveal-delay="100">
+        Combinamos ingeniería de software, diseño moderno y automatización inteligente para entregar
+        productos digitales que mueven la aguja. No vendemos horas: vendemos resultados medibles, ya sea
+        más ventas, menos costos operativos o procesos que antes tomaban días y ahora minutos.
       </p>
     </div>
 
@@ -29,12 +24,12 @@ import { Icon } from 'astro-icon/components';
       <article class="card-glass" data-reveal>
         <div
           class="inline-flex h-12 w-12 items-center justify-center rounded-xl text-white shadow-lg"
-          style="background-image: linear-gradient(135deg, #1d0cdf, #6366f1);"
+          style="background-image: linear-gradient(135deg, #1d0cdf, #2563eb);"
         >
           <Icon name="tabler:target-arrow" class="h-6 w-6" />
         </div>
-        <h3 class="mt-5 text-2xl font-bold text-white">Misión</h3>
-        <p class="mt-3 text-[16px] leading-relaxed text-slate-300">
+        <h3 class="mt-5 text-2xl font-bold text-slate-900 dark:text-white">Misión</h3>
+        <p class="mt-3 text-[16px] leading-relaxed text-slate-600 dark:text-slate-300">
           Impulsar el crecimiento de empresas mediante soluciones tecnológicas innovadoras, eficientes y
           adaptadas a sus necesidades reales.
         </p>
@@ -43,28 +38,23 @@ import { Icon } from 'astro-icon/components';
       <article class="card-glass" data-reveal data-reveal-delay="100">
         <div
           class="inline-flex h-12 w-12 items-center justify-center rounded-xl text-white shadow-lg"
-          style="background-image: linear-gradient(135deg, #7c3aed, #22d3ee);"
+          style="background-image: linear-gradient(135deg, #2563eb, #22d3ee);"
         >
           <Icon name="tabler:eye" class="h-6 w-6" />
         </div>
-        <h3 class="mt-5 text-2xl font-bold text-white">Visión</h3>
-        <p class="mt-3 text-[16px] leading-relaxed text-slate-300">
-          Ser una empresa líder en desarrollo tecnológico, reconocida por transformar negocios a través de la
-          innovación digital.
+        <h3 class="mt-5 text-2xl font-bold text-slate-900 dark:text-white">Visión</h3>
+        <p class="mt-3 text-[16px] leading-relaxed text-slate-600 dark:text-slate-300">
+          Ser una empresa líder en desarrollo tecnológico, reconocida por transformar negocios a través de
+          la innovación digital.
         </p>
       </article>
     </div>
 
     <!-- Valores -->
     <div class="text-center mb-12">
-      <span class="pill" data-reveal>
-        <span class="dot"></span>
-        Nuestros valores
-      </span>
       <h3
-        class="mt-5 text-2xl md:text-3xl font-bold tracking-tight text-white"
+        class="text-2xl md:text-3xl font-bold tracking-tight text-slate-900 dark:text-white"
         data-reveal
-        data-reveal-delay="100"
       >
         Los principios con los que trabajamos
       </h3>
@@ -84,10 +74,10 @@ import { Icon } from 'astro-icon/components';
             data-reveal
             data-reveal-delay={Math.min(idx * 80, 300).toString()}
           >
-            <span class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/[0.05] text-cyan-300 ring-1 ring-white/10">
+            <span class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-slate-100 dark:bg-white/[0.05] text-blue-600 dark:text-cyan-300 ring-1 ring-slate-200 dark:ring-white/10">
               <Icon name={value.icon} class="h-5 w-5" />
             </span>
-            <p class="mt-4 text-sm font-semibold text-white">{value.label}</p>
+            <p class="mt-4 text-sm font-semibold text-slate-900 dark:text-white">{value.label}</p>
           </div>
         ))
       }

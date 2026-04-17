@@ -2,7 +2,6 @@
 import { Icon } from 'astro-icon/components';
 
 export interface Props {
-  badge?: string;
   /** Override del título principal (HTML permitido). Si vacío, usa el default. */
   title?: string;
   subtitle?: string;
@@ -10,7 +9,6 @@ export interface Props {
 }
 
 const {
-  badge = 'Startup tecnológica · Montería, Colombia',
   title = '',
   subtitle = 'Desarrollamos software a medida, automatizamos procesos y llevamos tu empresa al siguiente nivel digital — con la cercanía y compromiso de un equipo local.',
   showCtas = true,
@@ -18,38 +16,31 @@ const {
 ---
 
 <section class="relative isolate overflow-hidden md:-mt-[76px]" id="inicio">
-  <!-- Blobs de color: añaden profundidad sin cortar el fondo global del Layout -->
+  <!-- Blobs de color: solo se ven en dark, sutiles -->
   <div
-    class="pointer-events-none absolute -top-32 -left-24 -z-10 h-[420px] w-[420px] rounded-full blur-3xl animate-pulse-glow"
-    style="background: radial-gradient(circle, rgb(29 12 223 / 0.55), transparent 70%);"
+    class="pointer-events-none absolute -top-32 -left-24 -z-10 h-[420px] w-[420px] rounded-full blur-3xl opacity-50 dark:opacity-100 animate-pulse-glow"
+    style="background: radial-gradient(circle, rgb(29 12 223 / 0.45), transparent 70%);"
     aria-hidden="true"
   ></div>
   <div
-    class="pointer-events-none absolute -top-10 right-0 -z-10 h-[380px] w-[380px] rounded-full blur-3xl animate-pulse-glow"
-    style="background: radial-gradient(circle, rgb(124 58 237 / 0.45), transparent 70%); animation-delay: 1.5s;"
+    class="pointer-events-none absolute -top-10 right-0 -z-10 h-[380px] w-[380px] rounded-full blur-3xl opacity-50 dark:opacity-100 animate-pulse-glow"
+    style="background: radial-gradient(circle, rgb(37 99 235 / 0.40), transparent 70%); animation-delay: 1.5s;"
     aria-hidden="true"
   ></div>
 
   <div class="relative mx-auto max-w-7xl px-4 sm:px-6 pt-32 md:pt-40 pb-20 md:pb-28">
     <div class="mx-auto max-w-4xl text-center">
-      <span class="pill" data-reveal>
-        <span class="dot"></span>
-        {badge}
-      </span>
-
       {
         title ? (
           <h1
-            class="mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] text-white"
+            class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] text-slate-900 dark:text-white"
             data-reveal
-            data-reveal-delay="100"
             set:html={title}
           />
         ) : (
           <h1
-            class="mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] text-white"
+            class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] text-slate-900 dark:text-white"
             data-reveal
-            data-reveal-delay="100"
           >
             Transformamos ideas en
             <span class="text-gradient animate-gradient">soluciones tecnológicas</span>
@@ -59,9 +50,9 @@ const {
       }
 
       <p
-        class="mt-6 md:mt-8 text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed"
+        class="mt-6 md:mt-8 text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed"
         data-reveal
-        data-reveal-delay="200"
+        data-reveal-delay="100"
       >
         {subtitle}
       </p>
@@ -71,7 +62,7 @@ const {
           <div
             class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
             data-reveal
-            data-reveal-delay="300"
+            data-reveal-delay="200"
           >
             <a href="/contacto" class="btn-primary w-full sm:w-auto">
               Solicitar asesoría

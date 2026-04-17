@@ -11,6 +11,7 @@ export interface Service {
 
 export interface Props {
   id?: string;
+  /** Tagline arriba del título (texto pequeño en cyan/azul). Vacío = sin tagline. */
   tagline?: string;
   title?: string;
   subtitle?: string;
@@ -21,7 +22,6 @@ export interface Props {
 
 const {
   id = 'servicios',
-  tagline = 'Servicios',
   title = 'Soluciones para crecer con tecnología',
   subtitle = 'Cada servicio está diseñado para entregar resultados concretos: más ventas, menos trabajo manual y un negocio listo para crecer.',
   items,
@@ -32,18 +32,13 @@ const {
 <section id={id} class="relative py-20 md:py-28 scroll-mt-[72px]">
   <div class="mx-auto max-w-7xl px-4 sm:px-6">
     <div class="mx-auto max-w-3xl text-center mb-14 md:mb-20">
-      <span class="pill" data-reveal>
-        <span class="dot"></span>
-        {tagline}
-      </span>
       <h2
-        class="mt-5 text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white"
+        class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white"
         data-reveal
-        data-reveal-delay="100"
       >
         {title}
       </h2>
-      <p class="mt-5 text-lg text-slate-300" data-reveal data-reveal-delay="200">
+      <p class="mt-5 text-lg text-slate-600 dark:text-slate-300" data-reveal data-reveal-delay="100">
         {subtitle}
       </p>
     </div>
@@ -56,18 +51,17 @@ const {
             data-reveal
             data-reveal-delay={Math.min(((idx % 3) + 1) * 100, 300).toString()}
           >
-            <div class="relative inline-flex h-12 w-12 items-center justify-center rounded-xl bg-white/[0.04] text-cyan-300 ring-1 ring-white/10 transition-all duration-300 group-hover:text-white group-hover:ring-indigo-400/40">
-              <span class="absolute inset-0 -z-10 rounded-xl opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-60 bg-gradient-brand" />
+            <div class="relative inline-flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100 dark:bg-white/[0.04] text-blue-600 dark:text-cyan-300 ring-1 ring-slate-200 dark:ring-white/10 transition-all duration-300 group-hover:text-white group-hover:bg-gradient-brand group-hover:ring-blue-400/40">
               <Icon name={service.icon} class="h-6 w-6" />
             </div>
 
-            <h3 class="mt-5 text-xl font-semibold text-white">{service.title}</h3>
-            <p class="mt-3 text-[15px] leading-relaxed text-slate-300 flex-grow">{service.description}</p>
+            <h3 class="mt-5 text-xl font-semibold text-slate-900 dark:text-white">{service.title}</h3>
+            <p class="mt-3 text-[15px] leading-relaxed text-slate-600 dark:text-slate-300 flex-grow">{service.description}</p>
 
             {cardCta && (
               <a
                 href={service.href || '/contacto'}
-                class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-300 transition-colors hover:text-white"
+                class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 dark:text-indigo-300 transition-colors hover:text-blue-800 dark:hover:text-white"
               >
                 {service.href ? 'Ver más detalles' : cardCta}
                 <Icon

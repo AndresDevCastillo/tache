@@ -69,7 +69,7 @@ analytics:
       id: null # or "G-XXXXXXXXXX"
 
 ui:
-  theme: 'dark:only' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"
+  theme: 'system' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"
 
   tokens:
     default:
@@ -78,20 +78,20 @@ ui:
         serif: InterVariable
         heading: InterVariable
       colors:
-        default: rgb(15 23 42)
+        default: rgb(15 23 42) # slate-900
         heading: rgb(7 11 20)
-        muted: rgb(71 85 105 / 85%)
-        bgPage: rgb(248 250 252)
-        primary: rgb(29 12 223) # #1D0CDF — color base de marca
-        secondary: rgb(124 58 237) # violeta el\u00e9ctrico
-        accent: rgb(34 211 238) # cian brillante
+        muted: rgb(71 85 105 / 90%) # slate-600
+        bgPage: rgb(248 250 252) # slate-50
+        primary: rgb(29 12 223) # #1D0CDF — azul base de marca
+        secondary: rgb(37 99 235) # #2563EB — azul brillante (sustituye al violeta)
+        accent: rgb(34 211 238) # #22D3EE — cian de acento
     dark:
       fonts: {}
       colors:
-        default: rgb(226 232 240) # gris claro suave
-        heading: rgb(248 250 252) # blanco suave
-        muted: rgb(148 163 184 / 90%) # gris medio para subt\u00edtulos
-        bgPage: rgb(7 11 20) # #070B14 — fondo principal dark
-        primary: rgb(99 102 241) # indigo brillante (mejor contraste sobre dark)
-        secondary: rgb(167 139 250) # p\u00farpura el\u00e9ctrico
-        accent: rgb(34 211 238) # cian brillante
+        default: rgb(226 232 240) # slate-200
+        heading: rgb(248 250 252) # slate-50
+        muted: rgb(148 163 184 / 90%) # slate-400
+        bgPage: rgb(7 11 20) # #070B14
+        primary: rgb(99 102 241) # indigo-500 — más brillante sobre dark
+        secondary: rgb(59 130 246) # blue-500
+        accent: rgb(34 211 238) # cyan-400

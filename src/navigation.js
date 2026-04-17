@@ -14,7 +14,7 @@ export const headerData = {
   ],
   actions: [
     {
-      variant: 'primary',
+      variant: 'whatsapp',
       text: 'WhatsApp',
       href: WHATSAPP_URL,
       icon: 'tabler:brand-whatsapp',

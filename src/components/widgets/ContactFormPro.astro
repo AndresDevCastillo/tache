@@ -12,74 +12,59 @@ export interface Props {
 const {
   id = 'contacto',
   whatsappNumber = '573013745541',
-  // Default desde env: definir PUBLIC_API_URL en .env (build-time).
-  // Ej: PUBLIC_API_URL=https://api.tachetech.com/api/contact
   apiEndpoint = import.meta.env.PUBLIC_API_URL || '',
 } = Astro.props;
 ---
 
 <section id={id} class="relative py-20 md:py-28 scroll-mt-[72px] overflow-hidden">
-  <!-- Spotlight de fondo -->
-  <div class="pointer-events-none absolute inset-0 -z-10">
-    <div
-      class="absolute left-1/2 top-1/3 h-[500px] w-[900px] -translate-x-1/2 rounded-full opacity-40 blur-3xl"
-      style="background: radial-gradient(circle, rgb(29 12 223 / 0.4), transparent 70%);"
-    >
-    </div>
-  </div>
-
   <div class="mx-auto max-w-6xl px-4 sm:px-6">
     <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
-      <!-- Columna izquierda: copy + datos -->
+      <!-- Columna izquierda: copy + datos de contacto -->
       <div class="lg:col-span-5" data-reveal>
-        <span class="pill">
-          <span class="dot"></span>
-          Contáctanos
-        </span>
-        <h2 class="mt-5 text-3xl md:text-4xl font-bold tracking-tight text-white">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">
           Cuéntanos sobre tu proyecto
         </h2>
-        <p class="mt-5 text-lg leading-relaxed text-slate-300">
+        <p class="mt-5 text-lg leading-relaxed text-slate-600 dark:text-slate-300">
           Respondemos en menos de 24 horas hábiles. Si lo prefieres, escríbenos directo por WhatsApp y un
           asesor te atiende al instante.
         </p>
 
         <ul class="mt-10 space-y-5">
           <li class="flex items-start gap-4">
-            <span class="inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-white/[0.05] text-cyan-300 ring-1 ring-white/10">
+            <span class="inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-slate-100 dark:bg-white/[0.05] text-blue-600 dark:text-cyan-300 ring-1 ring-slate-200 dark:ring-white/10">
               <Icon name="tabler:phone" class="h-5 w-5" />
             </span>
             <div>
-              <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Teléfono</p>
+              <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Teléfono</p>
               <a
                 href="tel:+573013745541"
-                class="text-base font-medium text-white hover:text-cyan-300 transition-colors"
+                class="text-base font-medium text-slate-900 dark:text-white hover:text-blue-600 dark:hover:text-cyan-300 transition-colors"
               >
                 +57 301 374 5541
               </a>
             </div>
           </li>
           <li class="flex items-start gap-4">
-            <span class="inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-white/[0.05] text-cyan-300 ring-1 ring-white/10">
+            <span class="inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-slate-100 dark:bg-white/[0.05] text-blue-600 dark:text-cyan-300 ring-1 ring-slate-200 dark:ring-white/10">
               <Icon name="tabler:mail" class="h-5 w-5" />
             </span>
             <div>
-              <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Email</p>
+              <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Email</p>
               <a
                 href="mailto:contacto@tachetech.com"
-                class="text-base font-medium text-white hover:text-cyan-300 transition-colors"
+                class="text-base font-medium text-slate-900 dark:text-white hover:text-blue-600 dark:hover:text-cyan-300 transition-colors"
               >
                 contacto@tachetech.com
               </a>
             </div>
           </li>
           <li class="flex items-start gap-4">
-            <span class="inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-white/[0.05] text-cyan-300 ring-1 ring-white/10">
+            <span class="inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-slate-100 dark:bg-white/[0.05] text-blue-600 dark:text-cyan-300 ring-1 ring-slate-200 dark:ring-white/10">
               <Icon name="tabler:map-pin" class="h-5 w-5" />
             </span>
             <div>
-              <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Ubicación</p>
-              <p class="text-base font-medium text-white">Montería, Colombia · Trabajamos remoto</p>
+              <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Ubicación</p>
+              <p class="text-base font-medium text-slate-900 dark:text-white">Montería, Colombia · Trabajamos remoto</p>
             </div>
           </li>
         </ul>
@@ -106,8 +91,8 @@ const {
         >
           <div class="grid gap-5 sm:grid-cols-2">
             <div>
-              <label for="cf-name" class="block text-sm font-medium text-slate-200 mb-2">
-                Nombre completo <span class="text-cyan-300">*</span>
+              <label for="cf-name" class="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-2">
+                Nombre completo <span class="text-blue-600 dark:text-cyan-300">*</span>
               </label>
               <input
                 id="cf-name"
@@ -120,8 +105,8 @@ const {
               />
             </div>
             <div>
-              <label for="cf-email" class="block text-sm font-medium text-slate-200 mb-2">
-                Correo electrónico <span class="text-cyan-300">*</span>
+              <label for="cf-email" class="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-2">
+                Correo electrónico <span class="text-blue-600 dark:text-cyan-300">*</span>
               </label>
               <input
                 id="cf-email"
@@ -137,8 +122,8 @@ const {
 
           <div class="grid gap-5 sm:grid-cols-2">
             <div>
-              <label for="cf-whatsapp" class="block text-sm font-medium text-slate-200 mb-2">
-                WhatsApp <span class="text-cyan-300">*</span>
+              <label for="cf-whatsapp" class="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-2">
+                WhatsApp <span class="text-blue-600 dark:text-cyan-300">*</span>
               </label>
               <input
                 id="cf-whatsapp"
@@ -151,25 +136,25 @@ const {
               />
             </div>
             <div>
-              <label for="cf-service" class="block text-sm font-medium text-slate-200 mb-2">
-                Tipo de servicio <span class="text-cyan-300">*</span>
+              <label for="cf-service" class="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-2">
+                Tipo de servicio <span class="text-blue-600 dark:text-cyan-300">*</span>
               </label>
               <select id="cf-service" name="service" required class="input-pro">
                 <option value="" disabled selected>Selecciona uno…</option>
-                <option value="Desarrollo web">Desarrollo de página web</option>
-                <option value="Aplicación web">Aplicación web personalizada</option>
-                <option value="Automatización con IA">Automatización con IA</option>
-                <option value="Integraciones / APIs">Integraciones y APIs</option>
-                <option value="Cloud y DevOps">Cloud y DevOps</option>
-                <option value="Asesoría / consultoría">Asesoría / consultoría</option>
+                <option value="Desarrollo web">Página web</option>
+                <option value="Aplicación web">Aplicación a la medida</option>
+                <option value="Automatización con IA">Automatización inteligente</option>
+                <option value="Integraciones / APIs">Integración entre sistemas</option>
+                <option value="Cloud y DevOps">Servicios en la nube</option>
+                <option value="Asesoría / consultoría">Asesoría tecnológica</option>
                 <option value="Otro">Otro</option>
               </select>
             </div>
           </div>
 
           <div>
-            <label for="cf-message" class="block text-sm font-medium text-slate-200 mb-2">
-              Mensaje <span class="text-cyan-300">*</span>
+            <label for="cf-message" class="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-2">
+              Mensaje <span class="text-blue-600 dark:text-cyan-300">*</span>
             </label>
             <textarea
               id="cf-message"
@@ -180,12 +165,12 @@ const {
               class="input-pro resize-none"></textarea>
           </div>
 
-          <label class="flex items-start gap-3 text-sm text-slate-300">
+          <label class="flex items-start gap-3 text-sm text-slate-600 dark:text-slate-300">
             <input
               type="checkbox"
               name="consent"
               required
-              class="mt-1 h-4 w-4 rounded border-white/15 bg-white/[0.05] text-indigo-500 focus:ring-indigo-400"
+              class="mt-1 h-4 w-4 rounded border-slate-300 dark:border-white/15 bg-white dark:bg-white/[0.05] text-blue-600 focus:ring-blue-500"
             />
             <span>
               Acepto la
@@ -193,7 +178,7 @@ const {
                 href="https://tachetech.com/privacidad/"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-cyan-300 hover:underline"
+                class="text-blue-600 dark:text-cyan-300 hover:underline"
               >
                 política de privacidad
               </a>
@@ -230,11 +215,11 @@ const {
     el.textContent = message;
     el.className = 'rounded-lg border px-4 py-3 text-sm';
     if (kind === 'success') {
-      el.classList.add('border-emerald-400/30', 'bg-emerald-400/10', 'text-emerald-200');
+      el.classList.add('border-emerald-400/40', 'bg-emerald-400/10', 'text-emerald-700', 'dark:text-emerald-200');
     } else if (kind === 'error') {
-      el.classList.add('border-red-400/30', 'bg-red-400/10', 'text-red-200');
+      el.classList.add('border-red-400/40', 'bg-red-400/10', 'text-red-700', 'dark:text-red-200');
     } else {
-      el.classList.add('border-cyan-400/30', 'bg-cyan-400/10', 'text-cyan-200');
+      el.classList.add('border-blue-400/40', 'bg-blue-400/10', 'text-blue-700', 'dark:text-cyan-200');
     }
   };
 
@@ -269,7 +254,6 @@ const {
         message: String(formData.get('message') || '').trim(),
       };
 
-      // Validación mínima cliente
       if (!data.name || !data.email || !data.whatsapp || !data.service || !data.message) {
         showStatus(form, 'error', 'Por favor completa todos los campos antes de enviar.');
         return;
@@ -287,8 +271,7 @@ const {
       if (submitBtn) submitBtn.disabled = true;
       if (label) label.textContent = 'Enviando…';
 
-      // Fire-and-forget al backend NestJS si está configurado.
-      // No bloqueamos el wa.me — la UX debe ser inmediata aunque la API esté lenta.
+      // Fire-and-forget al backend si está configurado: no bloqueamos el wa.me.
       if (endpoint) {
         fetch(endpoint, {
           method: 'POST',
@@ -297,8 +280,6 @@ const {
         }).catch((err) => console.warn('Backend POST falló (continuamos con WhatsApp):', err));
       }
 
-      // Abrir WhatsApp con el mensaje pre-rellenado (ejecución síncrona dentro
-      // del handler del submit → no lo bloquea el navegador como popup).
       const url = buildWhatsappUrl(phone, data);
       window.open(url, '_blank', 'noopener,noreferrer');
 
