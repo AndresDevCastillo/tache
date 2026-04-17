@@ -39,10 +39,11 @@ const html = `
       --aw-color-bg-page: ${tokens.default.colors.bgPage};
 
       --aw-color-bg-page-dark: ${tokens.dark.colors.bgPage};
+    }
 
-      ::selection {
-        background-color: lavender;
-      }
+    ::selection {
+      background-color: rgb(99 102 241 / 0.45);
+      color: #fff;
     }
 
     .dark {
@@ -58,11 +59,6 @@ const html = `
       --aw-color-text-default: ${tokens.dark.colors.default};
       --aw-color-text-muted: ${tokens.dark.colors.muted};
       --aw-color-bg-page: ${tokens.dark.colors.bgPage};
-
-      ::selection {
-        background-color: black;
-        color: snow;
-      }
     }
   </style>
 `;
