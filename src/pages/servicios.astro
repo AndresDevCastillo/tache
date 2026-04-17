@@ -1,127 +1,92 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
+import HeroPremium from '~/components/widgets/HeroPremium.astro';
 import ServicesGrid from '~/components/widgets/ServicesGrid.astro';
-import ContactFormPro from '~/components/widgets/ContactFormPro.astro';
 import CtaBanner from '~/components/widgets/CtaBanner.astro';
 
 const metadata = {
-  title: 'Servicios — Software a medida, IA y Cloud',
+  title: 'Servicios — Soluciones digitales para tu negocio',
   description:
-    'Desarrollo web, aplicaciones a medida, automatización con IA, integraciones, cloud y DevOps. Conoce todos los servicios de Tache Technology.',
+    'Páginas web, aplicaciones a medida, automatización inteligente, integraciones y más. Conoce todos los servicios de Tache Technology.',
 };
 
 const services = [
   {
-    icon: 'tabler:device-desktop-code',
-    title: 'Desarrollo de páginas web',
+    icon: 'tabler:world',
+    title: 'Páginas web profesionales',
     description:
-      'Sitios corporativos, landings y e-commerce optimizados para velocidad, SEO y conversión. Tecnología moderna (Astro, Next.js) con CMS opcional.',
-    benefit: 'Más visibilidad y leads desde el primer mes.',
-    gradient: 'bg-gradient-to-br from-indigo-500 to-violet-600',
+      'Sitios web modernos y rápidos que se ven perfectos en cualquier dispositivo. Optimizados para que aparezcas en Google y conviertas visitantes en clientes.',
   },
   {
-    icon: 'tabler:apps',
-    title: 'Aplicaciones web personalizadas',
+    icon: 'tabler:building-store',
+    title: 'Tiendas online',
     description:
-      'Plataformas SaaS, dashboards, CRMs y portales internos a medida. Stack: Next.js, NestJS, PostgreSQL, autenticación segura y roles.',
-    benefit: 'Procesos digitalizados que escalan con tu equipo.',
-    gradient: 'bg-gradient-to-br from-violet-500 to-fuchsia-600',
+      'Vende por internet con catálogo de productos, carrito de compras y pagos en línea. Listo para que tus clientes compren cuando quieran, desde donde estén.',
   },
   {
-    icon: 'tabler:robot',
-    title: 'Automatización con IA',
+    icon: 'tabler:layout-grid',
+    title: 'Aplicaciones a la medida',
     description:
-      'Chatbots inteligentes, agentes de IA, análisis de documentos, generación de contenido y workflows con modelos LLM (OpenAI, Anthropic).',
-    benefit: 'Hasta 70% menos tiempo en tareas operativas.',
-    gradient: 'bg-gradient-to-br from-cyan-500 to-blue-600',
+      'Plataformas hechas para tu negocio: gestiona clientes, inventario, equipos o proyectos desde un solo lugar, con la información que tú necesitas.',
   },
   {
-    icon: 'tabler:plug-connected',
-    title: 'Integraciones y APIs',
+    icon: 'tabler:sparkles',
+    title: 'Automatización inteligente',
     description:
-      'Conectamos tus herramientas existentes: ERPs, CRMs, pasarelas de pago (Wompi, Mercado Pago, Stripe), facturación electrónica DIAN y WhatsApp Business.',
-    benefit: 'Tu stack hablando entre sí, sin trabajo manual.',
-    gradient: 'bg-gradient-to-br from-blue-500 to-indigo-600',
+      'Asistentes virtuales y procesos automáticos que se encargan de tareas repetitivas. Tu equipo gana horas para enfocarse en lo que realmente importa.',
   },
   {
-    icon: 'tabler:cloud-cog',
-    title: 'Cloud y DevOps',
+    icon: 'tabler:link',
+    title: 'Integraciones entre sistemas',
     description:
-      'Despliegues automatizados (CI/CD), infraestructura como código, monitoreo y alertas. AWS, GCP, DigitalOcean o tu VPS propio.',
-    benefit: 'Uptime profesional y costos cloud bajo control.',
-    gradient: 'bg-gradient-to-br from-emerald-500 to-cyan-600',
+      'Conectamos las herramientas que ya usas (pagos, facturación, WhatsApp, redes sociales) para que trabajen juntas y dejes de hacer todo a mano.',
   },
   {
-    icon: 'tabler:database',
-    title: 'Bases de datos y backend',
+    icon: 'tabler:cloud',
+    title: 'Tu sistema siempre disponible',
     description:
-      'Diseño de bases de datos relacionales y NoSQL, APIs REST y GraphQL, optimización de queries y backups automáticos.',
-    benefit: 'Datos seguros, accesibles y rápidos.',
-    gradient: 'bg-gradient-to-br from-amber-500 to-orange-600',
+      'Hacemos que tu plataforma esté siempre en línea, segura y rápida, sin caídas ni dolores de cabeza. Tú te enfocas en tu negocio.',
   },
   {
-    icon: 'tabler:server-cog',
-    title: 'Administración de servidores Linux',
+    icon: 'tabler:shield-check',
+    title: 'Seguridad y respaldo',
     description:
-      'Configuración, securización y mantenimiento de servidores Linux. Hardening, firewalls, certificados SSL y backups automatizados.',
-    benefit: 'Servidores seguros y disponibles 24/7.',
-    gradient: 'bg-gradient-to-br from-rose-500 to-pink-600',
+      'Protegemos tu información y la de tus clientes con copias de seguridad automáticas y prácticas que evitan ataques. Duermes tranquilo.',
   },
   {
     icon: 'tabler:briefcase',
-    title: 'Consultoría tecnológica',
+    title: 'Asesoría tecnológica',
     description:
-      'Auditoría de tu stack actual, recomendaciones de arquitectura, selección de tecnologías y planificación de migraciones.',
-    benefit: 'Decisiones técnicas con visión de negocio.',
-    gradient: 'bg-gradient-to-br from-teal-500 to-emerald-600',
+      'Te ayudamos a tomar decisiones inteligentes sobre tecnología, sin tecnicismos. Te decimos qué necesitas, qué no y por qué.',
   },
   {
-    icon: 'tabler:tools',
-    title: 'Soporte y evolución continua',
+    icon: 'tabler:headset',
+    title: 'Soporte continuo',
     description:
-      'Mantenimiento mensual, nuevas funcionalidades, mejoras de performance y respuesta rápida ante incidencias.',
-    benefit: 'Un equipo técnico disponible cuando lo necesites.',
-    gradient: 'bg-gradient-to-br from-fuchsia-500 to-pink-600',
+      'Después de entregar tu proyecto seguimos contigo: mantenimiento, mejoras, nuevas funciones y respuesta rápida cuando nos necesites.',
   },
 ];
 ---
 
 <Layout metadata={metadata}>
-  <!-- Hero compacto -->
-  <section class="relative pt-32 md:pt-40 pb-8 overflow-hidden">
-    <div class="pointer-events-none absolute inset-0 -z-10 bg-radial-spotlight"></div>
-    <div class="pointer-events-none absolute inset-0 -z-10 bg-grid opacity-40"></div>
-    <div class="mx-auto max-w-4xl px-4 sm:px-6 text-center">
-      <span class="pill" data-reveal>
-        <span class="dot"></span>
-        Nuestros servicios
-      </span>
-      <h1
-        class="mt-5 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white"
-        data-reveal
-        data-reveal-delay="100"
-      >
-        Tecnología que <span class="text-gradient">resuelve problemas reales</span> de tu negocio
-      </h1>
-      <p class="mt-6 text-lg text-slate-300" data-reveal data-reveal-delay="200">
-        Cada servicio está orientado a un resultado de negocio: más ventas, menos costos, procesos
-        automatizados o un producto digital que escale con tu crecimiento.
-      </p>
-    </div>
-  </section>
+  <HeroPremium
+    badge="Nuestros servicios"
+    title='Tecnología que <span class="text-gradient">resuelve problemas</span> reales'
+    subtitle="Cada servicio está orientado a un resultado de negocio: más ventas, menos costos, procesos automatizados o un producto digital que crece contigo."
+    showCtas={false}
+  />
 
   <ServicesGrid
     id="catalogo"
     tagline="Catálogo completo"
-    title="Servicios end-to-end para tu transformación digital"
-    subtitle="Desde la primera idea hasta la operación en producción. Trabajamos como tu socio tecnológico, no como un proveedor más."
+    title="Todo lo que necesitas para crecer en digital"
+    subtitle="Desde tu primera página web hasta sistemas completos a medida. Trabajamos como tu socio tecnológico de largo plazo."
     items={services}
+    cardCta=""
   />
-
-  <ContactFormPro whatsappNumber="573013745541" />
 
   <CtaBanner
     title="¿No estás seguro qué necesitas?"
-    subtitle="Te ayudamos a diagnosticar tu situación en 30 minutos sin costo. Salimos con un plan claro y los siguientes pasos definidos."
+    subtitle="Te ayudamos a entenderlo en una conversación de 30 minutos sin costo. Salimos con un plan claro y los siguientes pasos definidos."
   />
 </Layout>
