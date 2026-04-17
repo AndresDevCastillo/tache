@@ -1,0 +1,32 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroPremium from '~/components/widgets/HeroPremium.astro';
+import MissionVision from '~/components/widgets/MissionVision.astro';
+import WhyChoose from '~/components/widgets/WhyChoose.astro';
+import CtaBanner from '~/components/widgets/CtaBanner.astro';
+
+const metadata = {
+  title: 'Nosotros — Quiénes somos en Tache Technology',
+  description:
+    'Conoce al equipo detrás de Tache Technology, nuestra misión, visión, valores y por qué somos el socio tecnológico que tu negocio necesita.',
+};
+---
+
+<Layout metadata={metadata}>
+  <HeroPremium
+    badge="Nosotros"
+    title='Construimos tecnología <span class="text-gradient">cerca de ti</span>'
+    subtitle="Somos un equipo apasionado por la tecnología y comprometido con cada proyecto. Trabajamos con cercanía, transparencia y enfoque en resultados reales para tu negocio."
+    showCtas={false}
+  />
+
+  <MissionVision />
+
+  <WhyChoose />
+
+  <CtaBanner
+    title="Conoce más sobre cómo trabajamos"
+    subtitle="Agenda una conversación de 30 minutos sin costo. Sin tecnicismos, solo claridad sobre cómo podemos ayudarte."
+    primaryText="Hablar con nosotros"
+  />
+</Layout>

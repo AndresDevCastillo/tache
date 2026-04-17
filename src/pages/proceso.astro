@@ -1,0 +1,104 @@
+---
+import Layout from '~/layouts/PageLayout.astro';
+import HeroPremium from '~/components/widgets/HeroPremium.astro';
+import ProcessTimeline from '~/components/widgets/ProcessTimeline.astro';
+import CtaBanner from '~/components/widgets/CtaBanner.astro';
+import FAQs from '~/components/widgets/FAQs.astro';
+
+const metadata = {
+  title: 'Proceso — Cómo trabajamos en Tache Technology',
+  description:
+    'Conoce paso a paso cómo desarrollamos tu proyecto, desde la primera conversación hasta el soporte continuo. Un proceso claro, sin sorpresas.',
+};
+
+const processSteps = [
+  {
+    icon: 'tabler:message-circle',
+    title: 'Conversamos',
+    description:
+      'Empezamos con una charla sin costo donde entendemos tu negocio, tu día a día y qué problema quieres resolver. Salimos con claridad sobre el camino a seguir.',
+  },
+  {
+    icon: 'tabler:bulb',
+    title: 'Planificamos',
+    description:
+      'Definimos juntos el alcance, las prioridades y los resultados que esperas. Recibes una propuesta clara con tiempos y costos antes de empezar — sin sorpresas.',
+  },
+  {
+    icon: 'tabler:layout-board',
+    title: 'Diseñamos',
+    description:
+      'Creamos el aspecto visual y la experiencia de uso de tu proyecto. Te mostramos prototipos navegables y hacemos los ajustes contigo hasta que esté como lo imaginas.',
+  },
+  {
+    icon: 'tabler:hammer',
+    title: 'Construimos',
+    description:
+      'Desarrollamos tu proyecto con avances semanales que puedes ver y probar. Estás al tanto de cada paso, sin tecnicismos, sin esperas largas para ver resultados.',
+  },
+  {
+    icon: 'tabler:rocket',
+    title: 'Lanzamos',
+    description:
+      'Ponemos tu proyecto en línea de forma segura y te capacitamos a ti y a tu equipo. Cuando lo lanzamos, ya sabes exactamente cómo usarlo y sacarle provecho.',
+  },
+  {
+    icon: 'tabler:lifebuoy',
+    title: 'Acompañamos',
+    description:
+      'Una vez en marcha, seguimos contigo. Resolvemos dudas, hacemos mejoras y te ayudamos a evolucionar tu producto a medida que tu negocio crece.',
+  },
+];
+---
+
+<Layout metadata={metadata}>
+  <HeroPremium
+    badge="Cómo trabajamos"
+    title='Un camino <span class="text-gradient">claro y sin sorpresas</span>'
+    subtitle="Trabajar con nosotros no debería sentirse como una caja negra. Te explicamos cada paso, te mantenemos informado y te entregamos un producto que entiendes y manejas."
+    showCtas={false}
+  />
+
+  <ProcessTimeline
+    items={processSteps}
+    tagline="Nuestro proceso"
+    title="Seis pasos para llevar tu idea a la realidad"
+    subtitle="Probado en cada proyecto que hemos entregado. Pensado para que tú estés en control en todo momento."
+  />
+
+  <FAQs
+    id="faqs"
+    title="Preguntas frecuentes sobre el proceso"
+    subtitle="Las dudas más comunes antes de empezar."
+    tagline="FAQs"
+    classes={{ container: 'max-w-4xl' }}
+    items={[
+      {
+        title: '¿Cuánto tiempo toma desarrollar mi proyecto?',
+        description:
+          'Depende del tipo de proyecto. Una página web sencilla puede estar lista en pocas semanas, mientras que un sistema completo a medida puede tomar varios meses. En la fase de planificación te damos un tiempo estimado claro.',
+      },
+      {
+        title: '¿Voy a entender lo que hacen?',
+        description:
+          'Sí. Hablamos en tu idioma, no en tecnicismos. Cada avance lo presentamos en términos de qué hace, cómo te beneficia y cómo lo vas a usar tú o tu equipo.',
+      },
+      {
+        title: '¿Puedo cambiar cosas durante el desarrollo?',
+        description:
+          'Por supuesto. Trabajamos por etapas para que puedas ver y ajustar las cosas a medida que avanzamos. Los cambios pequeños están incluidos; cambios grandes los conversamos para que sepas el impacto en tiempo y costo.',
+      },
+      {
+        title: '¿Qué pasa después de entregado el proyecto?',
+        description:
+          'Te capacitamos para que lo manejes con confianza y seguimos disponibles para soporte, mejoras y nuevas funcionalidades. No desaparecemos al entregar.',
+      },
+    ]}
+  />
+
+  <CtaBanner
+    title="¿Listo para empezar tu proyecto?"
+    subtitle="El primer paso es una conversación de 30 minutos sin costo. Cuéntanos tu idea y te decimos honestamente cómo podemos ayudarte."
+    primaryText="Empezar ahora"
+  />
+</Layout>
