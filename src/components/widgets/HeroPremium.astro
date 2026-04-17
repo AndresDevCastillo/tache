@@ -1,95 +1,98 @@
 ---
 import { Icon } from 'astro-icon/components';
+
+export interface Props {
+  badge?: string;
+  /** Override del título principal (HTML permitido). Si vacío, usa el default. */
+  title?: string;
+  subtitle?: string;
+  showCtas?: boolean;
+}
+
+const {
+  badge = 'Startup tecnológica · Montería, Colombia',
+  title = '',
+  subtitle = 'Desarrollamos software a medida, automatizamos procesos y llevamos tu empresa al siguiente nivel digital — con la cercanía y compromiso de un equipo local.',
+  showCtas = true,
+} = Astro.props;
 ---
 
 <section class="relative isolate overflow-hidden md:-mt-[76px]" id="inicio">
-  <!-- Capas de fondo: gradiente radial + grid + blobs -->
-  <div class="pointer-events-none absolute inset-0 -z-10 bg-radial-spotlight"></div>
-  <div class="pointer-events-none absolute inset-0 -z-10 bg-grid opacity-60"></div>
+  <!-- Blobs de color: añaden profundidad sin cortar el fondo global del Layout -->
   <div
     class="pointer-events-none absolute -top-32 -left-24 -z-10 h-[420px] w-[420px] rounded-full blur-3xl animate-pulse-glow"
     style="background: radial-gradient(circle, rgb(29 12 223 / 0.55), transparent 70%);"
+    aria-hidden="true"
   ></div>
   <div
     class="pointer-events-none absolute -top-10 right-0 -z-10 h-[380px] w-[380px] rounded-full blur-3xl animate-pulse-glow"
     style="background: radial-gradient(circle, rgb(124 58 237 / 0.45), transparent 70%); animation-delay: 1.5s;"
+    aria-hidden="true"
   ></div>
 
   <div class="relative mx-auto max-w-7xl px-4 sm:px-6 pt-32 md:pt-40 pb-20 md:pb-28">
     <div class="mx-auto max-w-4xl text-center">
       <span class="pill" data-reveal>
         <span class="dot"></span>
-        Startup tecnológica · Montería, Colombia
+        {badge}
       </span>
 
-      <h1
-        class="mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] text-white"
-        data-reveal
-        data-reveal-delay="100"
-      >
-        Transformamos ideas en
-        <span class="text-gradient animate-gradient">soluciones tecnológicas</span>
-        que impulsan tu negocio
-      </h1>
+      {
+        title ? (
+          <h1
+            class="mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] text-white"
+            data-reveal
+            data-reveal-delay="100"
+            set:html={title}
+          />
+        ) : (
+          <h1
+            class="mt-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] text-white"
+            data-reveal
+            data-reveal-delay="100"
+          >
+            Transformamos ideas en
+            <span class="text-gradient animate-gradient">soluciones tecnológicas</span>
+            que impulsan tu negocio
+          </h1>
+        )
+      }
 
       <p
         class="mt-6 md:mt-8 text-lg md:text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed"
         data-reveal
         data-reveal-delay="200"
       >
-        Desarrollamos software a medida, automatizamos procesos con IA y llevamos tu empresa al siguiente nivel digital
-        — con la ingeniería de una startup moderna y la cercanía de un equipo local.
+        {subtitle}
       </p>
 
-      <div
-        class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
-        data-reveal
-        data-reveal-delay="300"
-      >
-        <a href="#contacto" class="btn-primary w-full sm:w-auto">
-          Solicitar asesoría
-          <Icon name="tabler:arrow-right" class="w-5 h-5" />
-        </a>
-        <a href="#contacto" class="btn-secondary w-full sm:w-auto">
-          <Icon name="tabler:calculator" class="w-5 h-5" />
-          Cotizar proyecto
-        </a>
-        <a
-          href="https://wa.link/3bqb4e"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn-whatsapp w-full sm:w-auto"
-        >
-          <Icon name="tabler:brand-whatsapp" class="w-5 h-5" />
-          WhatsApp
-        </a>
-      </div>
-
-      <!-- Trust strip: tecnologías que dominamos -->
-      <div class="mt-14 md:mt-20" data-reveal data-reveal-delay="400">
-        <p class="text-xs font-medium uppercase tracking-[0.2em] text-slate-500">
-          Stack moderno con el que construimos
-        </p>
-        <div class="mt-5 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-slate-400">
-          {
-            [
-              { icon: 'tabler:brand-typescript', label: 'TypeScript' },
-              { icon: 'tabler:brand-react', label: 'React' },
-              { icon: 'tabler:brand-nextjs', label: 'Next.js' },
-              { icon: 'tabler:brand-nodejs', label: 'Node.js' },
-              { icon: 'tabler:brand-vue', label: 'Vue' },
-              { icon: 'tabler:brand-aws', label: 'AWS' },
-              { icon: 'tabler:brand-docker', label: 'Docker' },
-              { icon: 'tabler:database', label: 'PostgreSQL' },
-            ].map((tech) => (
-              <div class="flex items-center gap-2 transition-colors hover:text-white">
-                <Icon name={tech.icon} class="h-5 w-5" />
-                <span class="text-sm font-medium">{tech.label}</span>
-              </div>
-            ))
-          }
-        </div>
-      </div>
+      {
+        showCtas && (
+          <div
+            class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
+            data-reveal
+            data-reveal-delay="300"
+          >
+            <a href="/contacto" class="btn-primary w-full sm:w-auto">
+              Solicitar asesoría
+              <Icon name="tabler:arrow-right" class="w-5 h-5" />
+            </a>
+            <a href="/contacto#contacto" class="btn-secondary w-full sm:w-auto">
+              <Icon name="tabler:calculator" class="w-5 h-5" />
+              Cotizar proyecto
+            </a>
+            <a
+              href="https://wa.link/3bqb4e"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn-whatsapp w-full sm:w-auto"
+            >
+              <Icon name="tabler:brand-whatsapp" class="w-5 h-5" />
+              WhatsApp
+            </a>
+          </div>
+        )
+      }
     </div>
   </div>
 </section>

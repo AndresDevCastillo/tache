@@ -1,107 +1,115 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import HeroPremium from '~/components/widgets/HeroPremium.astro';
-import MissionVision from '~/components/widgets/MissionVision.astro';
 import ServicesGrid from '~/components/widgets/ServicesGrid.astro';
-import WhyChoose from '~/components/widgets/WhyChoose.astro';
+import ProjectsGrid from '~/components/widgets/ProjectsGrid.astro';
 import ProcessTimeline from '~/components/widgets/ProcessTimeline.astro';
-import ContactFormPro from '~/components/widgets/ContactFormPro.astro';
 import CtaBanner from '~/components/widgets/CtaBanner.astro';
-import FAQs from '~/components/widgets/FAQs.astro';
+import { Icon } from 'astro-icon/components';
 
 const metadata = {
-  title: 'TacheTechnology — Software a medida, IA y automatización',
+  title: 'TacheTechnology — Software a medida que impulsa tu negocio',
   ignoreTitleTemplate: true,
   description:
-    'Desarrollamos software a medida, automatizamos procesos con IA y llevamos tu empresa al siguiente nivel digital. Startup tecnológica en Montería, Colombia.',
+    'Diseñamos y construimos páginas web, aplicaciones y soluciones digitales a la medida de tu negocio. Trabajamos cerca de ti, con resultados claros.',
 };
 
+// Servicios — copys orientados al beneficio, sin tecnicismos.
 const services = [
   {
-    icon: 'tabler:device-desktop-code',
-    title: 'Desarrollo de páginas web',
+    icon: 'tabler:world',
+    title: 'Páginas web profesionales',
     description:
-      'Sitios corporativos y landings de alto rendimiento, optimizados para SEO y velocidad. Diseño moderno y conversión-first.',
-    benefit: 'Más visibilidad y leads desde el primer mes.',
-    gradient: 'bg-gradient-to-br from-indigo-500 to-violet-600',
+      'Sitios web modernos, rápidos y que se ven perfectos en cualquier dispositivo. Pensados para que tus clientes te encuentren y confíen en ti.',
   },
   {
-    icon: 'tabler:apps',
-    title: 'Aplicaciones web personalizadas',
+    icon: 'tabler:layout-grid',
+    title: 'Aplicaciones a la medida',
     description:
-      'Plataformas SaaS, dashboards, CRMs y portales internos construidos sobre stacks modernos (Next.js, NestJS, PostgreSQL).',
-    benefit: 'Procesos digitalizados que escalan con tu equipo.',
-    gradient: 'bg-gradient-to-br from-violet-500 to-fuchsia-600',
+      'Creamos plataformas hechas a tu medida para gestionar tu negocio, tus clientes o tu equipo desde un solo lugar — sin complicaciones.',
   },
   {
-    icon: 'tabler:robot',
-    title: 'Automatización con IA',
+    icon: 'tabler:sparkles',
+    title: 'Automatización inteligente',
     description:
-      'Chatbots, análisis de datos, generación de contenido y agentes que ejecutan tareas repetitivas usando modelos LLM.',
-    benefit: 'Hasta 70% menos tiempo en tareas operativas.',
-    gradient: 'bg-gradient-to-br from-cyan-500 to-blue-600',
+      'Asistentes y procesos automáticos que se encargan de tareas repetitivas, para que tu equipo se enfoque en lo que realmente importa.',
   },
   {
-    icon: 'tabler:plug-connected',
-    title: 'Integraciones y APIs',
+    icon: 'tabler:link',
+    title: 'Integraciones entre sistemas',
     description:
-      'Conectamos tus herramientas: ERPs, CRMs, pasarelas de pago, WhatsApp Business, facturación electrónica y más.',
-    benefit: 'Tu stack hablando entre sí, sin trabajo manual.',
-    gradient: 'bg-gradient-to-br from-blue-500 to-indigo-600',
+      'Conectamos las herramientas que ya usas (pagos, facturación, WhatsApp, etc.) para que trabajen juntas y dejes de copiar datos a mano.',
   },
   {
-    icon: 'tabler:cloud-cog',
-    title: 'Cloud y DevOps',
+    icon: 'tabler:cloud',
+    title: 'Tu sistema siempre disponible',
     description:
-      'Despliegues automatizados en AWS, GCP o VPS propios. Infraestructura segura, monitoreada y lista para escalar.',
-    benefit: 'Uptime profesional y costos cloud bajo control.',
-    gradient: 'bg-gradient-to-br from-emerald-500 to-cyan-600',
+      'Hacemos que tu plataforma esté siempre en línea, segura y rápida. Tú te enfocas en tu negocio, nosotros nos encargamos del lado técnico.',
   },
   {
-    icon: 'tabler:tools',
-    title: 'Soporte y evolución continua',
+    icon: 'tabler:headset',
+    title: 'Soporte continuo',
     description:
-      'Mantenimiento, nuevas funcionalidades y mejoras de performance. Tu producto digital nunca se queda atrás.',
-    benefit: 'Un equipo técnico disponible cuando lo necesites.',
-    gradient: 'bg-gradient-to-br from-fuchsia-500 to-pink-600',
+      'Te acompañamos después del lanzamiento con mantenimiento, mejoras y nuevas funciones. No desaparecemos cuando entregamos.',
   },
 ];
 
+// Vista corta del proceso para la home (la versión completa vive en /proceso).
 const processSteps = [
   {
-    icon: 'tabler:search',
-    title: 'Análisis',
-    duration: 'Semana 1',
+    icon: 'tabler:message-circle',
+    title: 'Conversamos',
     description:
-      'Entendemos a fondo tu negocio, tus usuarios y los objetivos del proyecto. Definimos alcance, prioridades y métricas de éxito.',
+      'Empezamos con una charla sin costo donde entendemos tu negocio y qué problema quieres resolver.',
   },
   {
     icon: 'tabler:layout-board',
-    title: 'Diseño',
-    duration: 'Semanas 2–3',
+    title: 'Diseñamos',
     description:
-      'Wireframes, prototipos navegables y diseño visual con la identidad de tu marca. Iteramos contigo hasta que esté perfecto.',
+      'Te mostramos cómo se va a ver y funcionar antes de construirlo, y hacemos los ajustes contigo.',
   },
   {
-    icon: 'tabler:code',
-    title: 'Desarrollo',
-    duration: 'Semanas 4–8',
+    icon: 'tabler:hammer',
+    title: 'Construimos',
     description:
-      'Código limpio, modular y testeado. Sprints semanales con demos en vivo para que veas el avance real.',
+      'Desarrollamos tu proyecto con avances semanales que puedes ver y probar — sin esperas largas.',
   },
   {
     icon: 'tabler:rocket',
-    title: 'Implementación',
-    duration: 'Semana 9',
+    title: 'Lanzamos y acompañamos',
     description:
-      'Despliegue a producción con dominio propio, certificados SSL y monitoreo. Capacitación a tu equipo.',
+      'Ponemos tu proyecto en marcha, te capacitamos y seguimos contigo para mejoras y soporte.',
+  },
+];
+
+// Proyectos destacados (3 para la home; los demás en /proyectos).
+const featuredProjects = [
+  {
+    category: 'Comercio',
+    title: 'Tienda online para distribuidora',
+    description:
+      'Catálogo, carrito y pagos en línea. Antes solo vendían por WhatsApp.',
+    result: 'Triplicaron sus pedidos en 3 meses.',
+    accent: 'indigo' as const,
+    icon: 'tabler:building-store',
   },
   {
-    icon: 'tabler:lifebuoy',
-    title: 'Soporte',
-    duration: 'Continuo',
+    category: 'Salud',
+    title: 'Plataforma de citas',
     description:
-      'Mantenimiento, mejoras, nuevas funcionalidades y respuesta rápida ante cualquier incidencia. Estamos aquí cuando nos necesites.',
+      'Pacientes que agendan online y recordatorios automáticos para reducir inasistencias.',
+    result: 'Inasistencias bajaron 60%.',
+    accent: 'cyan' as const,
+    icon: 'tabler:dental',
+  },
+  {
+    category: 'Servicios',
+    title: 'Asistente virtual 24/7',
+    description:
+      'Bot inteligente que responde a clientes en la web y WhatsApp todo el día.',
+    result: 'Resuelve el 70% de las consultas.',
+    accent: 'amber' as const,
+    icon: 'tabler:message-chatbot',
   },
 ];
 ---
@@ -109,55 +117,73 @@ const processSteps = [
 <Layout metadata={metadata}>
   <HeroPremium />
 
-  <MissionVision />
+  <!-- Quiénes somos: vista corta + link a página completa -->
+  <section id="nosotros-preview" class="relative py-20 md:py-28 scroll-mt-[72px]">
+    <div class="mx-auto max-w-5xl px-4 sm:px-6 text-center">
+      <span class="pill" data-reveal>
+        <span class="dot"></span>
+        Quiénes somos
+      </span>
+      <h2
+        class="mt-5 text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white"
+        data-reveal
+        data-reveal-delay="100"
+      >
+        Tu <span class="text-gradient">socio tecnológico</span>, no solo un proveedor
+      </h2>
+      <p
+        class="mt-6 text-lg text-slate-300 max-w-3xl mx-auto leading-relaxed"
+        data-reveal
+        data-reveal-delay="200"
+      >
+        Somos un equipo cercano y comprometido con cada proyecto. Hablamos tu idioma, te acompañamos
+        en cada paso y nos importa tanto como a ti que tu negocio crezca.
+      </p>
+      <a href="/nosotros" class="btn-secondary mt-8 inline-flex" data-reveal data-reveal-delay="300">
+        Conoce más sobre nosotros
+        <Icon name="tabler:arrow-right" class="h-4 w-4" />
+      </a>
+    </div>
+  </section>
 
-  <ServicesGrid items={services} />
-
-  <WhyChoose />
-
-  <ProcessTimeline items={processSteps} />
-
-  <ContactFormPro whatsappNumber="573013745541" />
-
-  <FAQs
-    id="faqs"
-    title="Preguntas frecuentes"
-    subtitle="Las dudas más comunes antes de empezar un proyecto con nosotros."
-    tagline="FAQs"
-    classes={{ container: 'max-w-4xl' }}
-    items={[
-      {
-        title: '¿Cuánto tiempo toma desarrollar mi proyecto?',
-        description:
-          'Una landing o página web simple toma 4 a 6 semanas. Una aplicación web completa entre 2 y 4 meses. Te damos un cronograma detallado tras la fase de análisis.',
-      },
-      {
-        title: '¿Cuánto cuesta?',
-        description:
-          'Depende del alcance, integraciones y complejidad. Tras una primera reunión de 30 minutos sin compromiso te enviamos una cotización clara, con opciones por fases si tu presupuesto lo requiere.',
-      },
-      {
-        title: '¿Qué necesito tener listo para empezar?',
-        description:
-          'Idealmente: objetivos del negocio, usuarios objetivo, contenidos (textos, imágenes, logos) y referencias visuales. Si no los tienes, te ayudamos a estructurarlos en la fase de análisis.',
-      },
-      {
-        title: '¿La página/aplicación se ve bien en móvil?',
-        description:
-          'Siempre. Diseñamos mobile-first y probamos en múltiples dispositivos antes de entregar. Más del 60% del tráfico hoy es móvil — no es opcional.',
-      },
-      {
-        title: '¿Cómo manejan el mantenimiento?',
-        description:
-          'Ofrecemos planes mensuales con horas de soporte incluidas, monitoreo, actualizaciones de seguridad y mejoras pequeñas. También trabajamos por bolsas de horas o por proyectos puntuales.',
-      },
-      {
-        title: '¿Puedo editar el contenido yo mismo después?',
-        description:
-          'Sí. Cuando aplica, integramos paneles de administración o CMS headless (Sanity, Strapi, etc.) para que actualices textos, imágenes y posts del blog sin necesidad de programación.',
-      },
-    ]}
+  <!-- Servicios -->
+  <ServicesGrid
+    items={services}
+    cardCta=""
   />
+  <div class="text-center -mt-8 mb-16" data-reveal>
+    <a href="/servicios" class="btn-secondary inline-flex">
+      Ver todos los servicios
+      <Icon name="tabler:arrow-right" class="h-4 w-4" />
+    </a>
+  </div>
+
+  <!-- Proyectos destacados -->
+  <ProjectsGrid
+    items={featuredProjects}
+    title="Algunos proyectos que hemos entregado"
+    subtitle="Negocios reales con resultados reales. Te mostramos lo que hemos construido."
+    showCta={false}
+  />
+  <div class="text-center -mt-8 mb-16" data-reveal>
+    <a href="/proyectos" class="btn-secondary inline-flex">
+      Ver más proyectos
+      <Icon name="tabler:arrow-right" class="h-4 w-4" />
+    </a>
+  </div>
+
+  <!-- Proceso resumido -->
+  <ProcessTimeline
+    items={processSteps}
+    title="Cuatro pasos para llevar tu idea a la realidad"
+    subtitle="Un proceso claro y transparente, donde estás en control en todo momento."
+  />
+  <div class="text-center -mt-12 mb-16" data-reveal>
+    <a href="/proceso" class="btn-secondary inline-flex">
+      Ver el proceso completo
+      <Icon name="tabler:arrow-right" class="h-4 w-4" />
+    </a>
+  </div>
 
   <CtaBanner />
 </Layout>

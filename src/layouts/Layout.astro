@@ -40,7 +40,15 @@ const { language, textDirection } = I18N;
     <ViewTransitions fallback="swap" />
   </head>
 
-  <body class="antialiased text-default bg-page tracking-tight">
+  <body class="antialiased text-default bg-page tracking-tight relative">
+    <!--
+      Fondo global: gradiente radial + grid sutil aplicado en una capa fija
+      detrás de TODO el contenido. Asegura que las "atmósferas" no se corten
+      entre secciones — es un único continuo.
+    -->
+    <div class="pointer-events-none fixed inset-0 -z-10 bg-radial-spotlight" aria-hidden="true"></div>
+    <div class="pointer-events-none fixed inset-0 -z-10 bg-grid opacity-40" aria-hidden="true"></div>
+
     <slot />
 
     <BasicScripts />

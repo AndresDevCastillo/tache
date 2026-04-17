@@ -5,8 +5,8 @@ export interface Service {
   icon: string;
   title: string;
   description: string;
-  benefit: string;
-  gradient: string; // tailwind gradient classes for the icon halo
+  /** Slug para enlazar a la página de detalle del servicio (opcional) */
+  href?: string;
 }
 
 export interface Props {
@@ -15,20 +15,21 @@ export interface Props {
   title?: string;
   subtitle?: string;
   items: Service[];
+  /** Texto del enlace inferior de cada card. Si vacío, no se muestra. */
+  cardCta?: string;
 }
 
 const {
   id = 'servicios',
   tagline = 'Servicios',
   title = 'Soluciones para crecer con tecnología',
-  subtitle = 'Cada servicio está diseñado para entregar resultados concretos: más ventas, menos operación manual y un producto digital que escala con tu negocio.',
+  subtitle = 'Cada servicio está diseñado para entregar resultados concretos: más ventas, menos trabajo manual y un negocio listo para crecer.',
   items,
+  cardCta = 'Conversemos sobre tu proyecto',
 } = Astro.props;
 ---
 
 <section id={id} class="relative py-20 md:py-28 scroll-mt-[72px]">
-  <div class="pointer-events-none absolute inset-0 -z-10 bg-radial-spotlight opacity-40"></div>
-
   <div class="mx-auto max-w-7xl px-4 sm:px-6">
     <div class="mx-auto max-w-3xl text-center mb-14 md:mb-20">
       <span class="pill" data-reveal>
@@ -55,33 +56,26 @@ const {
             data-reveal
             data-reveal-delay={Math.min(((idx % 3) + 1) * 100, 300).toString()}
           >
-            <div
-              class:list={[
-                'inline-flex h-12 w-12 items-center justify-center rounded-xl text-white shadow-lg transition-transform duration-300 group-hover:scale-110',
-                service.gradient,
-              ]}
-            >
+            <div class="relative inline-flex h-12 w-12 items-center justify-center rounded-xl bg-white/[0.04] text-cyan-300 ring-1 ring-white/10 transition-all duration-300 group-hover:text-white group-hover:ring-indigo-400/40">
+              <span class="absolute inset-0 -z-10 rounded-xl opacity-0 blur-md transition-opacity duration-300 group-hover:opacity-60 bg-gradient-brand" />
               <Icon name={service.icon} class="h-6 w-6" />
             </div>
 
             <h3 class="mt-5 text-xl font-semibold text-white">{service.title}</h3>
-            <p class="mt-3 text-[15px] leading-relaxed text-slate-300">{service.description}</p>
+            <p class="mt-3 text-[15px] leading-relaxed text-slate-300 flex-grow">{service.description}</p>
 
-            <div class="mt-5 flex items-start gap-2 rounded-lg border border-cyan-400/15 bg-cyan-400/5 p-3">
-              <Icon name="tabler:bolt" class="mt-0.5 h-4 w-4 flex-shrink-0 text-cyan-300" />
-              <p class="text-sm font-medium text-cyan-100/90">{service.benefit}</p>
-            </div>
-
-            <a
-              href="#contacto"
-              class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-300 transition-colors hover:text-white"
-            >
-              Conversemos sobre tu proyecto
-              <Icon
-                name="tabler:arrow-right"
-                class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
-              />
-            </a>
+            {cardCta && (
+              <a
+                href={service.href || '/contacto'}
+                class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-indigo-300 transition-colors hover:text-white"
+              >
+                {service.href ? 'Ver más detalles' : cardCta}
+                <Icon
+                  name="tabler:arrow-right"
+                  class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
+                />
+              </a>
+            )}
           </article>
         ))
       }
