@@ -1,0 +1,74 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<section id="por-que-elegirnos" class="relative py-20 md:py-28 scroll-mt-[72px]">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+    <div class="grid gap-12 lg:grid-cols-12 lg:items-center">
+      <!-- Columna izquierda: copy -->
+      <div class="lg:col-span-5" data-reveal>
+        <span class="pill">
+          <span class="dot"></span>
+          Por qué elegirnos
+        </span>
+        <h2 class="mt-5 text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white">
+          La diferencia entre un proveedor y un <span class="text-gradient">socio tecnológico</span>
+        </h2>
+        <p class="mt-5 text-lg text-slate-300 leading-relaxed">
+          No somos una agencia que entrega y desaparece. Trabajamos contigo durante todo el ciclo de vida
+          del producto: desde la primera conversación hasta el soporte y la evolución continua.
+        </p>
+        <a href="#contacto" class="btn-primary mt-8 inline-flex">
+          Hablar con un experto
+          <Icon name="tabler:arrow-right" class="w-5 h-5" />
+        </a>
+      </div>
+
+      <!-- Columna derecha: 4 features -->
+      <div class="lg:col-span-7">
+        <div class="grid gap-5 sm:grid-cols-2">
+          {
+            [
+              {
+                icon: 'tabler:adjustments',
+                title: 'Soluciones personalizadas',
+                description:
+                  'Cero plantillas genéricas. Cada proyecto se diseña desde cero pensando en tu modelo de negocio.',
+              },
+              {
+                icon: 'tabler:rocket',
+                title: 'Tecnología moderna',
+                description:
+                  'Stack actualizado: TypeScript, Next.js, NestJS, IA, cloud nativo. Hoy y dentro de 5 años.',
+              },
+              {
+                icon: 'tabler:chart-arrows',
+                title: 'Enfoque en resultados',
+                description:
+                  'Medimos lo que importa: conversión, ahorro de horas, ingresos. No solo entregamos código.',
+              },
+              {
+                icon: 'tabler:shield-check',
+                title: 'Acompañamiento constante',
+                description:
+                  'Soporte continuo, mantenimiento y mejoras. Tu producto evoluciona, nosotros también.',
+              },
+            ].map((item, idx) => (
+              <article
+                class="card-glass"
+                data-reveal
+                data-reveal-delay={(((idx % 2) * 100) + 100).toString()}
+              >
+                <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-brand text-white shadow-md">
+                  <Icon name={item.icon} class="h-5 w-5" />
+                </span>
+                <h3 class="mt-4 text-lg font-semibold text-white">{item.title}</h3>
+                <p class="mt-2 text-[15px] leading-relaxed text-slate-300">{item.description}</p>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
