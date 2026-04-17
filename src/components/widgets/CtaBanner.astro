@@ -1,0 +1,66 @@
+---
+import { Icon } from 'astro-icon/components';
+
+export interface Props {
+  title?: string;
+  subtitle?: string;
+  primaryText?: string;
+  primaryHref?: string;
+  secondaryText?: string;
+  secondaryHref?: string;
+}
+
+const {
+  title = '¿Listo para llevar tu negocio al siguiente nivel digital?',
+  subtitle = 'Agenda una asesoría gratuita de 30 minutos. Sin compromisos, solo claridad sobre qué necesitas y cómo lo logramos.',
+  primaryText = 'Solicitar asesoría gratis',
+  primaryHref = '#contacto',
+  secondaryText = 'WhatsApp',
+  secondaryHref = 'https://wa.link/3bqb4e',
+} = Astro.props;
+---
+
+<section class="relative py-16 md:py-20">
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <div
+      class="relative overflow-hidden rounded-3xl border border-white/10 px-6 py-12 md:px-14 md:py-16 text-center"
+      data-reveal
+    >
+      <!-- Fondo: gradiente principal + grid sutil -->
+      <div
+        class="absolute inset-0 -z-10"
+        style="background-image: linear-gradient(135deg, rgb(29 12 223 / 0.85) 0%, rgb(124 58 237 / 0.85) 50%, rgb(34 211 238 / 0.6) 130%);"
+      >
+      </div>
+      <div class="absolute inset-0 -z-10 bg-grid opacity-30"></div>
+      <div
+        class="absolute -top-32 -left-20 h-[300px] w-[300px] rounded-full blur-3xl"
+        style="background: radial-gradient(circle, rgb(255 255 255 / 0.3), transparent 70%);"
+      >
+      </div>
+
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white max-w-3xl mx-auto">
+        {title}
+      </h2>
+      <p class="mt-5 text-lg text-white/85 max-w-2xl mx-auto">{subtitle}</p>
+      <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a
+          href={primaryHref}
+          class="btn inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3 font-semibold text-indigo-700 transition-all hover:bg-slate-100 hover:-translate-y-0.5"
+        >
+          {primaryText}
+          <Icon name="tabler:arrow-right" class="h-5 w-5" />
+        </a>
+        <a
+          href={secondaryHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn inline-flex items-center justify-center gap-2 rounded-full border border-white/30 bg-white/10 px-7 py-3 font-semibold text-white transition-all backdrop-blur hover:bg-white/15"
+        >
+          <Icon name="tabler:brand-whatsapp" class="h-5 w-5" />
+          {secondaryText}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

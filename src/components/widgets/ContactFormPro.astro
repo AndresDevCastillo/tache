@@ -1,0 +1,319 @@
+---
+import { Icon } from 'astro-icon/components';
+
+export interface Props {
+  id?: string;
+  /** Número WhatsApp en formato internacional sin '+' (ej: '573013745541') */
+  whatsappNumber?: string;
+  /** URL del backend NestJS para POST /contact. Si vacía, solo abre wa.me. */
+  apiEndpoint?: string;
+}
+
+const {
+  id = 'contacto',
+  whatsappNumber = '573013745541',
+  apiEndpoint = '',
+} = Astro.props;
+---
+
+<section id={id} class="relative py-20 md:py-28 scroll-mt-[72px] overflow-hidden">
+  <!-- Spotlight de fondo -->
+  <div class="pointer-events-none absolute inset-0 -z-10">
+    <div
+      class="absolute left-1/2 top-1/3 h-[500px] w-[900px] -translate-x-1/2 rounded-full opacity-40 blur-3xl"
+      style="background: radial-gradient(circle, rgb(29 12 223 / 0.4), transparent 70%);"
+    >
+    </div>
+  </div>
+
+  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+    <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
+      <!-- Columna izquierda: copy + datos -->
+      <div class="lg:col-span-5" data-reveal>
+        <span class="pill">
+          <span class="dot"></span>
+          Contáctanos
+        </span>
+        <h2 class="mt-5 text-3xl md:text-4xl font-bold tracking-tight text-white">
+          Cuéntanos sobre tu proyecto
+        </h2>
+        <p class="mt-5 text-lg leading-relaxed text-slate-300">
+          Respondemos en menos de 24 horas hábiles. Si lo prefieres, escríbenos directo por WhatsApp y un
+          asesor te atiende al instante.
+        </p>
+
+        <ul class="mt-10 space-y-5">
+          <li class="flex items-start gap-4">
+            <span class="inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-white/[0.05] text-cyan-300 ring-1 ring-white/10">
+              <Icon name="tabler:phone" class="h-5 w-5" />
+            </span>
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Teléfono</p>
+              <a
+                href="tel:+573013745541"
+                class="text-base font-medium text-white hover:text-cyan-300 transition-colors"
+              >
+                +57 301 374 5541
+              </a>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-white/[0.05] text-cyan-300 ring-1 ring-white/10">
+              <Icon name="tabler:mail" class="h-5 w-5" />
+            </span>
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Email</p>
+              <a
+                href="mailto:contacto@tachetech.com"
+                class="text-base font-medium text-white hover:text-cyan-300 transition-colors"
+              >
+                contacto@tachetech.com
+              </a>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-white/[0.05] text-cyan-300 ring-1 ring-white/10">
+              <Icon name="tabler:map-pin" class="h-5 w-5" />
+            </span>
+            <div>
+              <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Ubicación</p>
+              <p class="text-base font-medium text-white">Montería, Colombia · Trabajamos remoto</p>
+            </div>
+          </li>
+        </ul>
+
+        <a
+          href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Hola, vengo desde tachetech.com y quiero información.')}`}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-whatsapp mt-10 inline-flex"
+        >
+          <Icon name="tabler:brand-whatsapp" class="h-5 w-5" />
+          Escribir por WhatsApp
+        </a>
+      </div>
+
+      <!-- Columna derecha: formulario -->
+      <div class="lg:col-span-7" data-reveal data-reveal-delay="200">
+        <form
+          id="contact-form"
+          class="card-glass !p-6 md:!p-8 space-y-5"
+          data-whatsapp={whatsappNumber}
+          data-endpoint={apiEndpoint}
+          novalidate
+        >
+          <div class="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label for="cf-name" class="block text-sm font-medium text-slate-200 mb-2">
+                Nombre completo <span class="text-cyan-300">*</span>
+              </label>
+              <input
+                id="cf-name"
+                name="name"
+                type="text"
+                required
+                autocomplete="name"
+                placeholder="Ej: Andrés Castillo"
+                class="input-pro"
+              />
+            </div>
+            <div>
+              <label for="cf-email" class="block text-sm font-medium text-slate-200 mb-2">
+                Correo electrónico <span class="text-cyan-300">*</span>
+              </label>
+              <input
+                id="cf-email"
+                name="email"
+                type="email"
+                required
+                autocomplete="email"
+                placeholder="tu@empresa.com"
+                class="input-pro"
+              />
+            </div>
+          </div>
+
+          <div class="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label for="cf-whatsapp" class="block text-sm font-medium text-slate-200 mb-2">
+                WhatsApp <span class="text-cyan-300">*</span>
+              </label>
+              <input
+                id="cf-whatsapp"
+                name="whatsapp"
+                type="tel"
+                required
+                autocomplete="tel"
+                placeholder="+57 300 000 0000"
+                class="input-pro"
+              />
+            </div>
+            <div>
+              <label for="cf-service" class="block text-sm font-medium text-slate-200 mb-2">
+                Tipo de servicio <span class="text-cyan-300">*</span>
+              </label>
+              <select id="cf-service" name="service" required class="input-pro">
+                <option value="" disabled selected>Selecciona uno…</option>
+                <option value="Desarrollo web">Desarrollo de página web</option>
+                <option value="Aplicación web">Aplicación web personalizada</option>
+                <option value="Automatización con IA">Automatización con IA</option>
+                <option value="Integraciones / APIs">Integraciones y APIs</option>
+                <option value="Cloud y DevOps">Cloud y DevOps</option>
+                <option value="Asesoría / consultoría">Asesoría / consultoría</option>
+                <option value="Otro">Otro</option>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label for="cf-message" class="block text-sm font-medium text-slate-200 mb-2">
+              Mensaje <span class="text-cyan-300">*</span>
+            </label>
+            <textarea
+              id="cf-message"
+              name="message"
+              rows="5"
+              required
+              placeholder="Cuéntanos brevemente qué necesitas, plazos y presupuesto aproximado si lo conoces."
+              class="input-pro resize-none"></textarea>
+          </div>
+
+          <label class="flex items-start gap-3 text-sm text-slate-300">
+            <input
+              type="checkbox"
+              name="consent"
+              required
+              class="mt-1 h-4 w-4 rounded border-white/15 bg-white/[0.05] text-indigo-500 focus:ring-indigo-400"
+            />
+            <span>
+              Acepto la
+              <a
+                href="https://tachetech.com/privacidad/"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="text-cyan-300 hover:underline"
+              >
+                política de privacidad
+              </a>
+              y autorizo el contacto comercial.
+            </span>
+          </label>
+
+          <div class="flex flex-col sm:flex-row gap-3">
+            <button type="submit" class="btn-primary flex-1" data-default-text="Enviar y abrir WhatsApp">
+              <Icon name="tabler:send" class="h-5 w-5" />
+              <span data-btn-label>Enviar y abrir WhatsApp</span>
+            </button>
+          </div>
+
+          <p
+            id="cf-status"
+            class="hidden rounded-lg border px-4 py-3 text-sm"
+            role="status"
+            aria-live="polite"
+          >
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  type Status = 'success' | 'error' | 'info';
+
+  const showStatus = (form: HTMLFormElement, kind: Status, message: string) => {
+    const el = form.querySelector<HTMLParagraphElement>('#cf-status');
+    if (!el) return;
+    el.textContent = message;
+    el.className = 'rounded-lg border px-4 py-3 text-sm';
+    if (kind === 'success') {
+      el.classList.add('border-emerald-400/30', 'bg-emerald-400/10', 'text-emerald-200');
+    } else if (kind === 'error') {
+      el.classList.add('border-red-400/30', 'bg-red-400/10', 'text-red-200');
+    } else {
+      el.classList.add('border-cyan-400/30', 'bg-cyan-400/10', 'text-cyan-200');
+    }
+  };
+
+  const buildWhatsappUrl = (phone: string, data: Record<string, string>) => {
+    const lines = [
+      `*Nueva solicitud desde tachetech.com*`,
+      ``,
+      `*Nombre:* ${data.name}`,
+      `*Email:* ${data.email}`,
+      `*WhatsApp:* ${data.whatsapp}`,
+      `*Servicio:* ${data.service}`,
+      ``,
+      `*Mensaje:*`,
+      data.message,
+    ];
+    return `https://wa.me/${phone}?text=${encodeURIComponent(lines.join('\n'))}`;
+  };
+
+  const initContactForm = () => {
+    const form = document.getElementById('contact-form') as HTMLFormElement | null;
+    if (!form || form.dataset.bound === 'true') return;
+    form.dataset.bound = 'true';
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const data = {
+        name: String(formData.get('name') || '').trim(),
+        email: String(formData.get('email') || '').trim(),
+        whatsapp: String(formData.get('whatsapp') || '').trim(),
+        service: String(formData.get('service') || '').trim(),
+        message: String(formData.get('message') || '').trim(),
+      };
+
+      // Validación mínima cliente
+      if (!data.name || !data.email || !data.whatsapp || !data.service || !data.message) {
+        showStatus(form, 'error', 'Por favor completa todos los campos antes de enviar.');
+        return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+        showStatus(form, 'error', 'El correo electrónico no parece válido.');
+        return;
+      }
+
+      const submitBtn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
+      const label = form.querySelector<HTMLSpanElement>('[data-btn-label]');
+      const phone = (form.dataset.whatsapp || '').replace(/\D/g, '');
+      const endpoint = form.dataset.endpoint || '';
+
+      if (submitBtn) submitBtn.disabled = true;
+      if (label) label.textContent = 'Enviando…';
+      showStatus(form, 'info', 'Enviando tu mensaje, un momento…');
+
+      // Si hay backend NestJS configurado, lo llamamos en background; no bloqueamos el wa.me.
+      if (endpoint) {
+        try {
+          await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(data),
+          });
+        } catch (err) {
+          console.warn('No se pudo enviar al backend, continuamos con WhatsApp.', err);
+        }
+      }
+
+      // Abrir WhatsApp con el mensaje pre-rellenado
+      const url = buildWhatsappUrl(phone, data);
+      window.open(url, '_blank', 'noopener,noreferrer');
+
+      showStatus(
+        form,
+        'success',
+        '¡Listo! Abrimos WhatsApp en una nueva pestaña con tu mensaje. Solo dale enviar.'
+      );
+      if (label) label.textContent = 'Enviar y abrir WhatsApp';
+      if (submitBtn) submitBtn.disabled = false;
+      form.reset();
+    });
+  };
+
+  initContactForm();
+  document.addEventListener('astro:page-load', initContactForm);
+</script>
