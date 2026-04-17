@@ -1,92 +1,127 @@
 ---
-import CallToAction from '~/components/widgets/CallToAction.astro';
-import Features2 from '~/components/widgets/Features2.astro';
 import Layout from '~/layouts/PageLayout.astro';
+import ServicesGrid from '~/components/widgets/ServicesGrid.astro';
+import ContactFormPro from '~/components/widgets/ContactFormPro.astro';
+import CtaBanner from '~/components/widgets/CtaBanner.astro';
 
 const metadata = {
-  title: 'Servicios Tache Technology',
+  title: 'Servicios — Software a medida, IA y Cloud',
+  description:
+    'Desarrollo web, aplicaciones a medida, automatización con IA, integraciones, cloud y DevOps. Conoce todos los servicios de Tache Technology.',
 };
+
+const services = [
+  {
+    icon: 'tabler:device-desktop-code',
+    title: 'Desarrollo de páginas web',
+    description:
+      'Sitios corporativos, landings y e-commerce optimizados para velocidad, SEO y conversión. Tecnología moderna (Astro, Next.js) con CMS opcional.',
+    benefit: 'Más visibilidad y leads desde el primer mes.',
+    gradient: 'bg-gradient-to-br from-indigo-500 to-violet-600',
+  },
+  {
+    icon: 'tabler:apps',
+    title: 'Aplicaciones web personalizadas',
+    description:
+      'Plataformas SaaS, dashboards, CRMs y portales internos a medida. Stack: Next.js, NestJS, PostgreSQL, autenticación segura y roles.',
+    benefit: 'Procesos digitalizados que escalan con tu equipo.',
+    gradient: 'bg-gradient-to-br from-violet-500 to-fuchsia-600',
+  },
+  {
+    icon: 'tabler:robot',
+    title: 'Automatización con IA',
+    description:
+      'Chatbots inteligentes, agentes de IA, análisis de documentos, generación de contenido y workflows con modelos LLM (OpenAI, Anthropic).',
+    benefit: 'Hasta 70% menos tiempo en tareas operativas.',
+    gradient: 'bg-gradient-to-br from-cyan-500 to-blue-600',
+  },
+  {
+    icon: 'tabler:plug-connected',
+    title: 'Integraciones y APIs',
+    description:
+      'Conectamos tus herramientas existentes: ERPs, CRMs, pasarelas de pago (Wompi, Mercado Pago, Stripe), facturación electrónica DIAN y WhatsApp Business.',
+    benefit: 'Tu stack hablando entre sí, sin trabajo manual.',
+    gradient: 'bg-gradient-to-br from-blue-500 to-indigo-600',
+  },
+  {
+    icon: 'tabler:cloud-cog',
+    title: 'Cloud y DevOps',
+    description:
+      'Despliegues automatizados (CI/CD), infraestructura como código, monitoreo y alertas. AWS, GCP, DigitalOcean o tu VPS propio.',
+    benefit: 'Uptime profesional y costos cloud bajo control.',
+    gradient: 'bg-gradient-to-br from-emerald-500 to-cyan-600',
+  },
+  {
+    icon: 'tabler:database',
+    title: 'Bases de datos y backend',
+    description:
+      'Diseño de bases de datos relacionales y NoSQL, APIs REST y GraphQL, optimización de queries y backups automáticos.',
+    benefit: 'Datos seguros, accesibles y rápidos.',
+    gradient: 'bg-gradient-to-br from-amber-500 to-orange-600',
+  },
+  {
+    icon: 'tabler:server-cog',
+    title: 'Administración de servidores Linux',
+    description:
+      'Configuración, securización y mantenimiento de servidores Linux. Hardening, firewalls, certificados SSL y backups automatizados.',
+    benefit: 'Servidores seguros y disponibles 24/7.',
+    gradient: 'bg-gradient-to-br from-rose-500 to-pink-600',
+  },
+  {
+    icon: 'tabler:briefcase',
+    title: 'Consultoría tecnológica',
+    description:
+      'Auditoría de tu stack actual, recomendaciones de arquitectura, selección de tecnologías y planificación de migraciones.',
+    benefit: 'Decisiones técnicas con visión de negocio.',
+    gradient: 'bg-gradient-to-br from-teal-500 to-emerald-600',
+  },
+  {
+    icon: 'tabler:tools',
+    title: 'Soporte y evolución continua',
+    description:
+      'Mantenimiento mensual, nuevas funcionalidades, mejoras de performance y respuesta rápida ante incidencias.',
+    benefit: 'Un equipo técnico disponible cuando lo necesites.',
+    gradient: 'bg-gradient-to-br from-fuchsia-500 to-pink-600',
+  },
+];
 ---
 
 <Layout metadata={metadata}>
-  <!-- Features2 Widget ************** -->
+  <!-- Hero compacto -->
+  <section class="relative pt-32 md:pt-40 pb-8 overflow-hidden">
+    <div class="pointer-events-none absolute inset-0 -z-10 bg-radial-spotlight"></div>
+    <div class="pointer-events-none absolute inset-0 -z-10 bg-grid opacity-40"></div>
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 text-center">
+      <span class="pill" data-reveal>
+        <span class="dot"></span>
+        Nuestros servicios
+      </span>
+      <h1
+        class="mt-5 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white"
+        data-reveal
+        data-reveal-delay="100"
+      >
+        Tecnología que <span class="text-gradient">resuelve problemas reales</span> de tu negocio
+      </h1>
+      <p class="mt-6 text-lg text-slate-300" data-reveal data-reveal-delay="200">
+        Cada servicio está orientado a un resultado de negocio: más ventas, menos costos, procesos
+        automatizados o un producto digital que escale con tu crecimiento.
+      </p>
+    </div>
+  </section>
 
-  <Features2
-    title="Servicios Más Populares"
-    subtitle="Aquí tienes un listado simplificado de los servicios que ofrecemos."
-    tagline="Herramientas Digitales"
-    items={[
-      {
-        title: 'Desarrollo de Páginas Web',
-        description:
-          'Crea tu presencia online con páginas web diseñadas para capturar y retener la atención de tu audiencia.',
-        icon: 'tabler:device-imac',
-      },
-      {
-        title: 'Aplicaciones Web Personalizadas',
-        description: 'Soluciones interactivas y funcionales que se integran perfectamente con tu modelo de negocio.',
-        icon: 'tabler:pointer',
-      },
-      {
-        title: 'Gestión de Bases de Datos',
-        description:
-          'Bases de datos robustas y confiables, diseñadas para el almacenamiento, recuperación y manejo óptimo de tus datos.',
-        icon: 'tabler:database',
-      },
-      {
-        title: 'Creación de APIs',
-        description:
-          'Desarrollamos interfaces de programación de aplicaciones que permiten la integración y comunicación fluida entre diferentes sistemas y aplicaciones.',
-        icon: 'tabler:plug',
-      },
-      {
-        title: 'Gestión de Servidores Linux',
-        description:
-          'Proporcionamos servicios expertos en la administración de servidores Linux, garantizando seguridad, estabilidad y rendimiento óptimo.',
-        icon: 'tabler:server-cog',
-      },
-      {
-        title: 'Cloud Computing',
-        description:
-          'Ayudamos a las empresas a migrar a la nube, beneficiándose de la escalabilidad, la accesibilidad remota y la reducción de costos que ofrece.',
-        icon: 'tabler:cloud',
-      },
-      {
-        title: 'Actualización de Aplicaciones Web',
-        description:
-          'Nos encargamos de que tu aplicación web esté actualizada con las últimas versiones y tecnologías, manteniendo un rendimiento óptimo.',
-        icon: 'tabler:tool',
-      },
-      {
-        title: 'Consultoría en TI',
-        description:
-          'Asesoramiento experto en tecnologías de la información para optimizar procesos, reducir costos y implementar nuevas tecnologías.',
-        icon: 'tabler:briefcase',
-      },
-      {
-        title: 'Diseño e Implementación de Redes',
-        description:
-          'Creación de una infraestructura de red a medida que soporte todas las operaciones del negocio con alta disponibilidad y rendimiento.',
-        icon: 'tabler:sitemap',
-      },
-    ]}
-  >
-    <Fragment slot="bg">
-      <div class="absolute inset-0 bg-blue-50 dark:bg-transparent"></div>
-    </Fragment>
-  </Features2>
-  <!-- CallToAction Widget *********** -->
+  <ServicesGrid
+    id="catalogo"
+    tagline="Catálogo completo"
+    title="Servicios end-to-end para tu transformación digital"
+    subtitle="Desde la primera idea hasta la operación en producción. Trabajamos como tu socio tecnológico, no como un proveedor más."
+    items={services}
+  />
 
-  <CallToAction
-    actions={[
-      {
-        variant: 'primary',
-        text: 'Whatsapp',
-        href: 'https://wa.link/3bqb4e',
-        icon: 'tabler:brand-whatsapp',
-      },
-    ]}
-    title="Empieza a Transformar Tu Negocio Hoy"
-    subtitle="Explora las Posibilidades Ilimitadas de la Tecnología Moderna y Lleva Tu Negocio al Próximo Nivel."
+  <ContactFormPro whatsappNumber="573013745541" />
+
+  <CtaBanner
+    title="¿No estás seguro qué necesitas?"
+    subtitle="Te ayudamos a diagnosticar tu situación en 30 minutos sin costo. Salimos con un plan claro y los siguientes pasos definidos."
   />
 </Layout>

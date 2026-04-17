@@ -1,78 +1,37 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import HeroText from '~/components/widgets/HeroText.astro';
-import ContactUs from '~/components/widgets/Contact.astro';
-import Features2 from '~/components/widgets/Features2.astro';
+import ContactFormPro from '~/components/widgets/ContactFormPro.astro';
 
 const metadata = {
-  title: 'Contacto Tache Technology',
+  title: 'Contacto — Hablemos de tu proyecto',
+  description:
+    'Solicita una asesoría, cotiza tu proyecto o escríbenos por WhatsApp. Respondemos en menos de 24 horas hábiles.',
 };
 ---
 
 <Layout metadata={metadata}>
-  <!-- HeroText Widget ******************* -->
+  <!-- Hero compacto -->
+  <section class="relative pt-32 md:pt-40 pb-4 overflow-hidden">
+    <div class="pointer-events-none absolute inset-0 -z-10 bg-radial-spotlight"></div>
+    <div class="pointer-events-none absolute inset-0 -z-10 bg-grid opacity-40"></div>
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 text-center">
+      <span class="pill" data-reveal>
+        <span class="dot"></span>
+        Hablemos
+      </span>
+      <h1
+        class="mt-5 text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white"
+        data-reveal
+        data-reveal-delay="100"
+      >
+        Empecemos a construir <span class="text-gradient">algo grande juntos</span>
+      </h1>
+      <p class="mt-6 text-lg text-slate-300" data-reveal data-reveal-delay="200">
+        Cuéntanos qué necesitas y te respondemos en menos de 24 horas hábiles. Si lo prefieres, escríbenos
+        directo por WhatsApp y conversamos al instante.
+      </p>
+    </div>
+  </section>
 
-  <HeroText tagline="Contacto" title="Empezemos ya!" />
-
-  <ContactUs
-    title="¡Envíanos un mensaje hoy!"
-    subtitle="Para respuestas más rápidas, explora nuestra sección de Preguntas Frecuentes (FAQs). ¡Puede que ahí encuentres justo la solución que buscas! Si no es así, nuestro equipo de soporte estará encantado de ayudarte."
-    inputs={[
-      {
-        type: 'text',
-        name: 'name',
-        label: 'Nombre',
-      },
-      {
-        type: 'email',
-        name: 'email',
-        label: 'Correo',
-      },
-    ]}
-    textarea={{
-      label: 'Mensaje',
-    }}
-    disclaimer={{
-      label:
-        'Al enviar este formulario de contacto, usted reconoce y acepta la recopilación de su información personal.',
-    }}
-    description="Nuestro equipo de soporte suele responder dentro de las 24 horas hábiles."
-  />
-
-  <!-- Features2 Widget ************** -->
-
-  <Features2
-    title="Nosotros estamos aqui para ayudarte!"
-    items={[
-      {
-        title: 'Número de Teléfono',
-        description: `¿Prefieres hablar directamente con nosotros? Llámanos al: +57 3013745541 y hablemos de cómo la tecnología puede impulsar tu negocio.`,
-      },
-      {
-        title: 'Contact sales',
-        description:
-          'Chat with us for questions about purchases, customization options, licensing for commercial use, inquiries about specific template, etc.',
-      },
-      {
-        title: 'Technical support',
-        description:
-          'Chat with us when facing issues like template installation, problems editing difficulties, compatibility issues with software or download errors, or other technical challenges related to using the templates.',
-      },
-      {
-        title: 'Phone',
-        description: '+57 3013745541',
-        icon: 'tabler:headset',
-      },
-      {
-        title: 'Email',
-        description: 'contacto@tachetech.com',
-        icon: 'tabler:mail',
-      },
-      {
-        title: 'Location',
-        description: 'Remoto',
-        icon: 'tabler:map-pin',
-      },
-    ]}
-  />
+  <ContactFormPro whatsappNumber="573013745541" />
 </Layout>
