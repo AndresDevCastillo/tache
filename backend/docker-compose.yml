@@ -1,0 +1,32 @@
+# =========================================================================
+# Tache Technology — API NestJS · Docker Compose para VPS
+#
+# Uso típico:
+#   1) cp .env.example .env  &&  editar valores
+#   2) docker compose up -d --build
+#   3) docker compose logs -f api
+#
+# Por defecto expone el puerto 3001 SOLO en localhost (127.0.0.1) para que
+# nginx haga reverse proxy. Si querés exponerlo público, cambiá la línea
+# de ports a "3001:3001".
+# =========================================================================
+services:
+  api:
+    build: .
+    image: tachetech-api:latest
+    container_name: tachetech-api
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - '127.0.0.1:3001:3001'
+    networks:
+      - web
+    logging:
+      driver: json-file
+      options:
+        max-size: '10m'
+        max-file: '5'
+
+networks:
+  web:
+    driver: bridge

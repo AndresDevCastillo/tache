@@ -12,7 +12,9 @@ export interface Props {
 const {
   id = 'contacto',
   whatsappNumber = '573013745541',
-  apiEndpoint = '',
+  // Default desde env: definir PUBLIC_API_URL en .env (build-time).
+  // Ej: PUBLIC_API_URL=https://api.tachetech.com/api/contact
+  apiEndpoint = import.meta.env.PUBLIC_API_URL || '',
 } = Astro.props;
 ---
 
@@ -284,22 +286,19 @@ const {
 
       if (submitBtn) submitBtn.disabled = true;
       if (label) label.textContent = 'Enviando…';
-      showStatus(form, 'info', 'Enviando tu mensaje, un momento…');
 
-      // Si hay backend NestJS configurado, lo llamamos en background; no bloqueamos el wa.me.
+      // Fire-and-forget al backend NestJS si está configurado.
+      // No bloqueamos el wa.me — la UX debe ser inmediata aunque la API esté lenta.
       if (endpoint) {
-        try {
-          await fetch(endpoint, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(data),
-          });
-        } catch (err) {
-          console.warn('No se pudo enviar al backend, continuamos con WhatsApp.', err);
-        }
+        fetch(endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        }).catch((err) => console.warn('Backend POST falló (continuamos con WhatsApp):', err));
       }
 
-      // Abrir WhatsApp con el mensaje pre-rellenado
+      // Abrir WhatsApp con el mensaje pre-rellenado (ejecución síncrona dentro
+      // del handler del submit → no lo bloquea el navegador como popup).
       const url = buildWhatsappUrl(phone, data);
       window.open(url, '_blank', 'noopener,noreferrer');
 
