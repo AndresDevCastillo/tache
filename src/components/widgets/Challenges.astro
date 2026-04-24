@@ -1,0 +1,98 @@
+---
+import { Icon } from 'astro-icon/components';
+
+export interface Challenge {
+  icon: string;
+  title: string;
+  description: string;
+}
+
+export interface Props {
+  id?: string;
+  title?: string;
+  subtitle?: string;
+  items?: Challenge[];
+}
+
+const defaults: Challenge[] = [
+  {
+    icon: 'tabler:hourglass-low',
+    title: 'Procesos lentos',
+    description:
+      'Eliminamos tareas repetitivas y manuales que frenan el crecimiento de tu empresa.',
+  },
+  {
+    icon: 'tabler:world-off',
+    title: 'Baja visibilidad digital',
+    description:
+      'Creamos presencia profesional para que tus clientes te encuentren y confíen en tu marca.',
+  },
+  {
+    icon: 'tabler:files-off',
+    title: 'Datos dispersos',
+    description:
+      'Centralizamos información en sistemas organizados, seguros y fáciles de consultar.',
+  },
+  {
+    icon: 'tabler:message-dots',
+    title: 'Atención manual por WhatsApp',
+    description:
+      'Automatizamos respuestas, solicitudes y flujos para mejorar la atención al cliente.',
+  },
+  {
+    icon: 'tabler:adjustments-exclamation',
+    title: 'Falta de control interno',
+    description:
+      'Creamos paneles y herramientas para gestionar procesos, usuarios, reportes e indicadores.',
+  },
+  {
+    icon: 'tabler:plug-connected-x',
+    title: 'Sistemas aislados',
+    description:
+      'Integramos plataformas, formularios, pagos, APIs y bases de datos para que todo trabaje unido.',
+  },
+];
+
+const {
+  id = 'retos',
+  title = '¿Tu empresa enfrenta estos retos?',
+  subtitle = 'Identificamos los problemas digitales más comunes y los convertimos en soluciones funcionales para tu negocio.',
+  items = defaults,
+} = Astro.props;
+---
+
+<section id={id} class="section bg-section">
+  <div class="container-pro">
+    <div class="mx-auto max-w-3xl text-center mb-14 md:mb-20">
+      <span class="badge-eyebrow" data-reveal>Diagnóstico</span>
+      <h2 class="h2 mt-5 text-slate-900" data-reveal data-reveal-delay="100">
+        {title}
+      </h2>
+      <p class="lead mt-5" data-reveal data-reveal-delay="200">
+        {subtitle}
+      </p>
+    </div>
+
+    <div class="grid gap-5 md:gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {
+        items.map((item, idx) => (
+          <article
+            class="card group"
+            data-reveal
+            data-reveal-delay={Math.min(((idx % 3) + 1) * 100, 300).toString()}
+          >
+            <div class="flex items-start gap-4">
+              <span class="inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-[#eef0ff] text-[#1d0cdf] ring-1 ring-[#1d0cdf]/10 transition-all duration-300 group-hover:bg-[#1d0cdf] group-hover:text-white">
+                <Icon name={item.icon} class="h-5 w-5" />
+              </span>
+              <div class="min-w-0">
+                <h3 class="text-lg font-semibold text-slate-900">{item.title}</h3>
+                <p class="mt-2 text-[15px] leading-relaxed text-slate-600">{item.description}</p>
+              </div>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

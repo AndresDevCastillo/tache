@@ -4,15 +4,36 @@ import HeroPremium from '~/components/widgets/HeroPremium.astro';
 import ContactFormPro from '~/components/widgets/ContactFormPro.astro';
 
 const metadata = {
-  title: 'Contacto — Hablemos de tu proyecto',
+  title: 'Contacto — Agenda tu asesoría gratis | Tache Technology Montería',
   description:
-    'Solicita una asesoría, cotiza tu proyecto o escríbenos por WhatsApp. Respondemos en menos de 24 horas hábiles.',
+    'Solicita una asesoría gratis, cotiza tu proyecto o escríbenos por WhatsApp al +57 301 374 5541. Respondemos en menos de 24 horas hábiles.',
 };
+
+const schemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ContactPage',
+    url: 'https://tachetech.com/contacto',
+    name: 'Contacto — Tache Technology',
+    description:
+      'Agenda tu asesoría gratis con Tache Technology. Email contacto@tachetech.com · WhatsApp +57 301 374 5541 · Montería, Córdoba, Colombia.',
+    mainEntity: { '@id': 'https://tachetech.com/#organization' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://tachetech.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Contacto', item: 'https://tachetech.com/contacto' },
+    ],
+  },
+];
 ---
 
-<Layout metadata={metadata}>
+<Layout metadata={metadata} schemas={schemas}>
   <HeroPremium
-    title='Empecemos a construir <span class="text-gradient">algo grande juntos</span>'
+    eyebrow="Hablemos"
+    title='Empecemos a construir <span class="text-[#1d0cdf]">algo grande juntos</span>'
     subtitle="Cuéntanos qué necesitas y te respondemos en menos de 24 horas hábiles. Si lo prefieres, escríbenos directo por WhatsApp y conversamos al instante."
     showCtas={false}
   />

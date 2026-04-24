@@ -2,48 +2,40 @@
 import { Icon } from 'astro-icon/components';
 ---
 
-<section id="nosotros" class="relative py-20 md:py-28 scroll-mt-[72px]">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+<section id="nosotros" class="section">
+  <div class="container-pro">
     <!-- ¿Quiénes somos? -->
-    <div class="mx-auto max-w-4xl text-center mb-16 md:mb-24">
-      <h2
-        class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white"
-        data-reveal
-      >
-        Una <span class="text-gradient">startup tecnológica</span> enfocada en hacer crecer tu negocio
+    <div class="mx-auto max-w-4xl text-center mb-16 md:mb-20">
+      <span class="badge-eyebrow" data-reveal>Quiénes somos</span>
+      <h2 class="h2 mt-5 text-slate-900" data-reveal data-reveal-delay="100">
+        Una <span class="text-[#1d0cdf]">startup tecnológica</span> enfocada en hacer crecer tu negocio
       </h2>
-      <p class="mt-6 text-lg leading-relaxed text-slate-600 dark:text-slate-300" data-reveal data-reveal-delay="100">
+      <p class="lead mt-6" data-reveal data-reveal-delay="200">
         Combinamos ingeniería de software, diseño moderno y automatización inteligente para entregar
-        productos digitales que mueven la aguja. No vendemos horas: vendemos resultados medibles, ya sea
-        más ventas, menos costos operativos o procesos que antes tomaban días y ahora minutos.
+        productos digitales que mueven la aguja. No vendemos horas: vendemos resultados medibles — más
+        ventas, menos costos operativos o procesos que antes tomaban días y ahora minutos.
       </p>
     </div>
 
     <!-- Misión + Visión -->
     <div class="grid gap-6 md:gap-8 md:grid-cols-2 mb-16 md:mb-20">
-      <article class="card-glass" data-reveal>
-        <div
-          class="inline-flex h-12 w-12 items-center justify-center rounded-xl text-white shadow-lg"
-          style="background-image: linear-gradient(135deg, #1d0cdf, #2563eb);"
-        >
+      <article class="card" data-reveal>
+        <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#eef0ff] text-[#1d0cdf] ring-1 ring-[#1d0cdf]/10">
           <Icon name="tabler:target-arrow" class="h-6 w-6" />
         </div>
-        <h3 class="mt-5 text-2xl font-bold text-slate-900 dark:text-white">Misión</h3>
-        <p class="mt-3 text-[16px] leading-relaxed text-slate-600 dark:text-slate-300">
+        <h3 class="mt-5 text-2xl font-bold text-slate-900">Misión</h3>
+        <p class="mt-3 text-[16px] leading-relaxed text-slate-600">
           Impulsar el crecimiento de empresas mediante soluciones tecnológicas innovadoras, eficientes y
           adaptadas a sus necesidades reales.
         </p>
       </article>
 
-      <article class="card-glass" data-reveal data-reveal-delay="100">
-        <div
-          class="inline-flex h-12 w-12 items-center justify-center rounded-xl text-white shadow-lg"
-          style="background-image: linear-gradient(135deg, #2563eb, #22d3ee);"
-        >
+      <article class="card" data-reveal data-reveal-delay="100">
+        <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#eef0ff] text-[#1d0cdf] ring-1 ring-[#1d0cdf]/10">
           <Icon name="tabler:eye" class="h-6 w-6" />
         </div>
-        <h3 class="mt-5 text-2xl font-bold text-slate-900 dark:text-white">Visión</h3>
-        <p class="mt-3 text-[16px] leading-relaxed text-slate-600 dark:text-slate-300">
+        <h3 class="mt-5 text-2xl font-bold text-slate-900">Visión</h3>
+        <p class="mt-3 text-[16px] leading-relaxed text-slate-600">
           Ser una empresa líder en desarrollo tecnológico, reconocida por transformar negocios a través de
           la innovación digital.
         </p>
@@ -52,17 +44,17 @@ import { Icon } from 'astro-icon/components';
 
     <!-- Reconocimiento -->
     <article
-      class="card-glass mb-16 md:mb-20 border border-blue-200/70 dark:border-cyan-400/20"
+      class="card mb-16 md:mb-20 border-[#1d0cdf]/15 bg-[#f7f8fc]"
       data-reveal
       data-reveal-delay="140"
     >
-      <p class="text-xs font-semibold uppercase tracking-[0.16em] text-blue-600 dark:text-cyan-300">
+      <p class="text-xs font-semibold uppercase tracking-[0.16em] text-[#1d0cdf]">
         Reconocimiento
       </p>
-      <h3 class="mt-3 text-2xl md:text-3xl font-bold text-slate-900 dark:text-white">
+      <h3 class="mt-3 text-2xl md:text-3xl font-bold text-slate-900">
         Ganadores del Programa Transformación Digital para MiPYMES
       </h3>
-      <div class="mx-auto mt-6 w-full max-w-3xl overflow-hidden rounded-2xl border border-slate-200 dark:border-white/10 bg-white/70 dark:bg-white/[0.02] shadow-lg shadow-slate-900/5">
+      <div class="mx-auto mt-6 w-full max-w-3xl overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-soft">
         <img
           src="/images/news/premio-transformacion-3.jpeg"
           alt="Equipo de Tache Technology recibiendo reconocimiento en la Cámara de Comercio de Montería."
@@ -73,14 +65,14 @@ import { Icon } from 'astro-icon/components';
           class="block h-auto w-full object-cover"
         />
       </div>
-      <p class="mt-2 text-xs text-slate-500 dark:text-slate-400">
+      <p class="mt-2 text-xs text-slate-500">
         Foto publicada por Chica Noticias en la cobertura del evento (13 de noviembre de 2024).
       </p>
-      <p class="mt-4 text-[16px] leading-relaxed text-slate-600 dark:text-slate-300">
+      <p class="mt-4 text-[16px] leading-relaxed text-slate-600">
         El 13 de noviembre de 2024, Chica Noticias destacó a Tache Technology como ganador de la convocatoria
         de la Cámara de Comercio de Montería para fortalecer capacidades digitales empresariales.
       </p>
-      <p class="mt-3 text-[16px] leading-relaxed text-slate-600 dark:text-slate-300">
+      <p class="mt-3 text-[16px] leading-relaxed text-slate-600">
         Nuestro equipo fue reconocido entre los mejores desarrolladores del programa, con premios de $5, $3 y
         $2 millones de pesos para impulsar soluciones tecnológicas en la región.
       </p>
@@ -96,11 +88,8 @@ import { Icon } from 'astro-icon/components';
     </article>
 
     <!-- Valores -->
-    <div class="text-center mb-12">
-      <h3
-        class="text-2xl md:text-3xl font-bold tracking-tight text-slate-900 dark:text-white"
-        data-reveal
-      >
+    <div class="text-center mb-10">
+      <h3 class="text-2xl md:text-3xl font-bold tracking-tight text-slate-900" data-reveal>
         Los principios con los que trabajamos
       </h3>
     </div>
@@ -115,14 +104,14 @@ import { Icon } from 'astro-icon/components';
           { icon: 'tabler:refresh', label: 'Adaptabilidad tecnológica' },
         ].map((value, idx) => (
           <div
-            class="card-glass flex flex-col items-center text-center"
+            class="card flex flex-col items-center text-center"
             data-reveal
             data-reveal-delay={Math.min(idx * 80, 300).toString()}
           >
-            <span class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-slate-100 dark:bg-white/[0.05] text-blue-600 dark:text-cyan-300 ring-1 ring-slate-200 dark:ring-white/10">
+            <span class="inline-flex h-11 w-11 items-center justify-center rounded-full bg-[#eef0ff] text-[#1d0cdf] ring-1 ring-[#1d0cdf]/10">
               <Icon name={value.icon} class="h-5 w-5" />
             </span>
-            <p class="mt-4 text-sm font-semibold text-slate-900 dark:text-white">{value.label}</p>
+            <p class="mt-4 text-sm font-semibold text-slate-900">{value.label}</p>
           </div>
         ))
       }

@@ -11,22 +11,24 @@ import Metadata from '~/components/common/Metadata.astro';
 import SiteVerification from '~/components/common/SiteVerification.astro';
 import Analytics from '~/components/common/Analytics.astro';
 import BasicScripts from '~/components/common/BasicScripts.astro';
+import SchemaOrg from '~/components/common/SchemaOrg.astro';
 
-// Comment the line below to disable View Transitions
 import { ViewTransitions } from 'astro:transitions';
 
 import type { MetaData as MetaDataType } from '~/types';
 
 export interface Props {
   metadata?: MetaDataType;
+  /** Schemas adicionales JSON-LD específicos de la página */
+  schemas?: Array<Record<string, unknown>>;
 }
 
-const { metadata = {} } = Astro.props;
+const { metadata = {}, schemas = [] } = Astro.props;
 const { language, textDirection } = I18N;
 ---
 
 <!doctype html>
-<html lang={language} dir={textDirection} class="2xl:text-[20px]">
+<html lang={language} dir={textDirection} class="scroll-smooth">
   <head>
     <CommonMeta />
     <Favicons />
@@ -35,27 +37,17 @@ const { language, textDirection } = I18N;
     <Metadata {...metadata} />
     <SiteVerification />
     <Analytics />
+    <SchemaOrg schemas={schemas} />
 
-    <!-- Comment the line below to disable View Transitions -->
     <ViewTransitions fallback="swap" />
   </head>
 
   <body class="antialiased text-default bg-page tracking-tight relative">
-    <!--
-      Fondo global: gradiente radial + grid sutil aplicado en una capa fija
-      detrás de TODO el contenido. Asegura que las "atmósferas" no se corten
-      entre secciones — es un único continuo.
-    -->
-    <div class="pointer-events-none fixed inset-0 -z-10 bg-radial-spotlight" aria-hidden="true"></div>
-    <div class="pointer-events-none fixed inset-0 -z-10 bg-grid opacity-40" aria-hidden="true"></div>
-
     <slot />
 
     <BasicScripts />
 
     <script>
-      // Scroll-reveal: elementos con [data-reveal] hacen fade-up al entrar al viewport.
-      // Soporta View Transitions de Astro re-ejecutando en cada navegación.
       const initReveal = () => {
         const els = document.querySelectorAll<HTMLElement>('[data-reveal]:not(.is-visible)');
         if (!els.length || !('IntersectionObserver' in window)) {

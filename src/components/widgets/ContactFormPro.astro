@@ -3,96 +3,47 @@ import { Icon } from 'astro-icon/components';
 
 export interface Props {
   id?: string;
-  /** Número WhatsApp en formato internacional sin '+' (ej: '573013745541') */
+  /** Número WhatsApp en formato internacional sin '+' */
   whatsappNumber?: string;
   /** URL del backend NestJS para POST /contact. Si vacía, solo abre wa.me. */
   apiEndpoint?: string;
+  /** Título de la sección */
+  title?: string;
+  subtitle?: string;
 }
 
 const {
   id = 'contacto',
   whatsappNumber = '573013745541',
   apiEndpoint = import.meta.env.PUBLIC_API_URL || '',
+  title = 'Hablemos de tu proyecto',
+  subtitle = 'Cuéntanos qué necesitas y te responderemos con una orientación clara para ayudarte a tomar la mejor decisión.',
 } = Astro.props;
 ---
 
-<section id={id} class="relative py-20 md:py-28 scroll-mt-[72px] overflow-hidden">
+<section id={id} class="section bg-section">
   <div class="mx-auto max-w-6xl px-4 sm:px-6">
-    <div class="grid gap-12 lg:grid-cols-12 lg:gap-16">
-      <!-- Columna izquierda: copy + datos de contacto -->
-      <div class="lg:col-span-5" data-reveal>
-        <h2 class="text-3xl md:text-4xl font-bold tracking-tight text-slate-900 dark:text-white">
-          Cuéntanos sobre tu proyecto
-        </h2>
-        <p class="mt-5 text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-          Respondemos en menos de 24 horas hábiles. Si lo prefieres, escríbenos directo por WhatsApp y un
-          asesor te atiende al instante.
-        </p>
+    <div class="text-center mb-12 md:mb-16">
+      <span class="badge-eyebrow" data-reveal>Contacto</span>
+      <h2 class="h2 mt-5 text-slate-900" data-reveal data-reveal-delay="100">{title}</h2>
+      <p class="lead mt-5 max-w-2xl mx-auto" data-reveal data-reveal-delay="200">{subtitle}</p>
+    </div>
 
-        <ul class="mt-10 space-y-5">
-          <li class="flex items-start gap-4">
-            <span class="inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-slate-100 dark:bg-white/[0.05] text-blue-600 dark:text-cyan-300 ring-1 ring-slate-200 dark:ring-white/10">
-              <Icon name="tabler:phone" class="h-5 w-5" />
-            </span>
-            <div>
-              <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Teléfono</p>
-              <a
-                href="tel:+573013745541"
-                class="text-base font-medium text-slate-900 dark:text-white hover:text-blue-600 dark:hover:text-cyan-300 transition-colors"
-              >
-                +57 301 374 5541
-              </a>
-            </div>
-          </li>
-          <li class="flex items-start gap-4">
-            <span class="inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-slate-100 dark:bg-white/[0.05] text-blue-600 dark:text-cyan-300 ring-1 ring-slate-200 dark:ring-white/10">
-              <Icon name="tabler:mail" class="h-5 w-5" />
-            </span>
-            <div>
-              <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Email</p>
-              <a
-                href="mailto:contacto@tachetech.com"
-                class="text-base font-medium text-slate-900 dark:text-white hover:text-blue-600 dark:hover:text-cyan-300 transition-colors"
-              >
-                contacto@tachetech.com
-              </a>
-            </div>
-          </li>
-          <li class="flex items-start gap-4">
-            <span class="inline-flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-slate-100 dark:bg-white/[0.05] text-blue-600 dark:text-cyan-300 ring-1 ring-slate-200 dark:ring-white/10">
-              <Icon name="tabler:map-pin" class="h-5 w-5" />
-            </span>
-            <div>
-              <p class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">Ubicación</p>
-              <p class="text-base font-medium text-slate-900 dark:text-white">Montería, Colombia · Trabajamos remoto</p>
-            </div>
-          </li>
-        </ul>
-
-        <a
-          href={`https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Hola, vengo desde tachetech.com y quiero información.')}`}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn-whatsapp mt-10 inline-flex"
-        >
-          <Icon name="tabler:brand-whatsapp" class="h-5 w-5" />
-          Escribir por WhatsApp
-        </a>
-      </div>
-
-      <!-- Columna derecha: formulario -->
-      <div class="lg:col-span-7" data-reveal data-reveal-delay="200">
+    <div class="grid gap-8 lg:grid-cols-12 lg:gap-10">
+      <!-- Formulario -->
+      <div class="lg:col-span-8" data-reveal>
         <form
           id="contact-form"
-          class="card-glass !p-6 md:!p-8 space-y-5"
+          class="rounded-3xl border border-slate-200 bg-white p-6 md:p-8 shadow-card space-y-5"
           data-whatsapp={whatsappNumber}
           data-endpoint={apiEndpoint}
           novalidate
+          aria-describedby="cf-status"
         >
           <div class="grid gap-5 sm:grid-cols-2">
             <div>
-              <label for="cf-name" class="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-2">
-                Nombre completo <span class="text-blue-600 dark:text-cyan-300">*</span>
+              <label for="cf-name" class="block text-sm font-medium text-slate-700 mb-2">
+                Nombre completo <span class="text-[#1d0cdf]">*</span>
               </label>
               <input
                 id="cf-name"
@@ -105,8 +56,24 @@ const {
               />
             </div>
             <div>
-              <label for="cf-email" class="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-2">
-                Correo electrónico <span class="text-blue-600 dark:text-cyan-300">*</span>
+              <label for="cf-company" class="block text-sm font-medium text-slate-700 mb-2">
+                Empresa
+              </label>
+              <input
+                id="cf-company"
+                name="company"
+                type="text"
+                autocomplete="organization"
+                placeholder="Nombre de tu empresa"
+                class="input-pro"
+              />
+            </div>
+          </div>
+
+          <div class="grid gap-5 sm:grid-cols-2">
+            <div>
+              <label for="cf-email" class="block text-sm font-medium text-slate-700 mb-2">
+                Correo electrónico <span class="text-[#1d0cdf]">*</span>
               </label>
               <input
                 id="cf-email"
@@ -118,12 +85,9 @@ const {
                 class="input-pro"
               />
             </div>
-          </div>
-
-          <div class="grid gap-5 sm:grid-cols-2">
             <div>
-              <label for="cf-whatsapp" class="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-2">
-                WhatsApp <span class="text-blue-600 dark:text-cyan-300">*</span>
+              <label for="cf-whatsapp" class="block text-sm font-medium text-slate-700 mb-2">
+                WhatsApp <span class="text-[#1d0cdf]">*</span>
               </label>
               <input
                 id="cf-whatsapp"
@@ -135,50 +99,65 @@ const {
                 class="input-pro"
               />
             </div>
+          </div>
+
+          <div class="grid gap-5 sm:grid-cols-2">
             <div>
-              <label for="cf-service" class="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-2">
-                Tipo de servicio <span class="text-blue-600 dark:text-cyan-300">*</span>
+              <label for="cf-service" class="block text-sm font-medium text-slate-700 mb-2">
+                Servicio de interés <span class="text-[#1d0cdf]">*</span>
               </label>
               <select id="cf-service" name="service" required class="input-pro">
                 <option value="" disabled selected>Selecciona uno…</option>
-                <option value="Desarrollo web">Página web</option>
-                <option value="Aplicación web">Aplicación a la medida</option>
-                <option value="Automatización con IA">Automatización inteligente</option>
-                <option value="Integraciones / APIs">Integración entre sistemas</option>
-                <option value="Cloud y DevOps">Servicios en la nube</option>
-                <option value="Asesoría / consultoría">Asesoría tecnológica</option>
+                <option value="Software a medida">Software a medida</option>
+                <option value="Página web">Página web</option>
+                <option value="Aplicación web">Aplicación web</option>
+                <option value="Automatización">Automatización</option>
+                <option value="Bot con IA">Bot con IA</option>
+                <option value="Integración API">Integración API</option>
+                <option value="Linux & Cloud">Linux & Cloud</option>
+                <option value="Consultoría">Consultoría</option>
                 <option value="Otro">Otro</option>
+              </select>
+            </div>
+            <div>
+              <label for="cf-budget" class="block text-sm font-medium text-slate-700 mb-2">
+                Presupuesto estimado
+              </label>
+              <select id="cf-budget" name="budget" class="input-pro">
+                <option value="" selected>Aún no tengo definido</option>
+                <option value="Menos de $1.000.000 COP">Menos de $1.000.000 COP</option>
+                <option value="$1.000.000 - $3.000.000 COP">$1.000.000 - $3.000.000 COP</option>
+                <option value="$3.000.000 - $7.000.000 COP">$3.000.000 - $7.000.000 COP</option>
+                <option value="Más de $7.000.000 COP">Más de $7.000.000 COP</option>
               </select>
             </div>
           </div>
 
           <div>
-            <label for="cf-message" class="block text-sm font-medium text-slate-700 dark:text-slate-200 mb-2">
-              Mensaje <span class="text-blue-600 dark:text-cyan-300">*</span>
+            <label for="cf-message" class="block text-sm font-medium text-slate-700 mb-2">
+              Mensaje <span class="text-[#1d0cdf]">*</span>
             </label>
             <textarea
               id="cf-message"
               name="message"
               rows="5"
               required
-              placeholder="Cuéntanos brevemente qué necesitas, plazos y presupuesto aproximado si lo conoces."
+              placeholder="Cuéntanos brevemente qué necesitas, plazos y contexto si lo conoces."
               class="input-pro resize-none"></textarea>
           </div>
 
-          <label class="flex items-start gap-3 text-sm text-slate-600 dark:text-slate-300">
+          <label class="flex items-start gap-3 text-sm text-slate-600">
             <input
               type="checkbox"
               name="consent"
               required
-              class="mt-1 h-4 w-4 rounded border-slate-300 dark:border-white/15 bg-white dark:bg-white/[0.05] text-blue-600 focus:ring-blue-500"
+              class="mt-1 h-4 w-4 rounded border-slate-300 text-[#1d0cdf] focus:ring-[#1d0cdf]"
             />
             <span>
               Acepto la
               <a
-                href="https://tachetech.com/privacidad/"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="text-blue-600 dark:text-cyan-300 hover:underline"
+                href="/privacidad"
+                class="text-[#1d0cdf] hover:text-[#1709b8] underline underline-offset-2"
               >
                 política de privacidad
               </a>
@@ -187,11 +166,16 @@ const {
           </label>
 
           <div class="flex flex-col sm:flex-row gap-3">
-            <button type="submit" class="btn-primary flex-1" data-default-text="Enviar y abrir WhatsApp">
+            <button type="submit" class="btn-primary flex-1" data-default-text="Enviar solicitud">
               <Icon name="tabler:send" class="h-5 w-5" />
-              <span data-btn-label>Enviar y abrir WhatsApp</span>
+              <span data-btn-label>Enviar solicitud</span>
             </button>
           </div>
+
+          <p class="text-xs text-slate-500 inline-flex items-center gap-1.5">
+            <Icon name="tabler:clock-hour-4" class="h-4 w-4 text-[#1d0cdf]" />
+            Te responderemos en menos de 24 horas hábiles.
+          </p>
 
           <p
             id="cf-status"
@@ -202,6 +186,79 @@ const {
           </p>
         </form>
       </div>
+
+      <!-- Tarjeta lateral de contacto -->
+      <aside class="lg:col-span-4" data-reveal data-reveal-delay="200">
+        <div class="rounded-3xl p-6 md:p-8 text-white shadow-card relative overflow-hidden" style="background-color: #1d0cdf;">
+          <div
+            class="pointer-events-none absolute inset-0 opacity-15"
+            style="background-image: linear-gradient(rgb(255 255 255 / 0.14) 1px, transparent 1px), linear-gradient(to right, rgb(255 255 255 / 0.14) 1px, transparent 1px); background-size: 40px 40px;"
+            aria-hidden="true"
+          ></div>
+          <h3 class="relative text-xl md:text-2xl font-bold">Información de contacto</h3>
+          <p class="relative mt-2 text-white/80 text-sm">Estamos para ayudarte a dar el siguiente paso digital.</p>
+
+          <ul class="relative mt-6 space-y-5">
+            <li class="flex items-start gap-4">
+              <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/15 ring-1 ring-white/20">
+                <Icon name="tabler:mail" class="h-5 w-5 text-white" />
+              </span>
+              <div>
+                <p class="text-xs font-semibold uppercase tracking-wider text-white/70">Email</p>
+                <a href="mailto:contacto@tachetech.com" class="text-base font-semibold text-white hover:underline">
+                  contacto@tachetech.com
+                </a>
+              </div>
+            </li>
+            <li class="flex items-start gap-4">
+              <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/15 ring-1 ring-white/20">
+                <Icon name="tabler:brand-whatsapp" class="h-5 w-5 text-white" />
+              </span>
+              <div>
+                <p class="text-xs font-semibold uppercase tracking-wider text-white/70">WhatsApp</p>
+                <a href="https://wa.link/3bqb4e" target="_blank" rel="noopener noreferrer" class="text-base font-semibold text-white hover:underline">
+                  +57 301 374 5541
+                </a>
+              </div>
+            </li>
+            <li class="flex items-start gap-4">
+              <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/15 ring-1 ring-white/20">
+                <Icon name="tabler:map-pin" class="h-5 w-5 text-white" />
+              </span>
+              <div>
+                <p class="text-xs font-semibold uppercase tracking-wider text-white/70">Oficina Montería</p>
+                <p class="text-base font-semibold text-white">Centro de Negocios · Calle 24 # 8 - 46</p>
+                <p class="text-sm text-white/80">Montería, Córdoba — Colombia</p>
+              </div>
+            </li>
+          </ul>
+
+          <ul class="relative mt-6 space-y-2.5 text-sm text-white/90">
+            <li class="inline-flex items-center gap-2">
+              <Icon name="tabler:check" class="h-4 w-4" />
+              Respuesta rápida
+            </li>
+            <li class="inline-flex items-center gap-2">
+              <Icon name="tabler:check" class="h-4 w-4" />
+              Asesoría inicial sin compromiso
+            </li>
+            <li class="inline-flex items-center gap-2">
+              <Icon name="tabler:check" class="h-4 w-4" />
+              Trabajamos remoto con toda Colombia
+            </li>
+          </ul>
+
+          <a
+            href="https://wa.link/3bqb4e"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="relative mt-8 inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-[#1d0cdf] transition-all hover:bg-slate-50 hover:-translate-y-0.5"
+          >
+            <Icon name="tabler:brand-whatsapp" class="h-5 w-5 text-emerald-600" />
+            Escribir por WhatsApp
+          </a>
+        </div>
+      </aside>
     </div>
   </div>
 </section>
@@ -215,11 +272,11 @@ const {
     el.textContent = message;
     el.className = 'rounded-lg border px-4 py-3 text-sm';
     if (kind === 'success') {
-      el.classList.add('border-emerald-400/40', 'bg-emerald-400/10', 'text-emerald-700', 'dark:text-emerald-200');
+      el.classList.add('border-emerald-400/40', 'bg-emerald-50', 'text-emerald-800');
     } else if (kind === 'error') {
-      el.classList.add('border-red-400/40', 'bg-red-400/10', 'text-red-700', 'dark:text-red-200');
+      el.classList.add('border-red-400/40', 'bg-red-50', 'text-red-800');
     } else {
-      el.classList.add('border-blue-400/40', 'bg-blue-400/10', 'text-blue-700', 'dark:text-cyan-200');
+      el.classList.add('border-[#1d0cdf]/30', 'bg-[#eef0ff]', 'text-[#1d0cdf]');
     }
   };
 
@@ -228,13 +285,15 @@ const {
       `*Nueva solicitud desde tachetech.com*`,
       ``,
       `*Nombre:* ${data.name}`,
+      data.company ? `*Empresa:* ${data.company}` : '',
       `*Email:* ${data.email}`,
       `*WhatsApp:* ${data.whatsapp}`,
       `*Servicio:* ${data.service}`,
+      data.budget ? `*Presupuesto:* ${data.budget}` : '',
       ``,
       `*Mensaje:*`,
       data.message,
-    ];
+    ].filter(Boolean);
     return `https://wa.me/${phone}?text=${encodeURIComponent(lines.join('\n'))}`;
   };
 
@@ -248,20 +307,25 @@ const {
       const formData = new FormData(form);
       const data = {
         name: String(formData.get('name') || '').trim(),
+        company: String(formData.get('company') || '').trim(),
         email: String(formData.get('email') || '').trim(),
         whatsapp: String(formData.get('whatsapp') || '').trim(),
         service: String(formData.get('service') || '').trim(),
+        budget: String(formData.get('budget') || '').trim(),
         message: String(formData.get('message') || '').trim(),
       };
 
       if (!data.name || !data.email || !data.whatsapp || !data.service || !data.message) {
-        showStatus(form, 'error', 'Por favor completa todos los campos antes de enviar.');
+        showStatus(form, 'error', 'Por favor completa los campos obligatorios antes de enviar.');
         return;
       }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
         showStatus(form, 'error', 'El correo electrónico no parece válido.');
         return;
       }
+
+      const statusEl = form.querySelector<HTMLParagraphElement>('#cf-status');
+      if (statusEl) statusEl.classList.remove('hidden');
 
       const submitBtn = form.querySelector<HTMLButtonElement>('button[type="submit"]');
       const label = form.querySelector<HTMLSpanElement>('[data-btn-label]');
@@ -271,13 +335,12 @@ const {
       if (submitBtn) submitBtn.disabled = true;
       if (label) label.textContent = 'Enviando…';
 
-      // Fire-and-forget al backend si está configurado: no bloqueamos el wa.me.
       if (endpoint) {
         fetch(endpoint, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(data),
-        }).catch((err) => console.warn('Backend POST falló (continuamos con WhatsApp):', err));
+        }).catch((err) => console.warn('Backend POST falló:', err));
       }
 
       const url = buildWhatsappUrl(phone, data);
@@ -286,9 +349,9 @@ const {
       showStatus(
         form,
         'success',
-        '¡Listo! Abrimos WhatsApp en una nueva pestaña con tu mensaje. Solo dale enviar.'
+        '¡Solicitud enviada! Abrimos WhatsApp con tu mensaje listo. También te escribiremos por email.'
       );
-      if (label) label.textContent = 'Enviar y abrir WhatsApp';
+      if (label) label.textContent = 'Enviar solicitud';
       if (submitBtn) submitBtn.disabled = false;
       form.reset();
     });

@@ -2,15 +2,16 @@
 import { Icon } from 'astro-icon/components';
 ---
 
-<section id="por-que-elegirnos" class="relative py-20 md:py-28 scroll-mt-[72px]">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6">
+<section id="por-que-elegirnos" class="section bg-section">
+  <div class="container-pro">
     <div class="grid gap-12 lg:grid-cols-12 lg:items-center">
       <!-- Columna izquierda: copy -->
       <div class="lg:col-span-5" data-reveal>
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white">
-          La diferencia entre un proveedor y un <span class="text-gradient">socio tecnológico</span>
+        <span class="badge-eyebrow">¿Por qué Tache?</span>
+        <h2 class="h2 mt-5 text-slate-900">
+          La diferencia entre un proveedor y un <span class="text-[#1d0cdf]">socio tecnológico</span>
         </h2>
-        <p class="mt-5 text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+        <p class="lead mt-5">
           No somos una agencia que entrega y desaparece. Trabajamos contigo durante todo el ciclo de vida
           del producto: desde la primera conversación hasta el soporte y la evolución continua.
         </p>
@@ -51,15 +52,15 @@ import { Icon } from 'astro-icon/components';
               },
             ].map((item, idx) => (
               <article
-                class="card-glass"
+                class="card"
                 data-reveal
                 data-reveal-delay={(((idx % 2) * 100) + 100).toString()}
               >
-                <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-brand text-white shadow-md">
+                <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#eef0ff] text-[#1d0cdf] ring-1 ring-[#1d0cdf]/10">
                   <Icon name={item.icon} class="h-5 w-5" />
                 </span>
-                <h3 class="mt-4 text-lg font-semibold text-slate-900 dark:text-white">{item.title}</h3>
-                <p class="mt-2 text-[15px] leading-relaxed text-slate-600 dark:text-slate-300">{item.description}</p>
+                <h3 class="mt-4 text-lg font-semibold text-slate-900">{item.title}</h3>
+                <p class="mt-2 text-[15px] leading-relaxed text-slate-600">{item.description}</p>
               </article>
             ))
           }

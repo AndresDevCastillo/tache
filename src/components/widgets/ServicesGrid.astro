@@ -5,65 +5,92 @@ export interface Service {
   icon: string;
   title: string;
   description: string;
-  /** Slug para enlazar a la página de detalle del servicio (opcional) */
   href?: string;
 }
 
 export interface Props {
   id?: string;
-  /** Tagline arriba del título (texto pequeño en cyan/azul). Vacío = sin tagline. */
+  eyebrow?: string;
+  /** Alias de eyebrow (compat) */
   tagline?: string;
   title?: string;
   subtitle?: string;
   items: Service[];
-  /** Texto del enlace inferior de cada card. Si vacío, no se muestra. */
   cardCta?: string;
+  /** Si es true, muestra 4 columnas en xl. Por defecto 3. */
+  fourCols?: boolean;
+  /** Enlace opcional "Ver todos los servicios →" arriba a la derecha / bajo subtítulo */
+  allLink?: { text: string; href: string };
 }
 
 const {
   id = 'servicios',
-  title = 'Soluciones para crecer con tecnología',
-  subtitle = 'Cada servicio está diseñado para entregar resultados concretos: más ventas, menos trabajo manual y un negocio listo para crecer.',
+  eyebrow,
+  tagline,
+  title = 'Servicios que transforman',
+  subtitle = 'Soluciones tecnológicas diseñadas para mejorar la operación, presencia digital y crecimiento de tu empresa.',
   items,
-  cardCta = 'Conversemos sobre tu proyecto',
+  cardCta = 'Conocer más',
+  fourCols = false,
+  allLink,
 } = Astro.props;
+
+const label = eyebrow ?? tagline ?? 'Servicios';
+
+const gridCols = fourCols
+  ? 'md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4'
+  : 'md:grid-cols-2 lg:grid-cols-3';
 ---
 
-<section id={id} class="relative py-20 md:py-28 scroll-mt-[72px]">
-  <div class="mx-auto max-w-7xl px-4 sm:px-6">
-    <div class="mx-auto max-w-3xl text-center mb-14 md:mb-20">
-      <h2
-        class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white"
-        data-reveal
-      >
+<section id={id} class="section">
+  <div class="container-pro">
+    <div class="mx-auto max-w-3xl text-center mb-12 md:mb-16">
+      {label && (
+        <span class="badge-eyebrow" data-reveal>
+          {label}
+        </span>
+      )}
+      <h2 class="h2 mt-5 text-slate-900" data-reveal data-reveal-delay="100">
         {title}
       </h2>
-      <p class="mt-5 text-lg text-slate-600 dark:text-slate-300" data-reveal data-reveal-delay="100">
+      <p class="lead mt-5" data-reveal data-reveal-delay="200">
         {subtitle}
       </p>
+      {allLink && (
+        <a
+          href={allLink.href}
+          class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-[#1d0cdf] hover:text-[#1709b8]"
+          data-reveal
+          data-reveal-delay="300"
+        >
+          {allLink.text}
+          <Icon name="tabler:arrow-right" class="h-4 w-4" />
+        </a>
+      )}
     </div>
 
-    <div class="grid gap-6 md:gap-7 md:grid-cols-2 lg:grid-cols-3">
+    <div class:list={['grid gap-5 md:gap-6', gridCols]}>
       {
         items.map((service, idx) => (
           <article
-            class="card-glass group flex flex-col"
+            class="card group flex flex-col h-full"
             data-reveal
             data-reveal-delay={Math.min(((idx % 3) + 1) * 100, 300).toString()}
           >
-            <div class="relative inline-flex h-12 w-12 items-center justify-center rounded-xl bg-slate-100 dark:bg-white/[0.04] text-blue-600 dark:text-cyan-300 ring-1 ring-slate-200 dark:ring-white/10 transition-all duration-300 group-hover:text-white group-hover:bg-gradient-brand group-hover:ring-blue-400/40">
+            <div class="relative inline-flex h-12 w-12 items-center justify-center rounded-xl bg-[#eef0ff] text-[#1d0cdf] ring-1 ring-[#1d0cdf]/10 transition-all duration-300 group-hover:bg-[#1d0cdf] group-hover:text-white group-hover:ring-[#1d0cdf]/40">
               <Icon name={service.icon} class="h-6 w-6" />
             </div>
 
-            <h3 class="mt-5 text-xl font-semibold text-slate-900 dark:text-white">{service.title}</h3>
-            <p class="mt-3 text-[15px] leading-relaxed text-slate-600 dark:text-slate-300 flex-grow">{service.description}</p>
+            <h3 class="mt-5 text-lg md:text-xl font-semibold text-slate-900">{service.title}</h3>
+            <p class="mt-3 text-[15px] leading-relaxed text-slate-600 flex-grow">{service.description}</p>
 
             {cardCta && (
               <a
                 href={service.href || '/contacto'}
-                class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-blue-600 dark:text-indigo-300 transition-colors hover:text-blue-800 dark:hover:text-white"
+                class="mt-6 inline-flex items-center gap-1.5 text-sm font-semibold text-[#1d0cdf] transition-colors hover:text-[#1709b8]"
+                aria-label={`${cardCta}: ${service.title}`}
               >
-                {service.href ? 'Ver más detalles' : cardCta}
+                {cardCta}
                 <Icon
                   name="tabler:arrow-right"
                   class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"

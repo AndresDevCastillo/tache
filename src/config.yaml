@@ -1,5 +1,5 @@
 site:
-  name: Tache technology
+  name: Tache Technology
   site: 'https://tachetech.com'
   base: '/'
   trailingSlash: false
@@ -9,9 +9,9 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: Tachetechnology
-    template: '%s — Tachetechnology'
-  description: 'Tache Technology — Desarrollo de software a medida, automatización con IA, integraciones y cloud para impulsar tu negocio.'
+    default: 'Tache Technology | Software a medida, páginas web y automatización en Montería'
+    template: '%s | Tache Technology'
+  description: 'Creamos software a medida, páginas web profesionales y automatización para empresas en Montería, Córdoba y Colombia. Agenda una asesoría gratis.'
   robots:
     index: true
     follow: true
@@ -38,25 +38,25 @@ apps:
 
     post:
       isEnabled: true
-      permalink: '/%slug%' # Variables: %slug%, %year%, %month%, %day%, %hour%, %minute%, %second%, %category%
+      permalink: '/blog/%slug%'
       robots:
         index: true
 
     list:
       isEnabled: true
-      pathname: 'blog' # Blog main path, you can change this to "articles" (/articles)
+      pathname: 'blog'
       robots:
         index: true
 
     category:
       isEnabled: true
-      pathname: 'category' # Category main path /category/some-category, you can change this to "group" (/group/some-category)
+      pathname: 'category'
       robots:
         index: true
 
     tag:
       isEnabled: true
-      pathname: 'tag' # Tag main path /tag/some-tag, you can change this to "topics" (/topics/some-category)
+      pathname: 'tag'
       robots:
         index: false
 
@@ -69,7 +69,7 @@ analytics:
       id: null # or "G-XXXXXXXXXX"
 
 ui:
-  theme: 'system' # Values: "system" | "light" | "dark" | "light:only" | "dark:only"
+  theme: 'light:only'
 
   tokens:
     default:
@@ -78,20 +78,20 @@ ui:
         serif: InterVariable
         heading: InterVariable
       colors:
-        default: rgb(15 23 42) # slate-900
-        heading: rgb(7 11 20)
-        muted: rgb(71 85 105 / 90%) # slate-600
-        bgPage: rgb(248 250 252) # slate-50
+        default: rgb(17 24 39) # text-main #111827
+        heading: rgb(17 24 39)
+        muted: rgb(75 85 99) # text-secondary #4B5563
+        bgPage: rgb(255 255 255) # background
         primary: rgb(29 12 223) # #1D0CDF — azul base de marca
-        secondary: rgb(37 99 235) # #2563EB — azul brillante (sustituye al violeta)
-        accent: rgb(34 211 238) # #22D3EE — cian de acento
+        secondary: rgb(23 9 184) # #1709B8 — primary hover
+        accent: rgb(238 240 255) # #EEF0FF — primary light
     dark:
       fonts: {}
       colors:
-        default: rgb(226 232 240) # slate-200
-        heading: rgb(248 250 252) # slate-50
-        muted: rgb(148 163 184 / 90%) # slate-400
-        bgPage: rgb(7 11 20) # #070B14
-        primary: rgb(99 102 241) # indigo-500 — más brillante sobre dark
-        secondary: rgb(59 130 246) # blue-500
-        accent: rgb(34 211 238) # cyan-400
+        default: rgb(17 24 39)
+        heading: rgb(17 24 39)
+        muted: rgb(75 85 99)
+        bgPage: rgb(255 255 255)
+        primary: rgb(29 12 223)
+        secondary: rgb(23 9 184)
+        accent: rgb(238 240 255)

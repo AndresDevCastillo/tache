@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 import { SITE } from 'astrowind:config';
+import Logo from '~/components/Logo.astro';
 import { getHomePermalink } from '~/utils/permalinks';
 
 interface Link {
@@ -10,93 +11,175 @@ interface Link {
   icon?: string;
 }
 
-interface Links {
+interface LinkGroup {
   title?: string;
   links: Array<Link>;
 }
 
-export interface Props {
-  links: Array<Links>;
-  secondaryLinks: Array<Link>;
-  socialLinks: Array<Link>;
-  footNote?: string;
-  theme?: string;
+interface Contact {
+  title?: string;
+  email?: string;
+  phone?: string;
+  phoneHref?: string;
+  whatsapp?: string;
+  location?: string;
 }
 
-const { socialLinks = [], secondaryLinks = [], links = [], footNote = '', theme = 'light' } = Astro.props;
+interface Brand {
+  description?: string;
+}
+
+export interface Props {
+  brand?: Brand;
+  links?: Array<LinkGroup>;
+  secondaryLinks?: Array<Link>;
+  socialLinks?: Array<Link>;
+  contact?: Contact;
+  copyright?: string;
+  madeIn?: string;
+  /** Compat — antes se pasaba como HTML */
+  footNote?: string;
+}
+
+const {
+  brand = {},
+  links = [],
+  secondaryLinks = [],
+  socialLinks = [],
+  contact,
+  copyright = `© ${new Date().getFullYear()} Tache Technology. Todos los derechos reservados.`,
+  madeIn = 'Hecho con tecnología desde Montería, Colombia.',
+} = Astro.props;
 ---
 
-<footer class:list={[{ dark: theme === 'dark' }, 'relative border-t border-gray-200 dark:border-slate-800 not-prose']}>
-  <div class="dark:bg-dark absolute inset-0 pointer-events-none" aria-hidden="true"></div>
-  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 dark:text-slate-300">
-    <div class="grid grid-cols-12 gap-4 gap-y-8 sm:gap-8 py-8 md:py-12">
-      <div class="col-span-12 lg:col-span-4">
-        <div class="mb-2">
-          <a class="inline-block font-bold text-xl" href={getHomePermalink()}>{SITE?.name}</a>
-        </div>
-        <div class="text-sm text-muted flex gap-1">
-          {
-            secondaryLinks.map(({ text, href }, index) => (
-              <>
-                {index !== 0 ? ' · ' : ''}
-                <a
-                  class="text-muted hover:text-gray-700 dark:text-gray-400 hover:underline transition duration-150 ease-in-out"
-                  href={href}
-                  set:html={text}
-                />
-              </>
-            ))
-          }
-        </div>
-      </div>
-      {
-        links.map(({ title, links }) => (
-          <div class="col-span-6 md:col-span-3 lg:col-span-2">
-            <div class="dark:text-gray-300 font-medium mb-2">{title}</div>
-            {links && Array.isArray(links) && links.length > 0 && (
-              <ul class="text-sm">
-                {links.map(({ text, href, ariaLabel }) => (
-                  <li class="mb-2">
-                    <a
-                      class="text-muted hover:text-gray-700 hover:underline dark:text-gray-400 transition duration-150 ease-in-out"
-                      href={href}
-                      aria-label={ariaLabel}
-                    >
-                      <Fragment set:html={text} />
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            )}
-          </div>
-        ))
-      }
-    </div>
-    <div class="md:flex md:items-center md:justify-between py-6 md:py-8">
-      {
-        socialLinks?.length ? (
-          <ul class="flex mb-4 md:order-1 -ml-2 md:ml-4 md:mb-0 rtl:ml-0 rtl:-mr-2 rtl:md:ml-0 rtl:md:mr-4">
-            {socialLinks.map(({ ariaLabel, href, text, icon }) => (
+<footer class="relative border-t border-slate-200 bg-white">
+  <div class="container-pro py-14 md:py-16">
+    <div class="grid gap-10 md:gap-12 lg:grid-cols-12">
+      <!-- Marca + descripción + social -->
+      <div class="lg:col-span-4">
+        <a class="inline-flex items-center" href={getHomePermalink()} aria-label="Tache Technology — Inicio">
+          <Logo />
+        </a>
+        {brand.description && (
+          <p class="mt-4 text-sm leading-relaxed text-slate-600 max-w-sm">{brand.description}</p>
+        )}
+
+        {socialLinks?.length > 0 && (
+          <ul class="mt-6 flex items-center gap-2">
+            {socialLinks.map(({ ariaLabel, href, icon }) => (
               <li>
                 <a
-                  class="text-muted dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
+                  class="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 transition-all hover:border-[#1d0cdf]/30 hover:text-[#1d0cdf] hover:bg-[#eef0ff]"
                   aria-label={ariaLabel}
                   href={href}
+                  {...(href && href.startsWith('http')
+                    ? { target: '_blank', rel: 'noopener noreferrer' }
+                    : {})}
                 >
-                  {icon && <Icon name={icon} class="w-5 h-5" />}
-                  <Fragment set:html={text} />
+                  {icon && <Icon name={icon} class="h-5 w-5" />}
                 </a>
               </li>
             ))}
           </ul>
-        ) : (
-          ''
-        )
-      }
-
-      <div class="text-sm mr-4 dark:text-muted">
-        <Fragment set:html={footNote} />
+        )}
       </div>
+
+      <!-- Grupos de enlaces -->
+      <div class="lg:col-span-5 grid grid-cols-2 sm:grid-cols-3 gap-6 md:gap-8">
+        {
+          links.map(({ title, links: groupLinks }) => (
+            <div>
+              <p class="text-sm font-semibold text-slate-900">{title}</p>
+              {groupLinks && groupLinks.length > 0 && (
+                <ul class="mt-3 space-y-2">
+                  {groupLinks.map(({ text, href, ariaLabel }) => (
+                    <li>
+                      <a
+                        class="text-sm text-slate-600 hover:text-[#1d0cdf] transition-colors"
+                        href={href}
+                        aria-label={ariaLabel}
+                      >
+                        {text}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          ))
+        }
+      </div>
+
+      <!-- Contacto -->
+      {contact && (
+        <div class="lg:col-span-3">
+          <p class="text-sm font-semibold text-slate-900">{contact.title || 'Contacto'}</p>
+          <ul class="mt-3 space-y-3 text-sm">
+            {contact.email && (
+              <li class="flex items-start gap-2.5">
+                <Icon name="tabler:mail" class="h-4 w-4 text-[#1d0cdf] mt-0.5 flex-shrink-0" />
+                <a href={`mailto:${contact.email}`} class="text-slate-600 hover:text-[#1d0cdf] transition-colors break-all">
+                  {contact.email}
+                </a>
+              </li>
+            )}
+            {contact.phone && (
+              <li class="flex items-start gap-2.5">
+                <Icon name="tabler:phone" class="h-4 w-4 text-[#1d0cdf] mt-0.5 flex-shrink-0" />
+                <a
+                  href={contact.phoneHref || `tel:${contact.phone.replace(/\s+/g, '')}`}
+                  class="text-slate-600 hover:text-[#1d0cdf] transition-colors"
+                >
+                  {contact.phone}
+                </a>
+              </li>
+            )}
+            {contact.whatsapp && (
+              <li class="flex items-start gap-2.5">
+                <Icon name="tabler:brand-whatsapp" class="h-4 w-4 text-emerald-600 mt-0.5 flex-shrink-0" />
+                <a
+                  href={contact.whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="text-slate-600 hover:text-[#1d0cdf] transition-colors"
+                >
+                  Escríbenos por WhatsApp
+                </a>
+              </li>
+            )}
+            {contact.location && (
+              <li class="flex items-start gap-2.5">
+                <Icon name="tabler:map-pin" class="h-4 w-4 text-[#1d0cdf] mt-0.5 flex-shrink-0" />
+                <span class="text-slate-600">{contact.location}</span>
+              </li>
+            )}
+          </ul>
+        </div>
+      )}
     </div>
+
+    <!-- Barra inferior -->
+    <div class="mt-10 md:mt-14 pt-6 border-t border-slate-200 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <p class="text-sm text-slate-500">{copyright}</p>
+
+      {secondaryLinks?.length > 0 && (
+        <ul class="flex flex-wrap items-center gap-x-5 gap-y-2 text-sm">
+          {secondaryLinks.map(({ text, href }) => (
+            <li>
+              <a href={href} class="text-slate-500 hover:text-[#1d0cdf] transition-colors">
+                {text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
+
+    {madeIn && (
+      <p class="mt-3 text-xs text-slate-400 inline-flex items-center gap-1.5">
+        <Icon name="tabler:map-pin" class="h-3.5 w-3.5" />
+        {madeIn}
+      </p>
+    )}
   </div>
 </footer>

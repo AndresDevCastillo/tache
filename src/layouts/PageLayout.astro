@@ -9,14 +9,15 @@ import type { MetaData } from '~/types';
 
 export interface Props {
   metadata?: MetaData;
+  schemas?: Array<Record<string, unknown>>;
 }
 
-const { metadata } = Astro.props;
+const { metadata, schemas = [] } = Astro.props;
 ---
 
-<Layout metadata={metadata}>
+<Layout metadata={metadata} schemas={schemas}>
   <slot name="header">
-    <Header {...headerData} isSticky showToggleTheme />
+    <Header {...headerData} isSticky />
   </slot>
   <main>
     <slot />

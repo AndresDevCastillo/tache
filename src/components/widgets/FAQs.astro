@@ -1,33 +1,91 @@
 ---
-import Headline from '~/components/ui/Headline.astro';
-import ItemGrid from '~/components/ui/ItemGrid.astro';
-import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
-import type { Faqs as Props } from '~/types';
+import { Icon } from 'astro-icon/components';
+
+export interface FaqItem {
+  /** Nuevo esquema */
+  question?: string;
+  answer?: string;
+  /** Compat con AstroWind */
+  title?: string;
+  description?: string;
+}
+
+export interface Props {
+  id?: string;
+  eyebrow?: string;
+  tagline?: string;
+  title?: string;
+  subtitle?: string;
+  items?: FaqItem[];
+  /** Compat con AstroWind — ignorado visualmente, se mantiene para no romper */
+  classes?: Record<string, string>;
+  columns?: number;
+}
 
 const {
-  title = '',
-  subtitle = '',
-  tagline = '',
-  items = [],
-  columns = 2,
-
   id = 'faqs',
-  isDark = false,
-  classes = {},
-  bg = await Astro.slots.render('bg'),
+  eyebrow,
+  tagline,
+  title = 'Preguntas frecuentes',
+  subtitle = '',
+  items = [],
 } = Astro.props;
+
+const label = eyebrow || tagline || 'Preguntas frecuentes';
+
+const normalized = items.map((f) => ({
+  q: f.question ?? f.title ?? '',
+  a: f.answer ?? f.description ?? '',
+}));
 ---
 
-<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-7xl mx-auto ${classes?.container ?? ''}`} bg={bg}>
-  <Headline title={title} subtitle={subtitle} tagline={tagline} />
-  <ItemGrid
-    items={items}
-    columns={columns}
-    defaultIcon="tabler:chevron-right"
-    classes={{
-      container: `${columns === 1 ? 'max-w-4xl' : ''} gap-y-8 md:gap-y-12`,
-      panel: 'max-w-none',
-      icon: 'flex-shrink-0 mt-1 w-6 h-6 text-primary',
-    }}
-  />
-</WidgetWrapper>
+<section id={id} class="section">
+  <div class="container-pro">
+    <div class="mx-auto max-w-3xl text-center mb-12 md:mb-14">
+      {label && (
+        <span class="badge-eyebrow" data-reveal>{label}</span>
+      )}
+      <h2 class="h2 mt-5 text-slate-900" data-reveal data-reveal-delay="100">
+        {title}
+      </h2>
+      {subtitle && (
+        <p class="lead mt-5" data-reveal data-reveal-delay="200">
+          {subtitle}
+        </p>
+      )}
+    </div>
+
+    <div class="mx-auto max-w-3xl space-y-3" data-reveal data-reveal-delay="200">
+      {
+        normalized.map((faq, idx) => (
+          <details
+            class="group rounded-2xl border border-slate-200 bg-white shadow-soft open:shadow-card transition-all"
+            name="tt-faq"
+            {...(idx === 0 ? { open: true } : {})}
+          >
+            <summary
+              class="flex cursor-pointer items-center justify-between gap-4 px-5 py-4 md:px-6 md:py-5 rounded-2xl list-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#1d0cdf] focus-visible:ring-offset-2"
+            >
+              <span class="text-base md:text-lg font-semibold text-slate-900">{faq.q}</span>
+              <span class="inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-[#eef0ff] text-[#1d0cdf] transition-transform duration-300 group-open:rotate-45">
+                <Icon name="tabler:plus" class="h-5 w-5" />
+              </span>
+            </summary>
+            <div class="px-5 md:px-6 pb-5 md:pb-6 -mt-1">
+              <p class="text-[15px] leading-relaxed text-slate-600">{faq.a}</p>
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
+  details > summary {
+    list-style: none;
+  }
+</style>

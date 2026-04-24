@@ -1,184 +1,261 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
-import HeroPremium from '~/components/widgets/HeroPremium.astro';
+import HeroLanding from '~/components/widgets/HeroLanding.astro';
+import Challenges from '~/components/widgets/Challenges.astro';
 import ServicesGrid from '~/components/widgets/ServicesGrid.astro';
-import ProjectsGrid from '~/components/widgets/ProjectsGrid.astro';
 import ProcessTimeline from '~/components/widgets/ProcessTimeline.astro';
+import ProjectsGrid from '~/components/widgets/ProjectsGrid.astro';
+import SeoLocal from '~/components/widgets/SeoLocal.astro';
+import TechStack from '~/components/widgets/TechStack.astro';
 import CtaBanner from '~/components/widgets/CtaBanner.astro';
-import { Icon } from 'astro-icon/components';
+import FAQs from '~/components/widgets/FAQs.astro';
+import ContactFormPro from '~/components/widgets/ContactFormPro.astro';
 
 const metadata = {
-  title: 'TacheTechnology — Software a medida que impulsa tu negocio',
+  title: 'Tache Technology | Software a medida, páginas web y automatización en Montería',
   ignoreTitleTemplate: true,
   description:
-    'Diseñamos y construimos páginas web, aplicaciones y soluciones digitales a la medida de tu negocio. Trabajamos cerca de ti, con resultados claros.',
+    'Creamos software a medida, páginas web profesionales y automatización para empresas en Montería, Córdoba y Colombia. Agenda una asesoría gratis.',
 };
 
-// Servicios — copys orientados al beneficio, sin tecnicismos.
+// 8 servicios del brief
 const services = [
+  {
+    icon: 'tabler:code',
+    title: 'Software a medida',
+    description:
+      'Sistemas personalizados para gestionar procesos, clientes, reportes, inventarios y operaciones.',
+  },
   {
     icon: 'tabler:world',
     title: 'Páginas web profesionales',
     description:
-      'Sitios web modernos, rápidos y que se ven perfectos en cualquier dispositivo. Pensados para que tus clientes te encuentren y confíen en ti.',
+      'Sitios modernos, rápidos y optimizados para captar clientes y fortalecer tu presencia digital.',
   },
   {
-    icon: 'tabler:layout-grid',
-    title: 'Aplicaciones a la medida',
+    icon: 'tabler:devices',
+    title: 'Aplicaciones web',
     description:
-      'Creamos plataformas hechas a tu medida para gestionar tu negocio, tus clientes o tu equipo desde un solo lugar — sin complicaciones.',
+      'Plataformas seguras y escalables para gestionar tu negocio desde cualquier lugar.',
   },
   {
-    icon: 'tabler:sparkles',
-    title: 'Automatización inteligente',
+    icon: 'tabler:bolt',
+    title: 'Automatización',
     description:
-      'Asistentes y procesos automáticos que se encargan de tareas repetitivas, para que tu equipo se enfoque en lo que realmente importa.',
+      'Automatizamos tareas repetitivas conectando formularios, WhatsApp, correos, bases de datos y herramientas.',
   },
   {
-    icon: 'tabler:link',
-    title: 'Integraciones entre sistemas',
+    icon: 'tabler:robot',
+    title: 'Bots con IA',
     description:
-      'Conectamos las herramientas que ya usas (pagos, facturación, WhatsApp, etc.) para que trabajen juntas y dejes de copiar datos a mano.',
+      'Asistentes inteligentes para atención al cliente, agendamiento, preguntas frecuentes y procesos comerciales.',
   },
   {
-    icon: 'tabler:cloud',
-    title: 'Tu sistema siempre disponible',
+    icon: 'tabler:api',
+    title: 'Integraciones API',
     description:
-      'Hacemos que tu plataforma esté siempre en línea, segura y rápida. Tú te enfocas en tu negocio, nosotros nos encargamos del lado técnico.',
+      'Conectamos sistemas, pagos, CRM, ERP, formularios, bases de datos y plataformas externas.',
   },
   {
-    icon: 'tabler:headset',
-    title: 'Soporte continuo',
+    icon: 'tabler:cloud-computing',
+    title: 'Linux & Cloud',
     description:
-      'Te acompañamos después del lanzamiento con mantenimiento, mejoras y nuevas funciones. No desaparecemos cuando entregamos.',
+      'Configuramos servidores, dominios, SSL, despliegues, backups, bases de datos y aplicaciones en la nube.',
+  },
+  {
+    icon: 'tabler:compass',
+    title: 'Consultoría',
+    description:
+      'Te ayudamos a definir la mejor solución digital según tus objetivos, presupuesto y etapa del negocio.',
   },
 ];
 
-// Vista corta del proceso para la home (la versión completa vive en /proceso).
-const processSteps = [
+// 5 pasos metodología
+const methodology = [
   {
-    icon: 'tabler:message-circle',
-    title: 'Conversamos',
-    description:
-      'Empezamos con una charla sin costo donde entendemos tu negocio y qué problema quieres resolver.',
+    icon: 'tabler:search',
+    title: 'Descubrimiento',
+    description: 'Entendemos tu negocio, necesidades y objetivos.',
   },
   {
     icon: 'tabler:layout-board',
-    title: 'Diseñamos',
-    description:
-      'Te mostramos cómo se va a ver y funcionar antes de construirlo, y hacemos los ajustes contigo.',
+    title: 'Diseño y plan',
+    description: 'Definimos alcance, propuesta, tiempos y tecnologías.',
   },
   {
-    icon: 'tabler:hammer',
-    title: 'Construimos',
-    description:
-      'Desarrollamos tu proyecto con avances semanales que puedes ver y probar — sin esperas largas.',
+    icon: 'tabler:code-dots',
+    title: 'Desarrollo ágil',
+    description: 'Construimos la solución con avances claros y validaciones.',
   },
   {
     icon: 'tabler:rocket',
-    title: 'Lanzamos y acompañamos',
-    description:
-      'Ponemos tu proyecto en marcha, te capacitamos y seguimos contigo para mejoras y soporte.',
+    title: 'Lanzamiento',
+    description: 'Implementamos, probamos y dejamos todo funcionando.',
+  },
+  {
+    icon: 'tabler:lifebuoy',
+    title: 'Soporte y mejora',
+    description: 'Te acompañamos después de la entrega para optimizar y escalar la solución.',
   },
 ];
 
-// Proyectos destacados (3 para la home; los demás en /proyectos).
-const featuredProjects = [
+// 3 casos de éxito
+const successCases = [
   {
-    category: 'Comercio',
-    title: 'Tienda online para distribuidora',
-    description:
-      'Catálogo, carrito y pagos en línea. Antes solo vendían por WhatsApp.',
-    result: 'Triplicaron sus pedidos en 3 meses.',
+    category: 'Logística',
+    title: 'Optimización de entregas',
+    problem: 'La empresa tenía procesos manuales y poco seguimiento de entregas.',
+    solution: 'Creamos una plataforma web para organizar rutas, estados y control operativo.',
+    result: 'Mayor control interno, mejor seguimiento y reducción de tareas manuales.',
+    icon: 'tabler:truck-delivery',
+    accent: 'blue' as const,
+    href: '/proyectos',
+  },
+  {
+    category: 'Inventario',
+    title: 'Digitalización de inventario',
+    problem: 'El inventario se manejaba con hojas de cálculo y registros manuales.',
+    solution: 'Desarrollamos un sistema web para registrar productos, movimientos y reportes.',
+    result: 'Información más organizada, mejor trazabilidad y menos errores operativos.',
+    icon: 'tabler:box-seam',
     accent: 'indigo' as const,
-    icon: 'tabler:building-store',
+    href: '/proyectos',
   },
   {
     category: 'Salud',
-    title: 'Plataforma de citas',
-    description:
-      'Pacientes que agendan online y recordatorios automáticos para reducir inasistencias.',
-    result: 'Inasistencias bajaron 60%.',
+    title: 'Telemedicina y citas',
+    problem: 'La gestión de citas y pacientes se realizaba de forma manual.',
+    solution: 'Creamos una plataforma para agendamiento, pacientes y consultas.',
+    result: 'Mejor atención, mayor organización y disponibilidad para los usuarios.',
+    icon: 'tabler:stethoscope',
     accent: 'cyan' as const,
-    icon: 'tabler:dental',
+    href: '/proyectos',
+  },
+];
+
+// FAQs — usamos el esquema {question, answer} y también lo transformamos a JSON-LD
+const faqs = [
+  {
+    question: '¿Cuánto cuesta desarrollar una página web?',
+    answer:
+      'Depende del tipo de sitio, funcionalidades y nivel de personalización. Podemos orientarte con una asesoría inicial según las necesidades de tu negocio.',
   },
   {
-    category: 'Servicios',
-    title: 'Asistente virtual 24/7',
-    description:
-      'Bot inteligente que responde a clientes en la web y WhatsApp todo el día.',
-    result: 'Resuelve el 70% de las consultas.',
-    accent: 'amber' as const,
-    icon: 'tabler:message-chatbot',
+    question: '¿Cuánto tiempo tarda un proyecto de software?',
+    answer:
+      'Depende del alcance. Una página web puede tomar pocas semanas, mientras que un sistema a medida puede requerir más tiempo de análisis, desarrollo y pruebas.',
+  },
+  {
+    question: '¿Trabajan con empresas fuera de Montería?',
+    answer:
+      'Sí. Trabajamos con empresas de Montería, Córdoba, Colombia y otros lugares mediante reuniones virtuales y acompañamiento remoto.',
+  },
+  {
+    question: '¿Pueden automatizar procesos con WhatsApp?',
+    answer:
+      'Sí. Podemos crear flujos para recibir solicitudes, responder preguntas frecuentes, organizar prospectos y conectar WhatsApp con formularios o sistemas internos.',
+  },
+  {
+    question: '¿Desarrollan software a medida?',
+    answer:
+      'Sí. Creamos sistemas personalizados según los procesos, necesidades y objetivos de cada empresa.',
+  },
+  {
+    question: '¿Ofrecen soporte después del lanzamiento?',
+    answer:
+      'Sí. Podemos acompañarte con mantenimiento, mejoras, soporte técnico y evolución del proyecto.',
+  },
+  {
+    question: '¿Qué necesito para empezar mi proyecto?',
+    answer:
+      'Solo necesitas contarnos tu idea, problema o necesidad. Nosotros te ayudamos a definir la mejor solución, alcance y próximos pasos.',
+  },
+];
+
+// JSON-LD schemas específicos de la home
+const schemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: f.answer,
+      },
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    itemListElement: services.map((s, i) => ({
+      '@type': 'Service',
+      position: i + 1,
+      name: s.title,
+      description: s.description,
+      provider: { '@id': 'https://tachetech.com/#organization' },
+      areaServed: { '@type': 'Country', name: 'Colombia' },
+    })),
   },
 ];
 ---
 
-<Layout metadata={metadata}>
-  <HeroPremium />
+<Layout metadata={metadata} schemas={schemas}>
+  <!-- 1. Hero principal -->
+  <HeroLanding />
 
-  <!-- Quiénes somos: vista corta + link a página completa -->
-  <section id="nosotros-preview" class="relative py-20 md:py-28 scroll-mt-[72px]">
-    <div class="mx-auto max-w-5xl px-4 sm:px-6 text-center">
-      <h2
-        class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white"
-        data-reveal
-      >
-        Tu <span class="text-gradient">socio tecnológico</span>, no solo un proveedor
-      </h2>
-      <p
-        class="mt-6 text-lg text-slate-600 dark:text-slate-300 max-w-3xl mx-auto leading-relaxed"
-        data-reveal
-        data-reveal-delay="100"
-      >
-        Somos un equipo cercano y comprometido con cada proyecto. Hablamos tu idioma, te acompañamos
-        en cada paso y nos importa tanto como a ti que tu negocio crezca.
-      </p>
-      <a href="/nosotros" class="btn-secondary mt-8 inline-flex" data-reveal data-reveal-delay="200">
-        Conoce más sobre nosotros
-        <Icon name="tabler:arrow-right" class="h-4 w-4" />
-      </a>
-    </div>
-  </section>
+  <!-- 2. Retos / problemas del cliente -->
+  <Challenges />
 
-  <!-- Servicios -->
+  <!-- 3. Servicios -->
   <ServicesGrid
+    id="servicios"
+    eyebrow="Servicios"
+    title="Servicios que transforman"
+    subtitle="Soluciones tecnológicas diseñadas para mejorar la operación, presencia digital y crecimiento de tu empresa."
     items={services}
-    cardCta=""
+    cardCta="Conocer más"
+    fourCols={true}
+    allLink={{ text: 'Ver todos los servicios', href: '/servicios' }}
   />
-  <div class="text-center -mt-8 mb-16" data-reveal>
-    <a href="/servicios" class="btn-secondary inline-flex">
-      Ver todos los servicios
-      <Icon name="tabler:arrow-right" class="h-4 w-4" />
-    </a>
-  </div>
 
-  <!-- Proyectos destacados -->
+  <!-- 4. Metodología -->
+  <ProcessTimeline
+    items={methodology}
+    eyebrow="Metodología"
+    title="Nuestra Metodología"
+    subtitle="Un proceso transparente para convertir tu idea en una solución digital confiable."
+  />
+
+  <!-- 5. Casos de éxito -->
   <ProjectsGrid
-    items={featuredProjects}
-    title="Algunos proyectos que hemos entregado"
-    subtitle="Negocios reales con resultados reales. Te mostramos lo que hemos construido."
+    id="casos"
+    eyebrow="Casos de Éxito"
+    title="Casos de Éxito"
+    subtitle="Creamos soluciones digitales pensadas para empresas reales."
+    items={successCases}
+    variant="cases"
     showCta={false}
   />
-  <div class="text-center -mt-8 mb-16" data-reveal>
-    <a href="/proyectos" class="btn-secondary inline-flex">
-      Ver más proyectos
-      <Icon name="tabler:arrow-right" class="h-4 w-4" />
-    </a>
-  </div>
 
-  <!-- Proceso resumido -->
-  <ProcessTimeline
-    items={processSteps}
-    title="Cuatro pasos para llevar tu idea a la realidad"
-    subtitle="Un proceso claro y transparente, donde estás en control en todo momento."
-  />
-  <div class="text-center -mt-12 mb-16" data-reveal>
-    <a href="/proceso" class="btn-secondary inline-flex">
-      Ver el proceso completo
-      <Icon name="tabler:arrow-right" class="h-4 w-4" />
-    </a>
-  </div>
+  <!-- 6. SEO local Montería -->
+  <SeoLocal />
 
+  <!-- 7. Stack tecnológico -->
+  <TechStack />
+
+  <!-- 8. CTA principal -->
   <CtaBanner />
+
+  <!-- 9. Preguntas frecuentes -->
+  <FAQs
+    id="faqs"
+    eyebrow="Preguntas frecuentes"
+    title="Preguntas frecuentes"
+    items={faqs}
+  />
+
+  <!-- 10. Contacto -->
+  <ContactFormPro />
 </Layout>

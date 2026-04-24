@@ -1,0 +1,120 @@
+---
+import { Icon } from 'astro-icon/components';
+
+export interface Props {
+  id?: string;
+  title?: string;
+  text?: string;
+  chips?: string[];
+}
+
+const {
+  id = 'monteria',
+  title = 'Desarrollo de software, páginas web y automatización en Montería',
+  text = 'Tache Technology ofrece desarrollo de software, páginas web y automatización para empresas en Montería, Córdoba y Colombia. Creamos soluciones digitales a medida para mejorar procesos, captar clientes y escalar negocios.',
+  chips = [
+    'Montería',
+    'Córdoba',
+    'Colombia',
+    'Software a medida',
+    'Páginas web',
+    'Automatización',
+  ],
+} = Astro.props;
+---
+
+<section id={id} class="section">
+  <div class="container-pro">
+    <div class="grid gap-12 lg:grid-cols-12 lg:gap-16 items-center">
+      <!-- Texto -->
+      <div class="lg:col-span-7">
+        <span class="badge-eyebrow" data-reveal>SEO local</span>
+        <h2 class="h2 mt-5 text-slate-900" data-reveal data-reveal-delay="100">
+          {title}
+        </h2>
+        <p class="lead mt-5" data-reveal data-reveal-delay="200">
+          {text}
+        </p>
+
+        <div class="mt-6 flex flex-wrap gap-2" data-reveal data-reveal-delay="300">
+          {chips.map((chip) => (
+            <span class="chip">{chip}</span>
+          ))}
+        </div>
+
+        <div class="mt-8 flex flex-col sm:flex-row items-stretch sm:items-center gap-3" data-reveal data-reveal-delay="400">
+          <a href="/contacto" class="btn-primary w-full sm:w-auto">
+            Solicitar asesoría gratis
+            <Icon name="tabler:arrow-right" class="h-5 w-5" />
+          </a>
+          <a
+            href="https://wa.link/3bqb4e"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-secondary w-full sm:w-auto"
+          >
+            <Icon name="tabler:brand-whatsapp" class="h-5 w-5 text-emerald-600" />
+            Escribir por WhatsApp
+          </a>
+        </div>
+      </div>
+
+      <!-- Visual: mapa simplificado de Colombia con punto en Montería -->
+      <div class="lg:col-span-5 relative" data-reveal data-reveal-delay="200">
+        <div class="relative rounded-3xl border border-slate-200 bg-white p-6 md:p-8 shadow-card overflow-hidden">
+          <div
+            class="pointer-events-none absolute inset-0 opacity-70"
+            style="background: radial-gradient(60% 60% at 50% 30%, rgb(29 12 223 / 0.08), transparent 70%);"
+            aria-hidden="true"
+          ></div>
+
+          <div class="relative">
+            <svg
+              viewBox="0 0 200 260"
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-full h-auto max-h-[360px] mx-auto"
+              role="img"
+              aria-label="Mapa simplificado de Colombia con ubicación en Montería, Córdoba"
+            >
+              <!-- Silueta aproximada de Colombia -->
+              <path
+                d="M70,10 L95,12 L115,22 L130,35 L140,55 L155,70 L170,90 L175,115 L170,140 L160,160 L155,180 L160,200 L155,220 L145,235 L125,245 L105,250 L85,245 L70,230 L60,210 L52,190 L45,170 L40,150 L35,130 L30,110 L28,90 L32,70 L40,50 L50,30 L60,18 Z"
+                fill="#eef0ff"
+                stroke="#c7d2fe"
+                stroke-width="1.2"
+              />
+
+              <!-- Córdoba (aprox.) destacada -->
+              <path
+                d="M52,60 L78,56 L90,66 L92,82 L82,92 L68,95 L55,88 L48,76 Z"
+                fill="#1d0cdf"
+                opacity="0.9"
+              />
+
+              <!-- Pulso + punto Montería -->
+              <g transform="translate(72,74)">
+                <circle r="16" fill="#1d0cdf" opacity="0.15">
+                  <animate attributeName="r" from="10" to="22" dur="2s" repeatCount="indefinite" />
+                  <animate attributeName="opacity" from="0.25" to="0" dur="2s" repeatCount="indefinite" />
+                </circle>
+                <circle r="6" fill="#ffffff" stroke="#1d0cdf" stroke-width="2.5" />
+                <circle r="3" fill="#1d0cdf" />
+              </g>
+            </svg>
+
+            <!-- Tarjeta ubicación flotante -->
+            <div class="mt-4 flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50/80 px-4 py-3">
+              <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#eef0ff] text-[#1d0cdf]">
+                <Icon name="tabler:map-pin-filled" class="h-5 w-5" />
+              </span>
+              <div>
+                <p class="text-xs font-semibold uppercase tracking-wider text-slate-500">Ubicación</p>
+                <p class="text-base font-semibold text-slate-900">Montería · Córdoba · Colombia</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

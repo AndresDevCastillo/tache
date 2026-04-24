@@ -5,80 +5,117 @@ import ProjectsGrid from '~/components/widgets/ProjectsGrid.astro';
 import CtaBanner from '~/components/widgets/CtaBanner.astro';
 
 const metadata = {
-  title: 'Proyectos — Casos reales de Tache Technology',
+  title: 'Proyectos y casos de éxito | Tache Technology Montería',
   description:
-    'Conoce algunos de los proyectos que hemos entregado: páginas web, aplicaciones a medida y automatizaciones para empresas de distintos sectores.',
+    'Casos reales de desarrollo de software, páginas web y automatización para empresas en Montería y Colombia. Conoce los resultados que hemos entregado.',
 };
 
-// NOTA: estos son ejemplos demostrativos. Reemplaza con casos reales y enlaces
-// a los sitios cuando los tengas. Mantener el formato (categoría/título/descripción
-// /resultado) para consistencia visual.
 const projects = [
   {
-    category: 'Comercio',
-    title: 'Tienda online para distribuidora local',
-    description:
-      'Diseñamos y lanzamos la tienda en línea de una distribuidora regional, con catálogo, carrito de compras y pagos integrados. Antes solo vendían por WhatsApp.',
-    result: 'Triplicaron sus pedidos en los primeros 3 meses.',
+    category: 'Logística',
+    title: 'Optimización de entregas',
+    problem: 'Procesos manuales y poco seguimiento de entregas generaban retrasos y errores.',
+    solution: 'Plataforma web para organizar rutas, gestionar estados y llevar control operativo.',
+    result: 'Mayor control interno, mejor seguimiento en tiempo real y menos tareas manuales.',
+    icon: 'tabler:truck-delivery',
+    accent: 'blue' as const,
+  },
+  {
+    category: 'Inventario',
+    title: 'Digitalización de inventario',
+    problem: 'El inventario se manejaba con hojas de cálculo y registros manuales.',
+    solution: 'Sistema web para registrar productos, movimientos y reportes automáticos.',
+    result: 'Información organizada, mejor trazabilidad y menos errores operativos.',
+    icon: 'tabler:box-seam',
     accent: 'indigo' as const,
-    icon: 'tabler:building-store',
   },
   {
     category: 'Salud',
-    title: 'Plataforma de citas para clínica dental',
-    description:
-      'Sistema web para que los pacientes agenden sus citas online y el equipo administre la agenda desde un panel sencillo. Incluye recordatorios automáticos.',
-    result: 'Redujeron en 60% las inasistencias a citas.',
+    title: 'Telemedicina y citas',
+    problem: 'La gestión de citas y pacientes se hacía de forma manual.',
+    solution: 'Plataforma para agendamiento, pacientes y consultas en línea.',
+    result: 'Mejor atención, organización y disponibilidad 24/7 para los usuarios.',
+    icon: 'tabler:stethoscope',
     accent: 'cyan' as const,
-    icon: 'tabler:dental',
   },
   {
-    category: 'Logística',
-    title: 'Panel de seguimiento de envíos',
-    description:
-      'Aplicación web para que los clientes consulten en tiempo real el estado de sus envíos. La empresa dejó de recibir cientos de llamadas al día por consultas.',
-    result: 'Liberaron al equipo para tareas de mayor valor.',
-    accent: 'indigo' as const,
-    icon: 'tabler:truck-delivery',
-  },
-  {
-    category: 'Educación',
-    title: 'Sitio web institucional con blog',
-    description:
-      'Página web moderna para una institución educativa, con sección de noticias, calendario de eventos y formulario de inscripción a programas.',
-    result: 'Aumentaron 40% las inscripciones online.',
+    category: 'Comercio',
+    title: 'Tienda online para distribuidora',
+    problem: 'Solo vendían por WhatsApp: pedidos dispersos y proceso lento.',
+    solution: 'Tienda en línea con catálogo, carrito y pagos integrados.',
+    result: 'Triplicaron los pedidos en los primeros 3 meses de operación.',
+    icon: 'tabler:building-store',
     accent: 'emerald' as const,
-    icon: 'tabler:school',
   },
   {
     category: 'Servicios',
-    title: 'Asistente virtual para atención al cliente',
-    description:
-      'Bot inteligente que responde las preguntas frecuentes de los clientes 24/7 desde la web y WhatsApp, y deriva los casos complejos al equipo humano.',
-    result: 'Resuelve el 70% de las consultas sin intervención.',
-    accent: 'amber' as const,
+    title: 'Asistente virtual 24/7',
+    problem: 'El equipo no alcanzaba a responder todas las consultas fuera de horario.',
+    solution: 'Bot inteligente para web y WhatsApp que responde preguntas frecuentes y deriva casos complejos.',
+    result: 'Resuelve el 70% de las consultas sin intervención humana.',
     icon: 'tabler:message-chatbot',
+    accent: 'amber' as const,
   },
   {
     category: 'Inmobiliaria',
     title: 'Catálogo de propiedades con búsqueda',
-    description:
-      'Sitio web con catálogo dinámico, filtros por zona, precio y características, y panel administrativo para que el equipo cargue propiedades sin saber programar.',
-    result: 'Más leads de calidad cada mes.',
-    accent: 'rose' as const,
+    problem: 'No tenían presencia digital y perdían leads calificados.',
+    solution: 'Sitio web con catálogo dinámico, filtros y panel para cargar propiedades sin saber programar.',
+    result: 'Más leads de calidad cada mes y una marca más fuerte en su mercado.',
     icon: 'tabler:home',
+    accent: 'rose' as const,
+  },
+];
+
+const schemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: 'Proyectos y casos de éxito — Tache Technology',
+    url: 'https://tachetech.com/proyectos',
+    description:
+      'Casos reales de desarrollo de software, páginas web y automatización entregados por Tache Technology en Montería.',
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: projects.map((p, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        item: {
+          '@type': 'CreativeWork',
+          name: p.title,
+          about: p.category,
+          description: `${p.problem} ${p.solution} ${p.result}`,
+        },
+      })),
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://tachetech.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Proyectos', item: 'https://tachetech.com/proyectos' },
+    ],
   },
 ];
 ---
 
-<Layout metadata={metadata}>
+<Layout metadata={metadata} schemas={schemas}>
   <HeroPremium
-    title='Resultados reales para <span class="text-gradient">negocios reales</span>'
+    eyebrow="Casos de éxito"
+    title='Resultados reales para <span class="text-[#1d0cdf]">negocios reales</span>'
     subtitle="Cada proyecto que entregamos resuelve un problema concreto y deja a un negocio funcionando mejor. Aquí algunos ejemplos."
     showCtas={false}
   />
 
-  <ProjectsGrid items={projects} />
+  <ProjectsGrid
+    items={projects}
+    eyebrow="Casos de Éxito"
+    title="Proyectos entregados"
+    subtitle="Historias reales de transformación digital en empresas de Montería, Córdoba y Colombia."
+    variant="cases"
+    showCta={false}
+  />
 
   <CtaBanner
     title="¿Te imaginas tu proyecto aquí?"

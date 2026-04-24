@@ -6,15 +6,36 @@ import WhyChoose from '~/components/widgets/WhyChoose.astro';
 import CtaBanner from '~/components/widgets/CtaBanner.astro';
 
 const metadata = {
-  title: 'Nosotros — Quiénes somos en Tache Technology',
+  title: 'Nosotros — Equipo de desarrollo de software en Montería | Tache Technology',
   description:
-    'Conoce al equipo detrás de Tache Technology, nuestra misión, visión, valores y por qué somos el socio tecnológico que tu negocio necesita.',
+    'Somos Tache Technology, startup tecnológica en Montería, Córdoba. Ganadores del Programa de Transformación Digital para MiPYMES. Conoce nuestra misión, visión y valores.',
 };
+
+const schemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'AboutPage',
+    url: 'https://tachetech.com/nosotros',
+    name: 'Nosotros — Tache Technology',
+    description:
+      'Startup tecnológica en Montería. Desarrollo de software, páginas web y automatización para empresas.',
+    mainEntity: { '@id': 'https://tachetech.com/#organization' },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://tachetech.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Nosotros', item: 'https://tachetech.com/nosotros' },
+    ],
+  },
+];
 ---
 
-<Layout metadata={metadata}>
+<Layout metadata={metadata} schemas={schemas}>
   <HeroPremium
-    title='Construimos tecnología <span class="text-gradient">cerca de ti</span>'
+    eyebrow="Sobre Tache Technology"
+    title='Construimos tecnología <span class="text-[#1d0cdf]">cerca de ti</span>'
     subtitle="Somos un equipo apasionado por la tecnología y comprometido con cada proyecto. Trabajamos con cercanía, transparencia y enfoque en resultados reales para tu negocio."
     showCtas={false}
   />

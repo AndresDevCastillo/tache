@@ -1,0 +1,108 @@
+---
+import { SITE } from 'astrowind:config';
+
+export interface Props {
+  /** Schemas adicionales específicos de la página (FAQPage, Service, ContactPage, etc.) */
+  schemas?: Array<Record<string, unknown>>;
+}
+
+const { schemas = [] } = Astro.props;
+
+const SITE_URL = SITE?.site || 'https://tachetech.com';
+const LOGO_URL = `${SITE_URL.replace(/\/$/, '')}/logotache.png`;
+
+const organization = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  '@id': `${SITE_URL}/#organization`,
+  name: 'Tache Technology',
+  url: SITE_URL,
+  logo: {
+    '@type': 'ImageObject',
+    url: LOGO_URL,
+    width: 240,
+    height: 60,
+  },
+  image: LOGO_URL,
+  email: 'contacto@tachetech.com',
+  telephone: '+57 301 374 5541',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Montería',
+    addressRegion: 'Córdoba',
+    addressCountry: 'CO',
+  },
+  sameAs: [
+    'https://wa.me/573013745541',
+  ],
+  contactPoint: [
+    {
+      '@type': 'ContactPoint',
+      telephone: '+57 301 374 5541',
+      contactType: 'customer service',
+      email: 'contacto@tachetech.com',
+      areaServed: ['CO'],
+      availableLanguage: ['Spanish'],
+    },
+  ],
+};
+
+const localBusiness = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': `${SITE_URL}/#localbusiness`,
+  name: 'Tache Technology',
+  description:
+    'Desarrollo de software a medida, páginas web profesionales, automatización, integraciones, bots con IA y servicios cloud para empresas en Montería, Córdoba y Colombia.',
+  url: SITE_URL,
+  logo: LOGO_URL,
+  image: LOGO_URL,
+  priceRange: 'COP',
+  telephone: '+57 301 374 5541',
+  email: 'contacto@tachetech.com',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Montería',
+    addressRegion: 'Córdoba',
+    addressCountry: 'CO',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 8.74798,
+    longitude: -75.88143,
+  },
+  areaServed: [
+    { '@type': 'City', name: 'Montería' },
+    { '@type': 'State', name: 'Córdoba' },
+    { '@type': 'Country', name: 'Colombia' },
+  ],
+  serviceType: [
+    'Desarrollo de software a medida',
+    'Desarrollo de páginas web',
+    'Aplicaciones web',
+    'Automatización de procesos',
+    'Bots con inteligencia artificial',
+    'Integraciones API',
+    'Servicios cloud y Linux',
+    'Consultoría tecnológica',
+  ],
+};
+
+const website = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${SITE_URL}/#website`,
+  url: SITE_URL,
+  name: 'Tache Technology',
+  description:
+    'Software a medida, páginas web y automatización para empresas en Montería y Colombia.',
+  inLanguage: 'es-CO',
+  publisher: { '@id': `${SITE_URL}/#organization` },
+};
+
+const allSchemas = [organization, localBusiness, website, ...schemas];
+---
+
+{allSchemas.map((schema) => (
+  <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+))}

@@ -2,44 +2,41 @@
 import { Icon } from 'astro-icon/components';
 
 export interface Props {
-  /** Override del título principal (HTML permitido). Si vacío, usa el default. */
   title?: string;
   subtitle?: string;
   showCtas?: boolean;
+  eyebrow?: string;
 }
 
 const {
   title = '',
-  subtitle = 'Desarrollamos software a medida, automatizamos procesos y llevamos tu empresa al siguiente nivel digital — con la cercanía y compromiso de un equipo local.',
+  subtitle = 'Soluciones digitales para empresas — software a medida, páginas web, automatización y mucho más.',
   showCtas = true,
+  eyebrow = '',
 } = Astro.props;
 ---
 
-<section class="relative isolate overflow-hidden md:-mt-[76px]" id="inicio">
-  <!-- Blobs de color: solo se ven en dark, sutiles -->
-  <div
-    class="pointer-events-none absolute -top-32 -left-24 -z-10 h-[420px] w-[420px] rounded-full blur-3xl opacity-50 dark:opacity-100 animate-pulse-glow"
-    style="background: radial-gradient(circle, rgb(29 12 223 / 0.45), transparent 70%);"
-    aria-hidden="true"
-  ></div>
-  <div
-    class="pointer-events-none absolute -top-10 right-0 -z-10 h-[380px] w-[380px] rounded-full blur-3xl opacity-50 dark:opacity-100 animate-pulse-glow"
-    style="background: radial-gradient(circle, rgb(37 99 235 / 0.40), transparent 70%); animation-delay: 1.5s;"
-    aria-hidden="true"
-  ></div>
+<section class="relative isolate overflow-hidden" id="inicio">
+  <div class="pointer-events-none absolute inset-0 -z-10 bg-radial-spotlight" aria-hidden="true"></div>
+  <div class="pointer-events-none absolute inset-0 -z-10 bg-grid opacity-50" aria-hidden="true"></div>
 
-  <div class="relative mx-auto max-w-7xl px-4 sm:px-6 pt-32 md:pt-40 pb-20 md:pb-28">
+  <div class="relative container-pro pt-28 md:pt-32 pb-16 md:pb-20">
     <div class="mx-auto max-w-4xl text-center">
+      {eyebrow && (
+        <span class="badge-eyebrow mb-6 inline-flex" data-reveal>
+          {eyebrow}
+        </span>
+      )}
       {
         title ? (
           <h1
-            class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] text-slate-900 dark:text-white"
+            class="h1 text-slate-900"
             data-reveal
             set:html={title}
           />
         ) : (
           <h1
-            class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05] text-slate-900 dark:text-white"
+            class="h1 text-slate-900"
             data-reveal
           >
             Transformamos ideas en
@@ -50,7 +47,7 @@ const {
       }
 
       <p
-        class="mt-6 md:mt-8 text-lg md:text-xl text-slate-600 dark:text-slate-300 max-w-2xl mx-auto leading-relaxed"
+        class="lead mt-6 max-w-2xl mx-auto"
         data-reveal
         data-reveal-delay="100"
       >
@@ -60,24 +57,15 @@ const {
       {
         showCtas && (
           <div
-            class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4"
+            class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-3"
             data-reveal
             data-reveal-delay="200"
           >
             <a href="/contacto" class="btn-primary w-full sm:w-auto">
-              Solicitar asesoría
+              Solicitar asesoría gratis
               <Icon name="tabler:arrow-right" class="w-5 h-5" />
             </a>
-            <a href="/contacto#contacto" class="btn-secondary w-full sm:w-auto">
-              <Icon name="tabler:calculator" class="w-5 h-5" />
-              Cotizar proyecto
-            </a>
-            <a
-              href="https://wa.link/3bqb4e"
-              target="_blank"
-              rel="noopener noreferrer"
-              class="btn-whatsapp w-full sm:w-auto"
-            >
+            <a href="https://wa.link/3bqb4e" target="_blank" rel="noopener noreferrer" class="btn-whatsapp w-full sm:w-auto">
               <Icon name="tabler:brand-whatsapp" class="w-5 h-5" />
               WhatsApp
             </a>

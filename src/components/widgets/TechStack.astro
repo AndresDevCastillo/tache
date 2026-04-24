@@ -1,0 +1,93 @@
+---
+import { Icon } from 'astro-icon/components';
+
+export interface Category {
+  icon: string;
+  title: string;
+  items: string[];
+}
+
+export interface Props {
+  id?: string;
+  eyebrow?: string;
+  title?: string;
+  subtitle?: string;
+  categories?: Category[];
+}
+
+const defaults: Category[] = [
+  {
+    icon: 'tabler:layout-2',
+    title: 'Frontend',
+    items: ['React', 'Next.js', 'Vue', 'Tailwind CSS'],
+  },
+  {
+    icon: 'tabler:server-2',
+    title: 'Backend',
+    items: ['Node.js', 'NestJS', 'Python', 'FastAPI'],
+  },
+  {
+    icon: 'tabler:database',
+    title: 'Bases de datos',
+    items: ['PostgreSQL', 'MySQL', 'MongoDB'],
+  },
+  {
+    icon: 'tabler:cloud-computing',
+    title: 'DevOps',
+    items: ['Docker', 'Linux', 'Nginx', 'Cloudflare'],
+  },
+  {
+    icon: 'tabler:robot',
+    title: 'Automatización',
+    items: ['n8n', 'Botpress', 'APIs', 'WhatsApp Business'],
+  },
+];
+
+const {
+  id = 'stack',
+  eyebrow = 'Stack tecnológico',
+  title = 'Nuestro Stack',
+  subtitle = 'Tecnologías modernas para construir soluciones seguras, escalables y eficientes.',
+  categories = defaults,
+} = Astro.props;
+---
+
+<section id={id} class="section bg-section">
+  <div class="container-pro">
+    <div class="mx-auto max-w-3xl text-center mb-12 md:mb-16">
+      {eyebrow && (
+        <span class="badge-eyebrow" data-reveal>{eyebrow}</span>
+      )}
+      <h2 class="h2 mt-5 text-slate-900" data-reveal data-reveal-delay="100">
+        {title}
+      </h2>
+      <p class="lead mt-5" data-reveal data-reveal-delay="200">
+        {subtitle}
+      </p>
+    </div>
+
+    <div class="grid gap-5 md:gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        categories.map((cat, idx) => (
+          <article
+            class="card flex flex-col"
+            data-reveal
+            data-reveal-delay={Math.min(((idx % 3) + 1) * 100, 300).toString()}
+          >
+            <div class="flex items-center gap-3">
+              <span class="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#eef0ff] text-[#1d0cdf]">
+                <Icon name={cat.icon} class="h-5 w-5" />
+              </span>
+              <h3 class="text-lg font-semibold text-slate-900">{cat.title}</h3>
+            </div>
+            <div class="mt-5 flex flex-wrap gap-2">
+              {cat.items.map((tech) => (
+                <span class="chip-brand">{tech}</span>
+              ))}
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>

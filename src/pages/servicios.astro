@@ -2,87 +2,120 @@
 import Layout from '~/layouts/PageLayout.astro';
 import HeroPremium from '~/components/widgets/HeroPremium.astro';
 import ServicesGrid from '~/components/widgets/ServicesGrid.astro';
+import TechStack from '~/components/widgets/TechStack.astro';
 import CtaBanner from '~/components/widgets/CtaBanner.astro';
 
 const metadata = {
-  title: 'Servicios — Soluciones digitales para tu negocio',
+  title: 'Servicios de desarrollo de software y automatización en Montería | Tache Technology',
   description:
-    'Páginas web, aplicaciones a medida, automatización inteligente, integraciones y más. Conoce todos los servicios de Tache Technology.',
+    'Software a medida, páginas web, aplicaciones web, automatización, bots con IA, integraciones API, Linux & Cloud y consultoría para empresas en Montería y Colombia.',
 };
 
 const services = [
   {
+    icon: 'tabler:code',
+    title: 'Software a medida',
+    description:
+      'Sistemas personalizados para gestionar procesos, clientes, reportes, inventarios y operaciones.',
+  },
+  {
     icon: 'tabler:world',
     title: 'Páginas web profesionales',
     description:
-      'Sitios web modernos y rápidos que se ven perfectos en cualquier dispositivo. Optimizados para que aparezcas en Google y conviertas visitantes en clientes.',
+      'Sitios modernos, rápidos y optimizados para captar clientes y fortalecer tu presencia digital.',
   },
   {
-    icon: 'tabler:building-store',
-    title: 'Tiendas online',
+    icon: 'tabler:devices',
+    title: 'Aplicaciones web',
     description:
-      'Vende por internet con catálogo de productos, carrito de compras y pagos en línea. Listo para que tus clientes compren cuando quieran, desde donde estén.',
+      'Plataformas seguras y escalables para gestionar tu negocio desde cualquier lugar.',
   },
   {
-    icon: 'tabler:layout-grid',
-    title: 'Aplicaciones a la medida',
+    icon: 'tabler:bolt',
+    title: 'Automatización',
     description:
-      'Plataformas hechas para tu negocio: gestiona clientes, inventario, equipos o proyectos desde un solo lugar, con la información que tú necesitas.',
+      'Automatizamos tareas repetitivas conectando formularios, WhatsApp, correos, bases de datos y herramientas.',
   },
   {
-    icon: 'tabler:sparkles',
-    title: 'Automatización inteligente',
+    icon: 'tabler:robot',
+    title: 'Bots con IA',
     description:
-      'Asistentes virtuales y procesos automáticos que se encargan de tareas repetitivas. Tu equipo gana horas para enfocarse en lo que realmente importa.',
+      'Asistentes inteligentes para atención al cliente, agendamiento, preguntas frecuentes y procesos comerciales.',
   },
   {
-    icon: 'tabler:link',
-    title: 'Integraciones entre sistemas',
+    icon: 'tabler:api',
+    title: 'Integraciones API',
     description:
-      'Conectamos las herramientas que ya usas (pagos, facturación, WhatsApp, redes sociales) para que trabajen juntas y dejes de hacer todo a mano.',
+      'Conectamos sistemas, pagos, CRM, ERP, formularios, bases de datos y plataformas externas.',
   },
   {
-    icon: 'tabler:cloud',
-    title: 'Tu sistema siempre disponible',
+    icon: 'tabler:cloud-computing',
+    title: 'Linux & Cloud',
     description:
-      'Hacemos que tu plataforma esté siempre en línea, segura y rápida, sin caídas ni dolores de cabeza. Tú te enfocas en tu negocio.',
+      'Configuramos servidores, dominios, SSL, despliegues, backups, bases de datos y aplicaciones en la nube.',
   },
   {
-    icon: 'tabler:shield-check',
-    title: 'Seguridad y respaldo',
+    icon: 'tabler:compass',
+    title: 'Consultoría',
     description:
-      'Protegemos tu información y la de tus clientes con copias de seguridad automáticas y prácticas que evitan ataques. Duermes tranquilo.',
+      'Te ayudamos a definir la mejor solución digital según tus objetivos, presupuesto y etapa del negocio.',
+  },
+];
+
+const schemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Service',
+    serviceType: 'Desarrollo de software y automatización',
+    provider: { '@id': 'https://tachetech.com/#organization' },
+    areaServed: [
+      { '@type': 'City', name: 'Montería' },
+      { '@type': 'State', name: 'Córdoba' },
+      { '@type': 'Country', name: 'Colombia' },
+    ],
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Servicios Tache Technology',
+      itemListElement: services.map((s) => ({
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: s.title,
+          description: s.description,
+        },
+      })),
+    },
   },
   {
-    icon: 'tabler:briefcase',
-    title: 'Asesoría tecnológica',
-    description:
-      'Te ayudamos a tomar decisiones inteligentes sobre tecnología, sin tecnicismos. Te decimos qué necesitas, qué no y por qué.',
-  },
-  {
-    icon: 'tabler:headset',
-    title: 'Soporte continuo',
-    description:
-      'Después de entregar tu proyecto seguimos contigo: mantenimiento, mejoras, nuevas funciones y respuesta rápida cuando nos necesites.',
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://tachetech.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Servicios', item: 'https://tachetech.com/servicios' },
+    ],
   },
 ];
 ---
 
-<Layout metadata={metadata}>
+<Layout metadata={metadata} schemas={schemas}>
   <HeroPremium
-    title='Tecnología que <span class="text-gradient">resuelve problemas</span> reales'
+    eyebrow="Catálogo completo"
+    title='Tecnología que <span class="text-[#1d0cdf]">resuelve problemas</span> reales'
     subtitle="Cada servicio está orientado a un resultado de negocio: más ventas, menos costos, procesos automatizados o un producto digital que crece contigo."
     showCtas={false}
   />
 
   <ServicesGrid
     id="catalogo"
-    tagline="Catálogo completo"
+    eyebrow="Catálogo completo"
     title="Todo lo que necesitas para crecer en digital"
     subtitle="Desde tu primera página web hasta sistemas completos a medida. Trabajamos como tu socio tecnológico de largo plazo."
     items={services}
-    cardCta=""
+    fourCols={true}
+    cardCta="Conocer más"
   />
+
+  <TechStack />
 
   <CtaBanner
     title="¿No estás seguro qué necesitas?"

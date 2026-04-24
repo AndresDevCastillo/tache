@@ -9,79 +9,104 @@ export interface Step {
 
 export interface Props {
   id?: string;
-  tagline?: string;
+  eyebrow?: string;
   title?: string;
   subtitle?: string;
   items: Step[];
 }
 
 const {
-  id = 'proceso',
-  title = 'Un proceso claro, sin sorpresas',
-  subtitle = 'Pensado para que estés en control en cada etapa de tu proyecto.',
+  id = 'metodologia',
+  eyebrow = 'Metodología',
+  title = 'Nuestra Metodología',
+  subtitle = 'Un proceso transparente para convertir tu idea en una solución digital confiable.',
   items,
 } = Astro.props;
 ---
 
-<section id={id} class="relative py-20 md:py-28 scroll-mt-[72px]">
-  <div class="mx-auto max-w-6xl px-4 sm:px-6">
-    <div class="mx-auto max-w-3xl text-center mb-16 md:mb-20">
-      <h2
-        class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-slate-900 dark:text-white"
-        data-reveal
-      >
+<section id={id} class="section">
+  <div class="container-pro">
+    <div class="mx-auto max-w-3xl text-center mb-14 md:mb-20">
+      {eyebrow && (
+        <span class="badge-eyebrow" data-reveal>{eyebrow}</span>
+      )}
+      <h2 class="h2 mt-5 text-slate-900" data-reveal data-reveal-delay="100">
         {title}
       </h2>
-      <p class="mt-5 text-lg text-slate-600 dark:text-slate-300" data-reveal data-reveal-delay="100">
+      <p class="lead mt-5" data-reveal data-reveal-delay="200">
         {subtitle}
       </p>
     </div>
 
-    <div class="relative">
-      <!-- Línea vertical central (desktop) / izquierda (móvil) -->
-      <div
-        class="pointer-events-none absolute left-7 top-0 bottom-0 w-px bg-gradient-to-b from-blue-500/0 via-blue-500/40 to-cyan-400/0 md:left-1/2 md:-translate-x-1/2"
-        aria-hidden="true"
-      >
-      </div>
+    <!-- Desktop: horizontal -->
+    <div class="hidden lg:block">
+      <div class="relative">
+        <!-- Línea conectora horizontal -->
+        <div
+          class="pointer-events-none absolute top-8 left-0 right-0 h-px"
+          style="background-image: linear-gradient(to right, rgba(29,12,223,0) 0%, rgba(29,12,223,0.25) 15%, rgba(29,12,223,0.25) 85%, rgba(29,12,223,0) 100%);"
+          aria-hidden="true"
+        ></div>
 
-      <ol class="space-y-10 md:space-y-16">
-        {
-          items.map((step, idx) => {
-            const isLeft = idx % 2 === 0;
-            return (
-              <li class="relative md:grid md:grid-cols-2 md:gap-12" data-reveal data-reveal-delay="100">
-                {/* Card */}
-                <div
-                  class:list={[
-                    'pl-20 md:pl-0',
-                    isLeft ? 'md:col-start-1 md:pr-8 md:text-right' : 'md:col-start-2 md:pl-8',
-                  ]}
-                >
-                  <div class="card-glass">
-                    <span class="text-xs font-bold uppercase tracking-[0.2em] text-blue-600 dark:text-cyan-300">
-                      Paso {idx + 1}
-                    </span>
-                    <h3 class="mt-3 text-xl font-semibold text-slate-900 dark:text-white">{step.title}</h3>
-                    <p class="mt-2 text-[15px] leading-relaxed text-slate-600 dark:text-slate-300">{step.description}</p>
-                  </div>
+        <ol
+          class:list={[
+            'relative grid gap-6',
+            items.length === 5 ? 'grid-cols-5' : items.length === 4 ? 'grid-cols-4' : 'grid-cols-3',
+          ]}
+        >
+          {
+            items.map((step, idx) => (
+              <li
+                class="relative flex flex-col items-center text-center"
+                data-reveal
+                data-reveal-delay={Math.min((idx + 1) * 100, 500).toString()}
+              >
+                <div class="relative flex h-16 w-16 items-center justify-center rounded-full bg-white ring-2 ring-[#1d0cdf]/15 shadow-card">
+                  <span class="absolute inset-0 rounded-full bg-gradient-brand opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <span class="text-xl font-bold text-[#1d0cdf]">{String(idx + 1).padStart(2, '0')}</span>
                 </div>
+                <span class="mt-4 inline-flex h-9 w-9 items-center justify-center rounded-lg bg-[#eef0ff] text-[#1d0cdf]">
+                  <Icon name={step.icon} class="h-5 w-5" />
+                </span>
+                <h3 class="mt-4 text-lg font-semibold text-slate-900">{step.title}</h3>
+                <p class="mt-2 text-sm leading-relaxed text-slate-600 max-w-[220px]">{step.description}</p>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </div>
 
-                {/* Nodo central con icono */}
-                <div
-                  class="absolute left-0 top-2 flex h-14 w-14 items-center justify-center md:left-1/2 md:-translate-x-1/2"
-                  aria-hidden="true"
-                >
-                  <span class="absolute inset-0 rounded-full bg-gradient-brand opacity-30 blur-md" />
-                  <span class="relative flex h-14 w-14 items-center justify-center rounded-full border border-slate-200 dark:border-white/15 bg-white dark:bg-[#0F172A] text-blue-600 dark:text-white shadow-lg ring-glow">
-                    <Icon name={step.icon} class="h-6 w-6" />
-                  </span>
+    <!-- Tablet / mobile: vertical -->
+    <div class="lg:hidden">
+      <div class="relative">
+        <div
+          class="pointer-events-none absolute left-8 top-0 bottom-0 w-px"
+          style="background-image: linear-gradient(to bottom, rgba(29,12,223,0) 0%, rgba(29,12,223,0.25) 10%, rgba(29,12,223,0.25) 90%, rgba(29,12,223,0) 100%);"
+          aria-hidden="true"
+        ></div>
+
+        <ol class="space-y-6">
+          {
+            items.map((step, idx) => (
+              <li class="relative pl-20" data-reveal data-reveal-delay="100">
+                <div class="absolute left-0 top-0 flex h-16 w-16 items-center justify-center rounded-full bg-white ring-2 ring-[#1d0cdf]/15 shadow-card">
+                  <span class="text-lg font-bold text-[#1d0cdf]">{String(idx + 1).padStart(2, '0')}</span>
+                </div>
+                <div class="card">
+                  <div class="flex items-center gap-3">
+                    <span class="inline-flex h-9 w-9 items-center justify-center rounded-lg bg-[#eef0ff] text-[#1d0cdf]">
+                      <Icon name={step.icon} class="h-5 w-5" />
+                    </span>
+                    <h3 class="text-lg font-semibold text-slate-900">{step.title}</h3>
+                  </div>
+                  <p class="mt-3 text-[15px] leading-relaxed text-slate-600">{step.description}</p>
                 </div>
               </li>
-            );
-          })
-        }
-      </ol>
+            ))
+          }
+        </ol>
+      </div>
     </div>
   </div>
 </section>

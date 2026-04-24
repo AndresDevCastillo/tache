@@ -8,46 +8,46 @@ export interface Props {
   primaryHref?: string;
   whatsappText?: string;
   whatsappHref?: string;
+  microcopy?: string;
 }
 
 const {
-  title = '¿Listo para llevar tu negocio al siguiente nivel digital?',
-  subtitle = 'Agenda una asesoría gratuita de 30 minutos. Sin compromisos, solo claridad sobre qué necesitas y cómo lo logramos.',
-  primaryText = 'Solicitar asesoría gratis',
+  title = '¿Listo para llevar tu empresa al siguiente nivel?',
+  subtitle = 'Lanzamos una solución digital clara, funcional y escalable para que puedas vender más, automatizar procesos y trabajar mejor.',
+  primaryText = 'Agendar asesoría gratis',
   primaryHref = '/contacto',
-  whatsappText = 'WhatsApp',
+  whatsappText = 'Hablar por WhatsApp',
   whatsappHref = 'https://wa.link/3bqb4e',
+  microcopy = 'Respuesta en menos de 24 horas hábiles.',
 } = Astro.props;
 ---
 
-<section class="relative py-16 md:py-20">
-  <div class="mx-auto max-w-6xl px-4 sm:px-6">
+<section class="relative py-16 md:py-24" id="cta">
+  <div class="container-pro">
     <div
-      class="relative overflow-hidden rounded-3xl border border-white/10 px-6 py-12 md:px-14 md:py-16 text-center"
+      class="relative overflow-hidden rounded-[32px] px-6 py-14 md:px-16 md:py-20 text-center"
       data-reveal
     >
-      <!-- Fondo: gradiente azul → cian (sin morado) + grid sutil + halo blanco -->
+      <!-- Fondo sólido brand -->
       <div
         class="absolute inset-0 -z-10"
-        style="background-image: linear-gradient(135deg, #1d0cdf 0%, #2563eb 55%, #22d3ee 130%);"
-      >
-      </div>
-      <div class="absolute inset-0 -z-10 bg-grid opacity-30"></div>
+        style="background-color: #1d0cdf;"
+        aria-hidden="true"
+      ></div>
+      <!-- Grid blanco sutil -->
       <div
-        class="absolute -top-32 -left-20 h-[300px] w-[300px] rounded-full blur-3xl"
-        style="background: radial-gradient(circle, rgb(255 255 255 / 0.3), transparent 70%);"
-      >
-      </div>
+        class="absolute inset-0 -z-10 opacity-20"
+        style="background-image: linear-gradient(rgb(255 255 255 / 0.14) 1px, transparent 1px), linear-gradient(to right, rgb(255 255 255 / 0.14) 1px, transparent 1px); background-size: 48px 48px;"
+        aria-hidden="true"
+      ></div>
 
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white max-w-3xl mx-auto">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-white max-w-3xl mx-auto leading-tight">
         {title}
       </h2>
-      <p class="mt-5 text-lg text-white/85 max-w-2xl mx-auto">{subtitle}</p>
+      <p class="mt-5 text-lg text-white/90 max-w-2xl mx-auto leading-relaxed">{subtitle}</p>
+
       <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
-        <a
-          href={primaryHref}
-          class="btn inline-flex items-center justify-center gap-2 rounded-full bg-white px-7 py-3 font-semibold text-blue-700 transition-all hover:bg-slate-100 hover:-translate-y-0.5"
-        >
+        <a href={primaryHref} class="btn-inverse w-full sm:w-auto">
           {primaryText}
           <Icon name="tabler:arrow-right" class="h-5 w-5" />
         </a>
@@ -55,12 +55,19 @@ const {
           href={whatsappHref}
           target="_blank"
           rel="noopener noreferrer"
-          class="btn-whatsapp"
+          class="btn-whatsapp w-full sm:w-auto"
         >
           <Icon name="tabler:brand-whatsapp" class="h-5 w-5" />
           {whatsappText}
         </a>
       </div>
+
+      {microcopy && (
+        <p class="mt-6 inline-flex items-center gap-2 text-sm text-white/85">
+          <Icon name="tabler:clock-hour-4" class="h-4 w-4" />
+          {microcopy}
+        </p>
+      )}
     </div>
   </div>
 </section>

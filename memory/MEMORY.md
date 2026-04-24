@@ -1,0 +1,1 @@
+- [Sin gradientes — solo #1d0cdf sólido](feedback_no_gradients.md) — diseño brand de Tache Technology usa azul puro, no gradientes.

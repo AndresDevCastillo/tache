@@ -6,93 +6,122 @@ import CtaBanner from '~/components/widgets/CtaBanner.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
 
 const metadata = {
-  title: 'Proceso — Cómo trabajamos en Tache Technology',
+  title: 'Proceso de trabajo — Cómo desarrollamos tu proyecto | Tache Technology',
   description:
-    'Conoce paso a paso cómo desarrollamos tu proyecto, desde la primera conversación hasta el soporte continuo. Un proceso claro, sin sorpresas.',
+    'Conoce paso a paso cómo desarrollamos tu proyecto: descubrimiento, diseño, desarrollo ágil, lanzamiento y soporte continuo. Un proceso claro, sin sorpresas.',
 };
 
 const processSteps = [
   {
-    icon: 'tabler:message-circle',
-    title: 'Conversamos',
+    icon: 'tabler:search',
+    title: 'Descubrimiento',
     description:
-      'Empezamos con una charla sin costo donde entendemos tu negocio, tu día a día y qué problema quieres resolver. Salimos con claridad sobre el camino a seguir.',
-  },
-  {
-    icon: 'tabler:bulb',
-    title: 'Planificamos',
-    description:
-      'Definimos juntos el alcance, las prioridades y los resultados que esperas. Recibes una propuesta clara con tiempos y costos antes de empezar — sin sorpresas.',
+      'Entendemos tu negocio, tu día a día y qué problema quieres resolver. Salimos con claridad sobre el camino a seguir.',
   },
   {
     icon: 'tabler:layout-board',
-    title: 'Diseñamos',
+    title: 'Diseño y plan',
     description:
-      'Creamos el aspecto visual y la experiencia de uso de tu proyecto. Te mostramos prototipos navegables y hacemos los ajustes contigo hasta que esté como lo imaginas.',
+      'Definimos juntos alcance, prioridades, tiempos y tecnologías. Recibes una propuesta clara antes de empezar — sin sorpresas.',
   },
   {
-    icon: 'tabler:hammer',
-    title: 'Construimos',
+    icon: 'tabler:code-dots',
+    title: 'Desarrollo ágil',
     description:
-      'Desarrollamos tu proyecto con avances semanales que puedes ver y probar. Estás al tanto de cada paso, sin tecnicismos, sin esperas largas para ver resultados.',
+      'Construimos la solución con avances claros y validaciones semanales. Estás al tanto de cada paso, sin tecnicismos.',
   },
   {
     icon: 'tabler:rocket',
-    title: 'Lanzamos',
+    title: 'Lanzamiento',
     description:
-      'Ponemos tu proyecto en línea de forma segura y te capacitamos a ti y a tu equipo. Cuando lo lanzamos, ya sabes exactamente cómo usarlo y sacarle provecho.',
+      'Ponemos tu proyecto en línea de forma segura, lo probamos y capacitamos a tu equipo. Dejamos todo funcionando.',
   },
   {
     icon: 'tabler:lifebuoy',
-    title: 'Acompañamos',
+    title: 'Soporte y mejora',
     description:
-      'Una vez en marcha, seguimos contigo. Resolvemos dudas, hacemos mejoras y te ayudamos a evolucionar tu producto a medida que tu negocio crece.',
+      'Seguimos contigo después de la entrega: soporte, mejoras y evolución a medida que tu negocio crece.',
+  },
+];
+
+const faqs = [
+  {
+    question: '¿Cuánto tiempo toma desarrollar mi proyecto?',
+    answer:
+      'Depende del tipo de proyecto. Una página web sencilla puede estar lista en pocas semanas, mientras que un sistema completo a medida puede tomar varios meses. En la fase de planificación te damos un tiempo estimado claro.',
+  },
+  {
+    question: '¿Voy a entender lo que hacen?',
+    answer:
+      'Sí. Hablamos en tu idioma, no en tecnicismos. Cada avance lo presentamos en términos de qué hace, cómo te beneficia y cómo lo vas a usar tú o tu equipo.',
+  },
+  {
+    question: '¿Puedo cambiar cosas durante el desarrollo?',
+    answer:
+      'Por supuesto. Trabajamos por etapas para que puedas ver y ajustar las cosas a medida que avanzamos. Los cambios pequeños están incluidos; cambios grandes los conversamos para que sepas el impacto en tiempo y costo.',
+  },
+  {
+    question: '¿Qué pasa después de entregado el proyecto?',
+    answer:
+      'Te capacitamos para que lo manejes con confianza y seguimos disponibles para soporte, mejoras y nuevas funcionalidades. No desaparecemos al entregar.',
+  },
+];
+
+const schemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name: 'Proceso de desarrollo de software de Tache Technology',
+    description:
+      'Los 5 pasos que seguimos para convertir tu idea en una solución digital funcional y escalable.',
+    step: processSteps.map((s, i) => ({
+      '@type': 'HowToStep',
+      position: i + 1,
+      name: s.title,
+      text: s.description,
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.question,
+      acceptedAnswer: { '@type': 'Answer', text: f.answer },
+    })),
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://tachetech.com/' },
+      { '@type': 'ListItem', position: 2, name: 'Proceso', item: 'https://tachetech.com/proceso' },
+    ],
   },
 ];
 ---
 
-<Layout metadata={metadata}>
+<Layout metadata={metadata} schemas={schemas}>
   <HeroPremium
-    title='Un camino <span class="text-gradient">claro y sin sorpresas</span>'
+    eyebrow="Metodología"
+    title='Un camino <span class="text-[#1d0cdf]">claro y sin sorpresas</span>'
     subtitle="Trabajar con nosotros no debería sentirse como una caja negra. Te explicamos cada paso, te mantenemos informado y te entregamos un producto que entiendes y manejas."
     showCtas={false}
   />
 
   <ProcessTimeline
     items={processSteps}
-    tagline="Nuestro proceso"
-    title="Seis pasos para llevar tu idea a la realidad"
+    eyebrow="Nuestro proceso"
+    title="Cinco pasos para llevar tu idea a la realidad"
     subtitle="Probado en cada proyecto que hemos entregado. Pensado para que tú estés en control en todo momento."
   />
 
   <FAQs
     id="faqs"
+    eyebrow="FAQs del proceso"
     title="Preguntas frecuentes sobre el proceso"
     subtitle="Las dudas más comunes antes de empezar."
-    tagline="FAQs"
-    classes={{ container: 'max-w-4xl' }}
-    items={[
-      {
-        title: '¿Cuánto tiempo toma desarrollar mi proyecto?',
-        description:
-          'Depende del tipo de proyecto. Una página web sencilla puede estar lista en pocas semanas, mientras que un sistema completo a medida puede tomar varios meses. En la fase de planificación te damos un tiempo estimado claro.',
-      },
-      {
-        title: '¿Voy a entender lo que hacen?',
-        description:
-          'Sí. Hablamos en tu idioma, no en tecnicismos. Cada avance lo presentamos en términos de qué hace, cómo te beneficia y cómo lo vas a usar tú o tu equipo.',
-      },
-      {
-        title: '¿Puedo cambiar cosas durante el desarrollo?',
-        description:
-          'Por supuesto. Trabajamos por etapas para que puedas ver y ajustar las cosas a medida que avanzamos. Los cambios pequeños están incluidos; cambios grandes los conversamos para que sepas el impacto en tiempo y costo.',
-      },
-      {
-        title: '¿Qué pasa después de entregado el proyecto?',
-        description:
-          'Te capacitamos para que lo manejes con confianza y seguimos disponibles para soporte, mejoras y nuevas funcionalidades. No desaparecemos al entregar.',
-      },
-    ]}
+    items={faqs}
   />
 
   <CtaBanner
