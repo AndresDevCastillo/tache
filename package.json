@@ -11,6 +11,7 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
+    "postbuild": "node scripts/submit-sitemap.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "format": "prettier -w .",
