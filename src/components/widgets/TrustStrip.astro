@@ -1,0 +1,65 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<!--
+  Franja compacta de confianza.
+  Muestra el reconocimiento real (Programa Transformación Digital MiPYMES 2024)
+  junto a señales de confianza honestas. Sin métricas inventadas.
+-->
+<div class="border-y border-slate-200 bg-[#f7f8fc]">
+  <div class="container-pro py-4 md:py-5">
+    <div class="flex flex-wrap items-center justify-center gap-x-7 gap-y-3 text-sm">
+
+      <!-- Premio real y verificable -->
+      <a
+        href="https://www.chicanoticias.com/2024/11/13/trasnformacion-comercio-digital/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group inline-flex items-center gap-3 rounded-xl px-3 py-1.5 transition-colors hover:bg-amber-50"
+        aria-label="Ver noticia: Ganadores del Programa Transformación Digital para MiPYMES"
+        data-track-event="click_award_badge"
+      >
+        <span
+          class="inline-flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-lg bg-amber-100 ring-1 ring-amber-200 transition-colors group-hover:bg-amber-200"
+          aria-hidden="true"
+        >
+          <Icon name="tabler:award" class="h-4 w-4 text-amber-700" />
+        </span>
+        <span class="text-left">
+          <span class="block text-xs font-bold leading-tight text-slate-800">
+            Programa Transformación Digital MiPYMES
+          </span>
+          <span class="block text-[11px] leading-tight text-slate-500">
+            Cámara de Comercio de Montería · Nov 2024
+          </span>
+        </span>
+        <Icon
+          name="tabler:external-link"
+          class="h-3.5 w-3.5 flex-shrink-0 text-slate-400 opacity-0 transition-opacity group-hover:opacity-100"
+          aria-hidden="true"
+        />
+      </a>
+
+      <!-- Separador desktop -->
+      <div class="hidden h-6 w-px bg-slate-300 md:block" aria-hidden="true"></div>
+
+      <!-- Señales de confianza honestas -->
+      <div class="inline-flex items-center gap-1.5 text-slate-600">
+        <Icon name="tabler:message-check" class="h-4 w-4 flex-shrink-0 text-[#1d0cdf]" aria-hidden="true" />
+        Asesoría inicial sin costo
+      </div>
+
+      <div class="inline-flex items-center gap-1.5 text-slate-600">
+        <Icon name="tabler:clock-hour-4" class="h-4 w-4 flex-shrink-0 text-[#1d0cdf]" aria-hidden="true" />
+        Respuesta en menos de 24 h
+      </div>
+
+      <div class="inline-flex items-center gap-1.5 text-slate-600">
+        <Icon name="tabler:map-pin" class="h-4 w-4 flex-shrink-0 text-[#1d0cdf]" aria-hidden="true" />
+        Montería + toda Colombia
+      </div>
+
+    </div>
+  </div>
+</div>

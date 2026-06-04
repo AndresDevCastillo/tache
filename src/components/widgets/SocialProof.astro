@@ -1,0 +1,167 @@
+---
+import { Icon } from 'astro-icon/components';
+---
+
+<!--
+  Sección de prueba social basada en hechos verificables.
+  NO usa testimonios ni métricas inventadas.
+  Muestra el reconocimiento oficial + diferenciadores honestos de TacheTech.
+-->
+<section id="reconocimiento" class="section bg-section" aria-labelledby="social-proof-heading">
+  <div class="container-pro">
+
+    <!-- Encabezado -->
+    <div class="mx-auto max-w-2xl text-center mb-12 md:mb-16">
+      <span class="badge-eyebrow" data-reveal>Por qué confiar en nosotros</span>
+      <h2 id="social-proof-heading" class="h2 mt-5 text-slate-900" data-reveal data-reveal-delay="100">
+        Tecnología con respaldo <span class="text-[#1d0cdf]">real</span>
+      </h2>
+      <p class="lead mt-5" data-reveal data-reveal-delay="200">
+        No pedimos que confíes solo en nuestra palabra. Tenemos reconocimiento oficial, procesos claros y un compromiso demostrable con cada proyecto.
+      </p>
+    </div>
+
+    <div class="grid gap-6 md:gap-8 lg:grid-cols-12 lg:items-start">
+
+      <!-- Reconocimiento oficial — prueba social más fuerte -->
+      <article
+        class="card lg:col-span-5 border-amber-200/60 bg-amber-50/40 relative overflow-hidden"
+        data-reveal
+        aria-labelledby="award-title"
+      >
+        <!-- Halo decorativo -->
+        <div
+          class="pointer-events-none absolute -top-10 -right-10 h-40 w-40 rounded-full bg-amber-200/30 blur-2xl"
+          aria-hidden="true"
+        ></div>
+
+        <div class="relative">
+          <div class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-amber-100 ring-1 ring-amber-300/60">
+            <Icon name="tabler:award" class="h-6 w-6 text-amber-700" />
+          </div>
+
+          <p class="mt-5 text-xs font-bold uppercase tracking-[0.14em] text-amber-700">
+            Reconocimiento oficial · Nov 2024
+          </p>
+          <h3 id="award-title" class="mt-2 text-xl font-bold text-slate-900 leading-snug">
+            Ganadores del Programa Transformación Digital para MiPYMES
+          </h3>
+          <p class="mt-1 text-sm font-medium text-slate-600">
+            Cámara de Comercio de Montería
+          </p>
+
+          <!-- Foto del evento -->
+          <div class="mt-5 overflow-hidden rounded-xl border border-amber-200/60 bg-white shadow-soft">
+            <img
+              src="/images/news/premio-transformacion-3.jpeg"
+              alt="Equipo de Tache Technology recibiendo reconocimiento en la Cámara de Comercio de Montería, noviembre 2024."
+              loading="lazy"
+              decoding="async"
+              width="640"
+              height="480"
+              class="block h-auto w-full object-cover"
+            />
+          </div>
+          <p class="mt-2 text-[11px] text-slate-400">
+            Foto: Chica Noticias — cobertura del evento (13 nov 2024).
+          </p>
+
+          <p class="mt-4 text-[15px] leading-relaxed text-slate-600">
+            Fuimos seleccionados entre los mejores desarrolladores del programa impulsado por la Cámara de Comercio de Montería para fortalecer capacidades digitales empresariales en la región.
+          </p>
+
+          <a
+            href="https://www.chicanoticias.com/2024/11/13/trasnformacion-comercio-digital/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-secondary mt-6 inline-flex text-sm"
+            data-track-event="click_award_news"
+          >
+            Ver noticia completa
+            <Icon name="tabler:external-link" class="h-4 w-4" />
+          </a>
+        </div>
+      </article>
+
+      <!-- Diferenciadores honestos -->
+      <div class="lg:col-span-7 grid gap-4 sm:grid-cols-2 content-start" data-reveal data-reveal-delay="100">
+
+        {[
+          {
+            icon: 'tabler:adjustments-horizontal',
+            title: 'Soluciones a medida, sin plantillas',
+            description:
+              'Cada proyecto parte de cero según tu negocio. No adaptamos tu empresa a una plantilla: construimos la solución que necesitas.',
+          },
+          {
+            icon: 'tabler:shield-check',
+            title: 'Asesoría inicial sin compromiso',
+            description:
+              'La primera conversación es gratuita. Te orientamos con claridad sobre qué necesitas y cuánto puede costar, antes de firmar nada.',
+          },
+          {
+            icon: 'tabler:refresh',
+            title: 'No desaparecemos después de entregar',
+            description:
+              'Ofrecemos soporte, mantenimiento y mejoras continuas. Tu producto evoluciona con tu negocio.',
+          },
+          {
+            icon: 'tabler:world',
+            title: 'Trabajamos con toda Colombia',
+            description:
+              'Tenemos presencia en Montería y acompañamos proyectos de forma remota en todo el país sin pérdida de calidad.',
+          },
+          {
+            icon: 'tabler:code',
+            title: 'Tecnología moderna y escalable',
+            description:
+              'Usamos stacks actuales para que lo que construimos no quede obsoleto en dos años.',
+          },
+          {
+            icon: 'tabler:clock-hour-4',
+            title: 'Respuesta en menos de 24 horas',
+            description:
+              'Respondemos consultas, cotizaciones y dudas en menos de 24 horas hábiles por email o WhatsApp.',
+          },
+        ].map((item, idx) => (
+          <article
+            class="card"
+            data-reveal
+            data-reveal-delay={Math.min(((idx % 2) + 1) * 80, 200).toString()}
+          >
+            <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#eef0ff] text-[#1d0cdf] ring-1 ring-[#1d0cdf]/10">
+              <Icon name={item.icon} class="h-5 w-5" />
+            </span>
+            <h3 class="mt-4 text-base font-semibold text-slate-900">{item.title}</h3>
+            <p class="mt-2 text-[14px] leading-relaxed text-slate-600">{item.description}</p>
+          </article>
+        ))}
+
+      </div>
+    </div>
+
+    <!-- CTA de experiencia de cliente — honesto, no inventa testimonios -->
+    <div
+      class="mt-12 md:mt-16 rounded-2xl border border-slate-200 bg-white px-6 py-8 text-center shadow-soft"
+      data-reveal
+    >
+      <p class="text-base font-semibold text-slate-900">
+        ¿Ya trabajaste con nosotros?
+      </p>
+      <p class="mt-2 text-sm text-slate-600">
+        Tu experiencia nos ayuda a mejorar y a que otros negocios puedan conocernos.
+      </p>
+      <a
+        href="https://wa.link/3bqb4e"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn-secondary mt-5 inline-flex"
+        data-track-event="click_whatsapp_experience"
+      >
+        <Icon name="tabler:brand-whatsapp" class="h-5 w-5 text-emerald-600" />
+        Cuéntanos tu experiencia
+      </a>
+    </div>
+
+  </div>
+</section>

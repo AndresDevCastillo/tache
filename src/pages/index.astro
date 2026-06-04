@@ -1,10 +1,12 @@
 ---
 import Layout from '~/layouts/PageLayout.astro';
 import HeroLanding from '~/components/widgets/HeroLanding.astro';
+import TrustStrip from '~/components/widgets/TrustStrip.astro';
 import Challenges from '~/components/widgets/Challenges.astro';
 import ServicesGrid from '~/components/widgets/ServicesGrid.astro';
 import ProcessTimeline from '~/components/widgets/ProcessTimeline.astro';
 import ProjectsGrid from '~/components/widgets/ProjectsGrid.astro';
+import SocialProof from '~/components/widgets/SocialProof.astro';
 import SeoLocal from '~/components/widgets/SeoLocal.astro';
 import TechStack from '~/components/widgets/TechStack.astro';
 import CtaBanner from '~/components/widgets/CtaBanner.astro';
@@ -208,10 +210,13 @@ const schemas = [
   <!-- 1. Hero principal -->
   <HeroLanding />
 
-  <!-- 2. Retos / problemas del cliente -->
+  <!-- 2. Franja de confianza: premio real + señales honestas -->
+  <TrustStrip />
+
+  <!-- 3. Retos / problemas del cliente -->
   <Challenges />
 
-  <!-- 3. Servicios -->
+  <!-- 4. Servicios -->
   <ServicesGrid
     id="servicios"
     eyebrow="Servicios"
@@ -223,7 +228,7 @@ const schemas = [
     allLink={{ text: 'Ver todos los servicios', href: '/servicios' }}
   />
 
-  <!-- 4. Metodología -->
+  <!-- 5. Metodología -->
   <ProcessTimeline
     items={methodology}
     eyebrow="Metodología"
@@ -242,7 +247,10 @@ const schemas = [
     showCta={false}
   />
 
-  <!-- 6. SEO local Montería -->
+  <!-- 6. Prueba social: reconocimiento + diferenciadores honestos -->
+  <SocialProof />
+
+  <!-- 7. SEO local Montería -->
   <SeoLocal />
 
   <!-- 7. Stack tecnológico -->
