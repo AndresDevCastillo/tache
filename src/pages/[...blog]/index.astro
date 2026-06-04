@@ -26,6 +26,28 @@ const { post } = Astro.props as Props;
 const url = getCanonical(getPermalink(post.permalink, 'post'));
 const image = (await findImage(post.image)) as ImageMetadata | string | undefined;
 
+// JSON-LD Article schema para cada post del blog
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BlogPosting',
+  headline: post.title,
+  description: post.excerpt,
+  url: String(url),
+  datePublished: post.publishDate ? post.publishDate.toISOString() : undefined,
+  dateModified: post.updateDate ? post.updateDate.toISOString() : post.publishDate?.toISOString(),
+  author: {
+    '@type': 'Organization',
+    '@id': 'https://tachetech.com/#organization',
+    name: post.author ?? 'Tache Technology',
+  },
+  publisher: { '@id': 'https://tachetech.com/#organization' },
+  isPartOf: { '@id': 'https://tachetech.com/#website' },
+  inLanguage: 'es-CO',
+  ...(image ? { image: { '@type': 'ImageObject', url: String(image) } } : {}),
+  ...(post.category ? { articleSection: post.category } : {}),
+  ...(post.tags?.length ? { keywords: post.tags.join(', ') } : {}),
+};
+
 const metadata = merge(
   {
     title: post.title,
@@ -43,7 +65,7 @@ const metadata = merge(
 ) as MetaData;
 ---
 
-<Layout metadata={metadata}>
+<Layout metadata={metadata} schemas={[articleSchema]}>
   <SinglePost post={{ ...post, image: image }} url={url} />
   <ToBlogLink />
   <RelatedPosts post={post} />

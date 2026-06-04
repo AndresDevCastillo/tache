@@ -128,6 +128,7 @@ const currentPath = `/${trimSlash(new URL(Astro.url).pathname)}`;
                 <a
                   href={btn.href}
                   class={`${variantClass} !py-2.5 !px-5 text-sm whitespace-nowrap`}
+                  data-track-event="click_cta_header"
                   {...(btn.target ? { target: btn.target, rel: 'noopener noreferrer' } : {})}
                 >
                   {btn.icon && <Icon name={btn.icon} class="w-4 h-4" />}

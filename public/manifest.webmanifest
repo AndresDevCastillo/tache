@@ -1,0 +1,25 @@
+{
+  "name": "Tache Technology",
+  "short_name": "TacheTech",
+  "description": "Software a medida, páginas web y automatización para empresas en Colombia.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1d0cdf",
+  "lang": "es-CO",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/logotache.png",
+      "sizes": "any",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/logotache.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

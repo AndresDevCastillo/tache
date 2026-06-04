@@ -1,10 +1,16 @@
 ---
-// Favicon e iconos para el navegador y dispositivos.
-// La imagen original vive en public/logotache.png; el browser la escala.
-// Si después quieres optimizar (ICO, PNGs por tamaño, manifest), lo hacemos aparte.
+// Favicons de Tache Technology.
+// El logo fuente está en public/logotache.png.
+// Para producción óptima: generar versiones de 32x32, 180x180, 192x192 y 512x512 desde ese PNG.
 ---
 
+<!-- Favicon PNG genérico (fallback para todos los navegadores) -->
 <link rel="icon" type="image/png" href="/logotache.png" />
-<link rel="shortcut icon" href="/logotache.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="/logotache.png" />
-<link rel="mask-icon" href="/logotache.png" color="#1d0cdf" />
+
+<!-- Apple Touch Icon (iOS / macOS Safari) -->
+<link rel="apple-touch-icon" href="/logotache.png" />
+
+<!-- Safari Pinned Tab: usa el color de marca -->
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="default" />
+<meta name="apple-mobile-web-app-title" content="TacheTech" />
