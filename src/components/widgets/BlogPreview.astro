@@ -1,0 +1,146 @@
+---
+import { Icon } from 'astro-icon/components';
+import { findLatestPosts } from '~/utils/blog';
+import { getPermalink } from '~/utils/permalinks';
+
+export interface Props {
+  count?: number;
+  eyebrow?: string;
+  title?: string;
+  subtitle?: string;
+}
+
+const {
+  count = 3,
+  eyebrow = 'Blog',
+  title = 'Recursos para hacer crecer tu empresa',
+  subtitle = 'Artículos prácticos sobre tecnología, automatización y desarrollo digital para empresas en Colombia.',
+} = Astro.props;
+
+const posts = await findLatestPosts({ count });
+
+const categoryColors: Record<string, string> = {
+  'Páginas web': 'bg-blue-50 text-blue-700 ring-blue-200/60',
+  'Automatización': 'bg-emerald-50 text-emerald-700 ring-emerald-200/60',
+  'Software': 'bg-[#eef0ff] text-[#1d0cdf] ring-[#1d0cdf]/15',
+};
+
+const defaultChip = 'bg-slate-100 text-slate-600 ring-slate-200/60';
+---
+
+{
+  posts.length > 0 && (
+    <section id="blog" class="section bg-section" aria-labelledby="blog-preview-heading">
+      <div class="container-pro">
+
+        <!-- Encabezado -->
+        <div class="mb-12 md:mb-16 flex flex-col md:flex-row md:items-end md:justify-between gap-5">
+          <div class="max-w-2xl">
+            <span class="badge-eyebrow" data-reveal>{eyebrow}</span>
+            <h2
+              id="blog-preview-heading"
+              class="h2 mt-5 text-slate-900"
+              data-reveal
+              data-reveal-delay="100"
+            >
+              {title}
+            </h2>
+            <p class="lead mt-5" data-reveal data-reveal-delay="200">
+              {subtitle}
+            </p>
+          </div>
+          <a
+            href="/blog"
+            class="btn-secondary flex-shrink-0 self-start md:self-auto"
+            data-reveal
+            data-reveal-delay="100"
+          >
+            Ver todos los artículos
+            <Icon name="tabler:arrow-right" class="h-4 w-4" />
+          </a>
+        </div>
+
+        <!-- Grid de artículos -->
+        <div class="grid gap-6 md:gap-7 md:grid-cols-2 lg:grid-cols-3">
+          {
+            posts.map((post, idx) => {
+              const chipClass = categoryColors[post.category ?? ''] ?? defaultChip;
+              const href = getPermalink(post.permalink, 'post');
+              return (
+                <article
+                  class="card group flex flex-col h-full p-0 overflow-hidden"
+                  data-reveal
+                  data-reveal-delay={Math.min((idx + 1) * 100, 300).toString()}
+                  aria-label={post.title}
+                >
+                  {/* Header decorativo con grid pattern */}
+                  <div class="relative h-28 overflow-hidden border-b border-slate-100 bg-[#f7f8fc]">
+                    <div class="absolute inset-0 bg-grid opacity-40" aria-hidden="true" />
+                    <div class="relative flex h-full items-center px-6">
+                      <span
+                        class:list={[
+                          'inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold ring-1',
+                          chipClass,
+                        ]}
+                      >
+                        {post.category ?? 'Blog'}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Contenido */}
+                  <div class="flex flex-col flex-grow p-6">
+                    {/* Fecha */}
+                    {post.publishDate && (
+                      <time
+                        datetime={post.publishDate.toISOString()}
+                        class="text-xs font-medium text-slate-400"
+                      >
+                        {post.publishDate.toLocaleDateString('es-CO', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric',
+                        })}
+                      </time>
+                    )}
+
+                    {/* Título */}
+                    <h3 class="mt-3 text-lg font-semibold leading-snug text-slate-900 group-hover:text-[#1d0cdf] transition-colors">
+                      <a href={href} class="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1d0cdf] focus-visible:rounded">
+                        {post.title}
+                      </a>
+                    </h3>
+
+                    {/* Excerpt */}
+                    {post.excerpt && (
+                      <p class="mt-3 text-[14px] leading-relaxed text-slate-600 line-clamp-3">
+                        {post.excerpt}
+                      </p>
+                    )}
+
+                    {/* CTA */}
+                    <div class="mt-auto pt-5">
+                      <a
+                        href={href}
+                        class="inline-flex items-center gap-1.5 text-sm font-semibold text-[#1d0cdf] hover:text-[#1709b8] transition-colors"
+                        tabindex="-1"
+                        aria-hidden="true"
+                      >
+                        Leer artículo
+                        <Icon
+                          name="tabler:arrow-right"
+                          class="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
+                        />
+                      </a>
+                    </div>
+                  </div>
+                </article>
+              );
+            })
+          }
+        </div>
+
+      </div>
+    </section>
+  )
+}

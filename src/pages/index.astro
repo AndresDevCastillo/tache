@@ -11,6 +11,7 @@ import SeoLocal from '~/components/widgets/SeoLocal.astro';
 import TechStack from '~/components/widgets/TechStack.astro';
 import CtaBanner from '~/components/widgets/CtaBanner.astro';
 import FAQs from '~/components/widgets/FAQs.astro';
+import BlogPreview from '~/components/widgets/BlogPreview.astro';
 import ContactFormPro from '~/components/widgets/ContactFormPro.astro';
 
 const metadata = {
@@ -259,7 +260,10 @@ const schemas = [
   <!-- 8. CTA principal -->
   <CtaBanner />
 
-  <!-- 9. Preguntas frecuentes -->
+  <!-- 9. Artículos del blog -->
+  <BlogPreview />
+
+  <!-- 10. Preguntas frecuentes -->
   <FAQs
     id="faqs"
     eyebrow="Preguntas frecuentes"
@@ -267,6 +271,6 @@ const schemas = [
     items={faqs}
   />
 
-  <!-- 10. Contacto -->
+  <!-- 11. Contacto -->
   <ContactFormPro />
 </Layout>
