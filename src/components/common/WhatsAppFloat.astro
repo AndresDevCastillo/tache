@@ -1,0 +1,105 @@
+---
+import { Icon } from 'astro-icon/components';
+import { WHATSAPP_URL } from '~/navigation';
+---
+
+<a
+  href={WHATSAPP_URL}
+  target="_blank"
+  rel="noopener noreferrer"
+  class="whatsapp-float"
+  aria-label="Escribir a Tache Technology por WhatsApp"
+  data-track-event="click_whatsapp_float"
+>
+  <Icon name="tabler:brand-whatsapp" class="h-7 w-7" aria-hidden="true" />
+  <span class="whatsapp-float__tooltip" aria-hidden="true">¿Hablamos?</span>
+</a>
+
+<style>
+  .whatsapp-float {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 50;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 3.25rem;
+    width: 3.25rem;
+    border-radius: 9999px;
+    background-color: #16a34a;
+    color: #ffffff;
+    box-shadow: 0 8px 24px -6px rgb(22 163 74 / 0.55), 0 2px 6px rgb(0 0 0 / 0.12);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    outline-offset: 3px;
+  }
+
+  .whatsapp-float:hover {
+    background-color: #15803d;
+    transform: translateY(-3px) scale(1.06);
+    box-shadow: 0 14px 32px -6px rgb(22 163 74 / 0.65), 0 4px 10px rgb(0 0 0 / 0.14);
+  }
+
+  .whatsapp-float:focus-visible {
+    outline: 2px solid #16a34a;
+  }
+
+  .whatsapp-float:active {
+    transform: translateY(0) scale(0.97);
+  }
+
+  /* Tooltip que aparece al hacer hover */
+  .whatsapp-float__tooltip {
+    position: absolute;
+    right: calc(100% + 0.625rem);
+    white-space: nowrap;
+    border-radius: 0.5rem;
+    background-color: #111827;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: #ffffff;
+    pointer-events: none;
+    opacity: 0;
+    transform: translateX(4px);
+    transition: opacity 0.18s ease, transform 0.18s ease;
+  }
+
+  /* Flecha del tooltip */
+  .whatsapp-float__tooltip::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 100%;
+    transform: translateY(-50%);
+    border: 5px solid transparent;
+    border-left-color: #111827;
+  }
+
+  .whatsapp-float:hover .whatsapp-float__tooltip,
+  .whatsapp-float:focus-visible .whatsapp-float__tooltip {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  /* En móvil, ocultar el tooltip para que no tape contenido */
+  @media (max-width: 639px) {
+    .whatsapp-float {
+      bottom: 1.25rem;
+      right: 1.25rem;
+      height: 3rem;
+      width: 3rem;
+    }
+    .whatsapp-float__tooltip {
+      display: none;
+    }
+  }
+
+  /* Respetar preferencia de movimiento reducido */
+  @media (prefers-reduced-motion: reduce) {
+    .whatsapp-float,
+    .whatsapp-float__tooltip {
+      transition: none;
+    }
+  }
+</style>
