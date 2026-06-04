@@ -48,6 +48,23 @@ const { language, textDirection } = I18N;
     <BasicScripts />
 
     <script>
+      import { trackEvent } from '~/utils/tracking';
+
+      const initTracking = () => {
+        document.querySelectorAll<HTMLElement>('[data-track-event]').forEach((el) => {
+          if (el.dataset.trackBound === 'true') return;
+          el.dataset.trackBound = 'true';
+          el.addEventListener('click', () => {
+            const name = el.dataset.trackEvent ?? '';
+            if (name) trackEvent(name);
+          });
+        });
+      };
+      initTracking();
+      document.addEventListener('astro:page-load', initTracking);
+    </script>
+
+    <script>
       const initReveal = () => {
         const els = document.querySelectorAll<HTMLElement>('[data-reveal]:not(.is-visible)');
         if (!els.length || !('IntersectionObserver' in window)) {

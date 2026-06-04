@@ -1,6 +1,5 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { SITE } from 'astrowind:config';
 import Logo from '~/components/Logo.astro';
 import { getHomePermalink } from '~/utils/permalinks';
 
@@ -53,8 +52,23 @@ const {
 ---
 
 <footer class="relative border-t border-slate-200 bg-white">
-  <div class="container-pro py-14 md:py-16">
-    <div class="grid gap-10 md:gap-12 lg:grid-cols-12">
+  <!-- CTA WhatsApp visible solo en mobile, antes de la columna de contacto -->
+  {contact?.whatsapp && (
+    <div class="block md:hidden border-b border-slate-200 bg-[#eef0ff] px-4 py-4">
+      <a
+        href={contact.whatsapp}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#1d0cdf] px-5 py-3 text-sm font-semibold text-white transition-all hover:bg-[#1709b8]"
+      >
+        <Icon name="tabler:brand-whatsapp" class="h-5 w-5" />
+        Escribir por WhatsApp
+      </a>
+    </div>
+  )}
+
+  <div class="container-pro py-10 md:py-14 lg:py-16">
+    <div class="grid gap-8 md:gap-10 lg:gap-12 lg:grid-cols-12">
       <!-- Marca + descripción + social -->
       <div class="lg:col-span-4">
         <a class="inline-flex items-center" href={getHomePermalink()} aria-label="Tache Technology — Inicio">

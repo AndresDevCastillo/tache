@@ -99,37 +99,40 @@ const methodology = [
   },
 ];
 
-// 3 casos de éxito
+// 3 ejemplos de soluciones que construimos
 const successCases = [
   {
     category: 'Logística',
-    title: 'Optimización de entregas',
-    problem: 'La empresa tenía procesos manuales y poco seguimiento de entregas.',
-    solution: 'Creamos una plataforma web para organizar rutas, estados y control operativo.',
-    result: 'Mayor control interno, mejor seguimiento y reducción de tareas manuales.',
+    title: 'Control operativo de entregas',
+    problem: 'Empresas con procesos manuales y poco seguimiento generan retrasos y errores costosos.',
+    solution: 'Construimos plataformas para organizar rutas, gestionar estados y centralizar el control.',
+    result: 'Mayor visibilidad del proceso, menos tareas manuales y seguimiento en tiempo real.',
     icon: 'tabler:truck-delivery',
     accent: 'blue' as const,
     href: '/proyectos',
+    ctaText: 'Ver más soluciones',
   },
   {
     category: 'Inventario',
-    title: 'Digitalización de inventario',
-    problem: 'El inventario se manejaba con hojas de cálculo y registros manuales.',
-    solution: 'Desarrollamos un sistema web para registrar productos, movimientos y reportes.',
-    result: 'Información más organizada, mejor trazabilidad y menos errores operativos.',
+    title: 'Sistema de inventario digital',
+    problem: 'Negocios que usan hojas de cálculo para su stock pierden trazabilidad y cometen errores.',
+    solution: 'Desarrollamos sistemas para registrar productos, movimientos y generar reportes automáticos.',
+    result: 'Información centralizada, mejor control de stock y menos errores operativos.',
     icon: 'tabler:box-seam',
     accent: 'indigo' as const,
     href: '/proyectos',
+    ctaText: 'Ver más soluciones',
   },
   {
-    category: 'Salud',
-    title: 'Telemedicina y citas',
-    problem: 'La gestión de citas y pacientes se realizaba de forma manual.',
-    solution: 'Creamos una plataforma para agendamiento, pacientes y consultas.',
-    result: 'Mejor atención, mayor organización y disponibilidad para los usuarios.',
-    icon: 'tabler:stethoscope',
+    category: 'Automatización',
+    title: 'Bot de atención 24/7',
+    problem: 'Equipos pequeños no alcanzan a responder todas las consultas fuera de horario.',
+    solution: 'Creamos bots para web y WhatsApp que responden, filtran y derivan consultas automáticamente.',
+    result: 'Atención disponible las 24 horas y equipo enfocado en lo que realmente importa.',
+    icon: 'tabler:message-chatbot',
     accent: 'cyan' as const,
     href: '/proyectos',
+    ctaText: 'Ver más soluciones',
   },
 ];
 
@@ -228,12 +231,12 @@ const schemas = [
     subtitle="Un proceso transparente para convertir tu idea en una solución digital confiable."
   />
 
-  <!-- 5. Casos de éxito -->
+  <!-- 5. Tipos de soluciones -->
   <ProjectsGrid
     id="casos"
-    eyebrow="Casos de Éxito"
-    title="Casos de Éxito"
-    subtitle="Creamos soluciones digitales pensadas para empresas reales."
+    eyebrow="Soluciones que construimos"
+    title="Ejemplos de lo que podemos hacer"
+    subtitle="Estos son algunos tipos de proyectos que desarrollamos. ¿Tu negocio enfrenta un reto parecido?"
     items={successCases}
     variant="cases"
     showCta={false}

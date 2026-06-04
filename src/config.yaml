@@ -66,7 +66,11 @@ apps:
 analytics:
   vendors:
     googleAnalytics:
-      id: null # or "G-XXXXXXXXXX"
+      # Para activar Google Analytics, reemplaza null por tu ID de medición GA4.
+      # Ejemplo: id: "G-XXXXXXXXXX"
+      # El ID se obtiene en: Google Analytics → Admin → Flujos de datos → ID de medición.
+      # Una vez configurado, los eventos se disparan desde src/utils/tracking.ts (trackEvent).
+      id: null
 
 ui:
   theme: 'light:only'

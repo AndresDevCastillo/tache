@@ -1,6 +1,5 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { WHATSAPP_URL } from '~/navigation';
 ---
 
 <section class="relative isolate overflow-hidden" id="inicio" aria-labelledby="hero-heading">
@@ -13,8 +12,8 @@ import { WHATSAPP_URL } from '~/navigation';
     aria-hidden="true"
   ></div>
 
-  <div class="container-pro pt-28 md:pt-32 lg:pt-36 pb-16 md:pb-20 lg:pb-28">
-    <div class="grid items-center gap-12 lg:gap-16 lg:grid-cols-12">
+  <div class="container-pro pt-20 sm:pt-24 md:pt-28 lg:pt-32 pb-10 md:pb-16 lg:pb-24">
+    <div class="grid items-center gap-8 md:gap-10 lg:gap-16 lg:grid-cols-12">
       <!-- Columna izquierda: copy -->
       <div class="lg:col-span-6">
         <span class="badge-eyebrow" data-reveal>
@@ -49,11 +48,11 @@ import { WHATSAPP_URL } from '~/navigation';
           data-reveal
           data-reveal-delay="300"
         >
-          <a href="/contacto" class="btn-primary w-full sm:w-auto">
+          <a href="/contacto" class="btn-primary w-full sm:w-auto" data-track-event="click_cta_hero">
             Agendar asesoría gratis
             <Icon name="tabler:arrow-right" class="h-5 w-5" />
           </a>
-          <a href="#servicios" class="btn-secondary w-full sm:w-auto">
+          <a href="#servicios" class="btn-secondary w-full sm:w-auto" data-track-event="click_cta_hero_secondary">
             Ver servicios
           </a>
         </div>
@@ -80,7 +79,7 @@ import { WHATSAPP_URL } from '~/navigation';
 
       <!-- Columna derecha: Mockup dashboard -->
       <div class="lg:col-span-6 relative" data-reveal data-reveal-delay="200">
-        <div class="relative mx-auto max-w-[640px]">
+        <div class="relative mx-auto max-w-[520px] lg:max-w-[640px]">
           <!-- Halo detrás -->
           <div
             class="absolute -inset-6 -z-10 rounded-[36px] blur-3xl opacity-60"
@@ -135,8 +134,8 @@ import { WHATSAPP_URL } from '~/navigation';
 
               <!-- Main -->
               <div class="col-span-12 md:col-span-9 space-y-4">
-                <!-- KPIs -->
-                <div class="grid grid-cols-3 gap-3">
+                <!-- KPIs — ocultos en móvil pequeño para reducir altura del mockup -->
+                <div class="hidden sm:grid grid-cols-3 gap-3">
                   <div class="rounded-xl border border-slate-100 bg-slate-50/80 p-3">
                     <p class="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Ingresos</p>
                     <p class="mt-1 text-lg font-bold text-slate-900">$48.9K</p>
@@ -184,8 +183,8 @@ import { WHATSAPP_URL } from '~/navigation';
                   </div>
                 </div>
 
-                <!-- Rows -->
-                <div class="space-y-2">
+                <!-- Rows — ocultos en móvil pequeño -->
+                <div class="hidden sm:block space-y-2">
                   <div class="flex items-center justify-between rounded-lg border border-slate-100 bg-slate-50/60 px-3 py-2.5">
                     <div class="flex items-center gap-2.5">
                       <span class="inline-flex h-7 w-7 items-center justify-center rounded-lg bg-[#eef0ff] text-[#1d0cdf]">

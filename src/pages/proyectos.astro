@@ -5,65 +5,77 @@ import ProjectsGrid from '~/components/widgets/ProjectsGrid.astro';
 import CtaBanner from '~/components/widgets/CtaBanner.astro';
 
 const metadata = {
-  title: 'Proyectos y casos de éxito | Tache Technology Montería',
+  title: 'Soluciones que construimos | Tache Technology Montería',
   description:
-    'Casos reales de desarrollo de software, páginas web y automatización para empresas en Montería y Colombia. Conoce los resultados que hemos entregado.',
+    'Tipos de soluciones digitales que desarrollamos: software a medida, páginas web, automatización, bots con IA e integraciones para empresas en Montería y Colombia.',
 };
 
 const projects = [
   {
     category: 'Logística',
-    title: 'Optimización de entregas',
-    problem: 'Procesos manuales y poco seguimiento de entregas generaban retrasos y errores.',
-    solution: 'Plataforma web para organizar rutas, gestionar estados y llevar control operativo.',
-    result: 'Mayor control interno, mejor seguimiento en tiempo real y menos tareas manuales.',
+    title: 'Control operativo de entregas',
+    problem: 'Empresas con procesos manuales y poco seguimiento de entregas generan retrasos y errores.',
+    solution: 'Desarrollamos plataformas web para organizar rutas, gestionar estados y centralizar el control operativo.',
+    result: 'Mayor visibilidad del proceso, menos tareas manuales y seguimiento en tiempo real.',
     icon: 'tabler:truck-delivery',
     accent: 'blue' as const,
+    href: '/contacto',
+    ctaText: 'Quiero algo así',
   },
   {
     category: 'Inventario',
-    title: 'Digitalización de inventario',
-    problem: 'El inventario se manejaba con hojas de cálculo y registros manuales.',
-    solution: 'Sistema web para registrar productos, movimientos y reportes automáticos.',
-    result: 'Información organizada, mejor trazabilidad y menos errores operativos.',
+    title: 'Sistema de inventario digital',
+    problem: 'Negocios que manejan stock con hojas de cálculo pierden trazabilidad y cometen errores.',
+    solution: 'Creamos sistemas web para registrar productos, movimientos, alertas y reportes automáticos.',
+    result: 'Información centralizada, mejor control de stock y decisiones basadas en datos.',
     icon: 'tabler:box-seam',
     accent: 'indigo' as const,
+    href: '/contacto',
+    ctaText: 'Quiero algo así',
   },
   {
     category: 'Salud',
-    title: 'Telemedicina y citas',
-    problem: 'La gestión de citas y pacientes se hacía de forma manual.',
-    solution: 'Plataforma para agendamiento, pacientes y consultas en línea.',
-    result: 'Mejor atención, organización y disponibilidad 24/7 para los usuarios.',
+    title: 'Plataforma de citas y pacientes',
+    problem: 'Centros de salud que gestionan citas y pacientes de forma manual pierden tiempo y calidad de atención.',
+    solution: 'Desarrollamos plataformas de agendamiento, gestión de pacientes y consultas en línea.',
+    result: 'Mejor organización, atención más ágil y disponibilidad para los usuarios.',
     icon: 'tabler:stethoscope',
     accent: 'cyan' as const,
+    href: '/contacto',
+    ctaText: 'Quiero algo así',
   },
   {
     category: 'Comercio',
-    title: 'Tienda online para distribuidora',
-    problem: 'Solo vendían por WhatsApp: pedidos dispersos y proceso lento.',
-    solution: 'Tienda en línea con catálogo, carrito y pagos integrados.',
-    result: 'Triplicaron los pedidos en los primeros 3 meses de operación.',
+    title: 'Tienda online con catálogo y pagos',
+    problem: 'Comercios que venden solo por WhatsApp tienen pedidos dispersos y proceso lento.',
+    solution: 'Construimos tiendas en línea con catálogo, carrito y métodos de pago integrados.',
+    result: 'Proceso de venta más ordenado, mayor alcance y menos carga operativa.',
     icon: 'tabler:building-store',
     accent: 'emerald' as const,
+    href: '/contacto',
+    ctaText: 'Quiero algo así',
   },
   {
-    category: 'Servicios',
-    title: 'Asistente virtual 24/7',
-    problem: 'El equipo no alcanzaba a responder todas las consultas fuera de horario.',
-    solution: 'Bot inteligente para web y WhatsApp que responde preguntas frecuentes y deriva casos complejos.',
-    result: 'Resuelve el 70% de las consultas sin intervención humana.',
+    category: 'Automatización',
+    title: 'Asistente virtual y bot de atención',
+    problem: 'Equipos pequeños no alcanzan a responder consultas fuera de horario laboral.',
+    solution: 'Desarrollamos bots inteligentes para web y WhatsApp que responden, filtran y derivan casos.',
+    result: 'Atención disponible 24/7, respuestas inmediatas y equipo enfocado en lo que importa.',
     icon: 'tabler:message-chatbot',
     accent: 'amber' as const,
+    href: '/contacto',
+    ctaText: 'Quiero algo así',
   },
   {
     category: 'Inmobiliaria',
-    title: 'Catálogo de propiedades con búsqueda',
-    problem: 'No tenían presencia digital y perdían leads calificados.',
-    solution: 'Sitio web con catálogo dinámico, filtros y panel para cargar propiedades sin saber programar.',
-    result: 'Más leads de calidad cada mes y una marca más fuerte en su mercado.',
+    title: 'Catálogo digital con búsqueda y filtros',
+    problem: 'Empresas sin presencia digital pierden leads calificados frente a competidores con sitio web.',
+    solution: 'Creamos sitios con catálogo dinámico, filtros de búsqueda y panel de administración sin código.',
+    result: 'Mayor visibilidad, captación de leads calificados y marca más fuerte en el mercado.',
     icon: 'tabler:home',
     accent: 'rose' as const,
+    href: '/contacto',
+    ctaText: 'Quiero algo así',
   },
 ];
 
@@ -71,10 +83,10 @@ const schemas = [
   {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'Proyectos y casos de éxito — Tache Technology',
+    name: 'Soluciones que construimos — Tache Technology',
     url: 'https://tachetech.com/proyectos',
     description:
-      'Casos reales de desarrollo de software, páginas web y automatización entregados por Tache Technology en Montería.',
+      'Tipos de soluciones digitales que desarrolla Tache Technology: software a medida, automatización, bots con IA e integraciones para empresas en Montería y Colombia.',
     mainEntity: {
       '@type': 'ItemList',
       itemListElement: projects.map((p, i) => ({
@@ -94,7 +106,7 @@ const schemas = [
     '@type': 'BreadcrumbList',
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Inicio', item: 'https://tachetech.com/' },
-      { '@type': 'ListItem', position: 2, name: 'Proyectos', item: 'https://tachetech.com/proyectos' },
+      { '@type': 'ListItem', position: 2, name: 'Soluciones', item: 'https://tachetech.com/proyectos' },
     ],
   },
 ];
@@ -102,24 +114,24 @@ const schemas = [
 
 <Layout metadata={metadata} schemas={schemas}>
   <HeroPremium
-    eyebrow="Casos de éxito"
-    title='Resultados reales para <span class="text-[#1d0cdf]">negocios reales</span>'
-    subtitle="Cada proyecto que entregamos resuelve un problema concreto y deja a un negocio funcionando mejor. Aquí algunos ejemplos."
+    eyebrow="Lo que construimos"
+    title='Soluciones digitales que <span class="text-[#1d0cdf]">resuelven problemas reales</span>'
+    subtitle="Estos son los tipos de proyectos que desarrollamos. Si tu negocio enfrenta un reto similar, podemos construir algo a tu medida."
     showCtas={false}
   />
 
   <ProjectsGrid
     items={projects}
-    eyebrow="Casos de Éxito"
-    title="Proyectos entregados"
-    subtitle="Historias reales de transformación digital en empresas de Montería, Córdoba y Colombia."
+    eyebrow="Tipos de soluciones"
+    title="¿Qué podemos construir para ti?"
+    subtitle="Ejemplos de soluciones que desarrollamos para empresas con retos similares a los tuyos."
     variant="cases"
     showCta={false}
   />
 
   <CtaBanner
-    title="¿Te imaginas tu proyecto aquí?"
-    subtitle="Conversemos sobre lo que necesitas. Te ayudamos a darle forma y a llevarlo a la realidad."
-    primaryText="Empezar mi proyecto"
+    title="¿Tu negocio tiene un reto similar?"
+    subtitle="Cuéntanos qué necesitas y en 30 minutos te orientamos sobre la mejor solución para tu caso."
+    primaryText="Hablar de mi proyecto"
   />
 </Layout>

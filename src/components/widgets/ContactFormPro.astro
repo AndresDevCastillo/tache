@@ -115,6 +115,7 @@ const {
                 <option value="Bot con IA">Bot con IA</option>
                 <option value="Integración API">Integración API</option>
                 <option value="Linux & Cloud">Linux & Cloud</option>
+                <option value="Automatización y marketing digital con IA">Automatización y marketing digital con IA</option>
                 <option value="Consultoría">Consultoría</option>
                 <option value="Otro">Otro</option>
               </select>
@@ -264,6 +265,8 @@ const {
 </section>
 
 <script>
+  import { trackEvent } from '~/utils/tracking';
+
   type Status = 'success' | 'error' | 'info';
 
   const showStatus = (form: HTMLFormElement, kind: Status, message: string) => {
@@ -344,6 +347,8 @@ const {
       }
 
       const url = buildWhatsappUrl(phone, data);
+      trackEvent('submit_contact_form', { service: data.service });
+      trackEvent('click_whatsapp', { trigger: 'contact_form' });
       window.open(url, '_blank', 'noopener,noreferrer');
 
       showStatus(
