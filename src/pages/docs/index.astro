@@ -25,13 +25,13 @@ const pasos = [
   },
   {
     icono: 'tabler:file-text',
-    titulo: 'Ábrelo',
-    texto: 'Ábrelo con Word. Si no tienes Word, usa Google Docs o LibreOffice Writer.',
+    titulo: 'Ábrelo y edítalo',
+    texto: 'Ábrelo con Word. Si no tienes Word, usa Google Docs o LibreOffice Writer. Guárdalo como Word (.docx).',
   },
   {
-    icono: 'tabler:device-floppy',
-    titulo: 'Guárdalo con tu nombre',
-    texto: 'Archivo → Guardar como… por ejemplo: desastre-maria-lopez.docx',
+    icono: 'tabler:upload',
+    titulo: 'Entrégalo',
+    texto: 'Cuando termines, escribe tu nombre aquí abajo, elige tu archivo y toca «Enviar».',
   },
 ];
 ---
@@ -93,9 +93,116 @@ const pasos = [
         }
       </ol>
 
+      <section id="entregar" class="mt-12 rounded-2xl border border-slate-200 bg-white p-5 sm:p-7 shadow-sm">
+        <div class="flex items-center gap-3">
+          <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-[#eef0ff] text-[#1d0cdf]">
+            <Icon name="tabler:upload" class="h-6 w-6" />
+          </span>
+          <div>
+            <h2 class="text-2xl font-bold text-slate-900">Entrega tu trabajo</h2>
+            <p class="text-slate-600">Sube el documento ya editado. Solo archivos de Word (.docx).</p>
+          </div>
+        </div>
+
+        <form id="form-entrega" class="mt-6 grid gap-5" novalidate>
+          <label class="grid gap-2">
+            <span class="font-semibold text-slate-900">Tu nombre y apellido</span>
+            <input
+              name="nombre"
+              type="text"
+              required
+              minlength="3"
+              maxlength="80"
+              autocomplete="name"
+              placeholder="Ej.: María López"
+              class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3.5 text-lg text-slate-900 placeholder:text-slate-400 focus:border-[#1d0cdf] focus:outline-none focus:ring-4 focus:ring-[#1d0cdf]/15"
+            />
+          </label>
+
+          <label
+            id="zona-archivo"
+            class="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-slate-300 bg-[#f7f8fc] px-4 py-8 text-center transition-colors hover:border-[#1d0cdf] hover:bg-[#eef0ff]"
+          >
+            <Icon name="tabler:file-type-docx" class="h-10 w-10 text-[#1d0cdf]" />
+            <span id="texto-archivo" class="font-semibold text-slate-900">Toca aquí para elegir tu archivo</span>
+            <span class="text-sm text-slate-500">Documento de Word (.docx), máximo 10 MB</span>
+            <input name="archivo" type="file" accept=".docx,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required class="sr-only" />
+          </label>
+
+          <button
+            type="submit"
+            class="inline-flex items-center justify-center gap-2 rounded-xl bg-[#1d0cdf] px-7 py-4 text-lg font-semibold text-white transition-colors hover:bg-[#1709b8] disabled:cursor-wait disabled:opacity-60 focus:outline-none focus-visible:ring-4 focus-visible:ring-[#1d0cdf]/30"
+          >
+            <Icon name="tabler:send" class="h-6 w-6" />
+            <span>Enviar</span>
+          </button>
+
+          <p id="estado-entrega" role="status" aria-live="polite" class="hidden rounded-xl px-4 py-3 font-semibold"></p>
+        </form>
+      </section>
+
       <p class="mt-10 text-sm text-slate-500">
         Institución Educativa Rancho Grande · Tecnología e Informática · Grado 6
       </p>
     </div>
   </main>
 </Layout>
+
+<script>
+  const ENDPOINT = 'https://entregas.tachetech.com/subir';
+  const MAX_BYTES = 10 * 1024 * 1024;
+
+  const init = () => {
+    const form = document.getElementById('form-entrega') as HTMLFormElement | null;
+    if (!form || form.dataset.listo === 'true') return;
+    form.dataset.listo = 'true';
+
+    const input = form.querySelector<HTMLInputElement>('input[name="archivo"]')!;
+    const nombre = form.querySelector<HTMLInputElement>('input[name="nombre"]')!;
+    const texto = document.getElementById('texto-archivo')!;
+    const estado = document.getElementById('estado-entrega')!;
+    const boton = form.querySelector<HTMLButtonElement>('button[type="submit"]')!;
+    const etiqueta = boton.querySelector('span')!;
+
+    const mostrar = (msg: string, ok: boolean) => {
+      estado.textContent = msg;
+      estado.className = 'rounded-xl px-4 py-3 font-semibold ' + (ok ? 'bg-green-50 text-green-700' : 'bg-red-50 text-red-700');
+    };
+
+    input.addEventListener('change', () => {
+      texto.textContent = input.files?.[0]?.name ?? 'Toca aquí para elegir tu archivo';
+    });
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const archivo = input.files?.[0];
+      if (nombre.value.trim().split(/\s+/).join(' ').length < 3) return mostrar('Escribe tu nombre y apellido.', false);
+      if (!archivo) return mostrar('Elige el archivo de Word.', false);
+      if (!archivo.name.toLowerCase().endsWith('.docx')) return mostrar('Solo se reciben documentos de Word (.docx).', false);
+      if (archivo.size > MAX_BYTES) return mostrar('El archivo pesa más de 10 MB.', false);
+
+      boton.disabled = true;
+      etiqueta.textContent = 'Enviando…';
+      estado.className = 'hidden';
+      try {
+        const res = await fetch(ENDPOINT, { method: 'POST', body: new FormData(form) });
+        const data = await res.json().catch(() => ({}));
+        if (res.ok && data.ok) {
+          mostrar(`¡Listo, ${data.nombre}! Recibimos tu documento a las ${data.hora}.`, true);
+          form.reset();
+          texto.textContent = 'Toca aquí para elegir tu archivo';
+        } else {
+          mostrar(data.error || 'No se pudo enviar. Inténtalo de nuevo.', false);
+        }
+      } catch {
+        mostrar('No hay conexión con el servidor. Revisa el internet e inténtalo de nuevo.', false);
+      } finally {
+        boton.disabled = false;
+        etiqueta.textContent = 'Enviar';
+      }
+    });
+  };
+
+  init();
+  document.addEventListener('astro:page-load', init);
+</script>
