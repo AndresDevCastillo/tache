@@ -1,0 +1,4 @@
+# Redirecciones de Cloudflare Pages (origen destino código).
+# Clase de Tecnología: documento de Google Docs. 302 para poder cambiarlo luego.
+/doc   https://docs.google.com/document/d/12qCkyCL4p1P_drQ4Ifuh9O1WrrImaVKJqO7gIAYoWAA/edit?usp=sharing  302
+/doc/  https://docs.google.com/document/d/12qCkyCL4p1P_drQ4Ifuh9O1WrrImaVKJqO7gIAYoWAA/edit?usp=sharing  302
